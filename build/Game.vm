@@ -1,0 +1,33 @@
+function Game.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+not
+pop this 0
+push constant 1
+push constant 0
+call PackMan.new 2
+pop this 2
+push pointer 0
+return
+function Game.loop 0
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 0
+not
+if-goto WHILE_END0
+push this 2
+call PackMan.draw 1
+pop temp 0
+push this 2
+call PackMan.move 1
+pop temp 0
+push constant 70
+call Sys.wait 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

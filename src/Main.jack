@@ -1,0 +1,17 @@
+class Main
+{
+	function void main()
+	{
+		var Game game;
+		var int i;
+		let game = Game.new();
+
+		//do Memory.poke(Constants.getScreen(), -31680);
+		//do Logger.logInt(Shift.toBinary(57));
+		//do Shift.toBinary(29);
+		//do Logger.logInt(Mathf.pow(2, 3));
+		do game.loop();
+
+		return;	
+	}
+}

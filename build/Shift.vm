@@ -1,0 +1,129 @@
+function Shift.toBinary 6
+push argument 0
+pop local 0
+push constant 0
+pop local 1
+push constant 0
+pop local 5
+push constant 1
+pop local 2
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+add
+push constant 2
+call Mathf.mod 2
+pop local 3
+push local 3
+push local 2
+add
+push constant 2
+call Mathf.mod 2
+pop local 4
+push local 1
+push constant 1
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 5
+push local 4
+push constant 2
+push local 1
+push constant 1
+sub
+call Mathf.pow 2
+call Math.multiply 2
+add
+pop local 5
+label IF_FALSE0
+push local 0
+push constant 2
+call Math.divide 2
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+push local 3
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+pop local 2
+label IF_FALSE1
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+push constant 16
+lt
+not
+if-goto WHILE_END1
+push local 5
+push constant 2
+push local 1
+push constant 1
+sub
+call Mathf.pow 2
+add
+pop local 5
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push local 5
+return
+function Shift.right 1
+push argument 0
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+call Math.abs 1
+call Shift.toBinary 1
+pop local 0
+push argument 1
+push constant 1
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 2
+push argument 1
+push constant 1
+sub
+call Mathf.pow 2
+call Math.divide 2
+pop local 0
+label IF_FALSE1
+goto IF_END0
+label IF_FALSE0
+push argument 0
+push constant 2
+push argument 1
+call Mathf.pow 2
+call Math.divide 2
+pop local 0
+label IF_END0
+push local 0
+return
+function Shift.left 0
+push argument 0
+push constant 2
+push argument 1
+call Mathf.pow 2
+call Math.multiply 2
+return

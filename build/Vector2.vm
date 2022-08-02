@@ -1,0 +1,34 @@
+function Vector2.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push pointer 0
+return
+function Vector2.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Vector2.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Vector2.setX 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push constant 0
+return
+function Vector2.setY 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 1
+push constant 0
+return

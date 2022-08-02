@@ -1,0 +1,29 @@
+class PackManAsset
+{
+    function Array mouthOpenLeft()
+    {
+        var Array sprite, half, result;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 4080;
+        let sprite[1] = 16380;
+        let sprite[2] = 32766;
+        let sprite[3] = 32766;
+        let sprite[4] = -1;
+        let sprite[5] = -8;
+        let sprite[6] = -64;
+        let sprite[7] = -256;
+        let sprite[8] = -256;
+        let sprite[9] = -64;
+        let sprite[10] = -8;
+        let sprite[11] = -1;
+        let sprite[12] = 32766;
+        let sprite[13] = 32766;
+        let sprite[14] = 16380;
+        let sprite[15] = 4080;
+
+        
+
+        return sprite;
+    }
+}

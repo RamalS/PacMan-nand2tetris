@@ -1,0 +1,30 @@
+class ScreenManager
+{
+    function int getLocation(Vector2 pos, int i) // stavi u drugu klasu
+    {
+        return Constants.getScreen() + pos.getX() + (i * (32 + pos.getY()));
+    }
+
+    function void clearBlock(int location)
+    {
+        do Memory.poke(location, 0);
+        do Memory.poke(location + 32, 0);
+        do Memory.poke(location + 64, 0);
+        do Memory.poke(location + 96, 0);
+        do Memory.poke(location + 128, 0);
+        do Memory.poke(location + 160, 0);
+        do Memory.poke(location + 192, 0);
+        do Memory.poke(location + 224, 0);
+        do Memory.poke(location + 64, 0);
+        do Memory.poke(location + 256, 0);
+        do Memory.poke(location + 288, 0);
+        do Memory.poke(location + 320, 0);
+        do Memory.poke(location + 352, 0);
+        do Memory.poke(location + 384, 0);
+        do Memory.poke(location + 416, 0);
+        do Memory.poke(location + 448, 0);
+        do Memory.poke(location + 480, 0);
+
+        return;
+    }
+}

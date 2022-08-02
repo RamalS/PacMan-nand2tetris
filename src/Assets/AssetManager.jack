@@ -1,0 +1,32 @@
+class AssetManager
+{//ne tako jedna funkcija krivo si razumio
+    // function Array toHalfSpriteRigt(Array sprite, int shiftBy)
+    // {
+    //     var int i;
+    //     var Array result;
+
+    //     let i = 0;
+    //     let result = Array.new(16);
+    //     while (i < 16)
+    //     {
+    //         let result[i] = Shift.left(sprite, shiftBy);
+           
+    //         let i = i + 1;
+    //     }
+    // }
+
+    // function Array toHalfSpriteLeft(Array sprite, int shiftBy)
+    // {
+    //     var int i;
+    //     var Array result;
+
+    //     let i = 0;
+    //     let result = Array.new(16);
+    //     while (i < 16)
+    //     {
+    //         let result[i] = Shift.right(sprite, shiftBy);
+           
+    //         let i = i + 1;
+    //     }
+    // }
+}

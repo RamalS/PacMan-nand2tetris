@@ -1,0 +1,29 @@
+class Game
+{
+    field bool run;
+    field int counter;
+
+    field PackMan packMan;
+
+    constructor Game new()
+    {
+        let run = true;
+
+        let packMan = PackMan.new(1, 0);
+
+        return this;
+    }
+
+    method void loop()
+    {
+        while (run)
+        {   
+            do packMan.draw();
+            do packMan.move();
+
+            do Sys.wait(70);
+        }
+
+        return;
+    }
+}

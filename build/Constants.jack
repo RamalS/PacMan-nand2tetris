@@ -1,0 +1,7 @@
+class Constants
+{
+    function int getScreen()
+    {
+        return 16384; 
+    }
+}

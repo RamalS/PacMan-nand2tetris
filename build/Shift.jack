@@ -1,0 +1,66 @@
+class Shift
+{
+    function int toBinary(int x)
+    {
+        var int n, i, carry, rem, mul, result;
+
+        let n = x;
+        let i = 0;
+        let result = 0;
+        let carry = 1;
+
+        while (n > 0)
+        {
+            let rem = Mathf.mod(n + 1, 2);
+            let mul = Mathf.mod(rem + carry, 2); 
+
+            //do Logger.logInt(mul);
+            if (i > 1)
+            {
+                let result = result + (mul * Mathf.pow(2, i - 1));
+            }
+            //let result = result + (mul * Mathf.pow(2, i));
+            let n = n / 2;
+            let i = i + 1; 
+            
+            if (rem = 0)
+            {
+                let carry = 0;
+            }
+        } 
+
+        while (i < 16)
+        {
+            //do Logger.logInt(1);
+            let result = result + Mathf.pow(2, i - 1);   
+            let i = i + 1;
+        }
+
+        return result;
+    }
+
+    function int right(int x, int s)
+    {
+        var int result;
+
+        if (x < 0)
+        {
+            let result = Shift.toBinary(Math.abs(x));
+            if (s > 1)
+            {
+                let result = result / Mathf.pow(2, s - 1);
+            } 
+        }
+        else
+        {
+            let result = x / Mathf.pow(2, s);
+        }
+
+        return result;
+    }
+
+    function int left(int x, int s)
+    {
+        return x * Mathf.pow(2, s);
+    }
+}

@@ -1,0 +1,2 @@
+napravi thredove
+skuzi screen tearing zasto se dogada (mogucnost while petlja)

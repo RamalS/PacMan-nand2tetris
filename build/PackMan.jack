@@ -1,0 +1,162 @@
+class PackMan
+{
+    field int state, lastKey, direction;
+    field bool updateSprite;
+    field Array sprites, halfSprites;
+    field Vector2 position;
+
+    constructor PackMan new(int x, int y)
+    {
+        do loadSprite();
+
+        let state = 0;
+        let lastKey = 0;
+        let direction = 0;
+        let updateSprite = true;
+        let position = Vector2.new(x, y);
+
+        return this;
+    }  
+
+    method void loadSprite()
+    {
+        var int i, j, temp;
+        var Array sprite1, sprite2, halfSpriteLeft, halfSpriteRight;
+
+        let sprites = Array.new(2);
+        let halfSprites = Array.new(2);
+        let sprite1 = Array.new(16);
+        let sprite2 = Array.new(16);
+        let halfSpriteLeft = Array.new(16);
+        let halfSpriteRight = Array.new(16);
+
+
+        let i = 0;
+        while (i < 16)
+        {
+            let temp = PackManAsset.mouthOpenLeft();
+
+            let halfSpriteLeft[i] = Shift.right(temp, 8); 
+            let halfSpriteRight[i] = Shift.left(temp, 8);
+           
+            let i = i + 1;
+        }
+
+        let sprites[0] = PackManAsset.mouthOpenLeft();
+        let sprites[1] = sprite2;
+        let halfSprites[0] = halfSpriteLeft;
+        let halfSprites[1] = halfSpriteRight;
+
+        return;
+    }
+
+    method void moveRight()
+    {
+        let state = Mathf.mod(state + 1, 2);
+
+        if (state = 0)
+        {
+            do position.setX(position.getX() + 1);
+        }     
+
+        let updateSprite = true;
+
+        return;
+    }
+
+    method void moveLeft()
+    {
+        let state = Mathf.mod(state + 1, 2);
+        if (state = 0)
+        {
+            do position.setX(position.getX() - 1);
+        }
+
+        let updateSprite = true;
+
+        return;
+    }
+
+    method void move()
+    {  
+        var int kybrd;
+        
+        let kybrd = Keyboard.keyPressed();
+        //  do Logger.logInt(kybrd); 
+
+        if ((kybrd = 130) & ~(lastKey = kybrd))
+        {
+            let direction = -1;
+            let lastKey = kybrd;   
+        } 
+        if (kybrd = 132 & ~(lastKey = kybrd))
+        {
+            let direction = 1;
+            let lastKey = kybrd;   
+        }
+        if (kybrd = 0 & ~(lastKey = kybrd))
+        {
+            let lastKey = kybrd;
+        }
+
+        if (direction = 1)
+        {
+            do moveRight();
+        }
+        if (direction = -1)
+        {
+           do moveLeft();
+        }
+          
+        return;
+    }
+
+    method void draw()
+    {
+        var int i, location;
+        var Array sprite, half;
+
+        if (updateSprite)
+        {
+            let location = ScreenManager.getLocation(position, i);
+            let i = 0;
+
+            if (direction = 1)
+            {
+                do ScreenManager.clearBlock(location - 1);
+            }
+            if (direction = -1)
+            {
+                do ScreenManager.clearBlock(location + 1);
+            }
+
+            while (i < 16)
+            {
+                if (state = 0)
+                {
+                    let sprite = sprites[0];
+                    do Memory.poke(location + (i * 32), sprite[i]);
+                }
+                if (state = 1)
+                {
+                    let sprite = halfSprites[0]; 
+                    let half = halfSprites[1];
+                    do Memory.poke(location, sprite[i]);
+                    do Memory.poke(location - 1, half[i]);
+                }
+
+
+                let i = i + 1;
+            }
+
+            let updateSprite = false;
+        } 
+
+        return; 
+    }
+
+    method void testDraw()
+    {
+        return;
+    }
+}

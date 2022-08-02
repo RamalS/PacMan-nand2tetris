@@ -1,0 +1,27 @@
+class Vector2
+{
+    field int x, y;
+
+    constructor Vector2 new(int _x, int _y)
+    {
+        let x = _x;
+        let y = _y;
+
+        return this;
+    } 
+
+    method int getX() { return x; }
+    method int getY() { return y; }
+
+    method void setX(int t)
+    {
+        let x = t;
+        return;
+    }
+
+    method void setY(int t)
+    {
+        let y = t;
+        return;
+    }
+}

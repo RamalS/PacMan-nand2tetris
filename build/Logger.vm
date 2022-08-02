@@ -1,0 +1,16 @@
+function Logger.log 0
+push argument 0
+call Output.printString 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push constant 0
+return
+function Logger.logInt 0
+push argument 0
+call Output.printInt 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push constant 0
+return
