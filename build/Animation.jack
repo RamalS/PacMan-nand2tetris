@@ -1,0 +1,33 @@
+class Animation
+{
+    field Array sprites;
+    field int counter, size, iterator;
+
+    constructor Animation new(int s)
+    {
+        let sprites = Array.new(s);
+        let counter = 0;
+        let iterator = 0;
+        let size = s;
+
+        return this;
+    }
+
+    method void add(Array sprite)
+    {
+        let sprites[counter] = sprite;
+        let counter = counter + 1;
+
+        return; 
+    }
+
+    method Array next()
+    {
+        var Array sprite;
+
+        let sprite = sprites[iterator];
+        let iterator = Mathf.mod(iterator + 1, size); 
+
+        return sprite;
+    }
+}

@@ -1,78 +1,56 @@
 class PackMan
 {
-    field int state, lastKey, direction;
+    field int  lastKey, direction;
     field bool updateSprite;
-    field Array sprites, halfSprites;
+    field AnimationManager am;
     field Vector2 position;
 
     constructor PackMan new(int x, int y)
     {
-        do loadSprite();
-
-        let state = 0;
         let lastKey = 0;
         let direction = 0;
         let updateSprite = true;
         let position = Vector2.new(x, y);
+        let am = AnimationManager.new(2);
+
+        do loadAnimations();
 
         return this;
-    }  
+    }
 
-    method void loadSprite()
+    method void loadAnimations()
     {
-        var int i, j, temp;
-        var Array sprite1, sprite2, halfSpriteLeft, halfSpriteRight;
+        var Animation animation;
 
-        let sprites = Array.new(2);
-        let halfSprites = Array.new(2);
-        let sprite1 = Array.new(16);
-        let sprite2 = Array.new(16);
-        let halfSpriteLeft = Array.new(16);
-        let halfSpriteRight = Array.new(16);
+        let animation = Animation.new(2);
+        do animation.add(PackManAsset.mouthOpenLeft());
+        do animation.add(PackManAsset.mouthClosed());
+        do am.add(animation);
 
+        let animation = Animation.new(2);
+        do animation.add(PackManAsset.mouthOpenRight());
+        do animation.add(PackManAsset.mouthClosed());
+        do am.add(animation);
 
-        let i = 0;
-        while (i < 16)
-        {
-            let temp = PackManAsset.mouthOpenLeft();
-
-            let halfSpriteLeft[i] = Shift.right(temp, 8); 
-            let halfSpriteRight[i] = Shift.left(temp, 8);
-           
-            let i = i + 1;
-        }
-
-        let sprites[0] = PackManAsset.mouthOpenLeft();
-        let sprites[1] = sprite2;
-        let halfSprites[0] = halfSpriteLeft;
-        let halfSprites[1] = halfSpriteRight;
+        do am.set(Constants.packManRight());
 
         return;
     }
 
     method void moveRight()
     {
-        let state = Mathf.mod(state + 1, 2);
-
-        if (state = 0)
-        {
-            do position.setX(position.getX() + 1);
-        }     
-
+        do position.setX(position.getX() + 1);
         let updateSprite = true;
+        do am.set(Constants.packManRight());
 
         return;
     }
 
     method void moveLeft()
     {
-        let state = Mathf.mod(state + 1, 2);
-        if (state = 0)
-        {
-            do position.setX(position.getX() - 1);
-        }
-
+        do position.setX(position.getX() - 1);
         let updateSprite = true;
+        do am.set(Constants.packManLeft());
 
         return;
     }
@@ -113,13 +91,11 @@ class PackMan
 
     method void draw()
     {
-        var int i, location;
-        var Array sprite, half;
+        var int location;
 
         if (updateSprite)
         {
-            let location = ScreenManager.getLocation(position, i);
-            let i = 0;
+            let location = ScreenManager.getLocation(position);
 
             if (direction = 1)
             {
@@ -130,33 +106,11 @@ class PackMan
                 do ScreenManager.clearBlock(location + 1);
             }
 
-            while (i < 16)
-            {
-                if (state = 0)
-                {
-                    let sprite = sprites[0];
-                    do Memory.poke(location + (i * 32), sprite[i]);
-                }
-                if (state = 1)
-                {
-                    let sprite = halfSprites[0]; 
-                    let half = halfSprites[1];
-                    do Memory.poke(location, sprite[i]);
-                    do Memory.poke(location - 1, half[i]);
-                }
-
-
-                let i = i + 1;
-            }
+            do am.drawNext(location);
 
             let updateSprite = false;
         } 
 
         return; 
-    }
-
-    method void testDraw()
-    {
-        return;
     }
 }

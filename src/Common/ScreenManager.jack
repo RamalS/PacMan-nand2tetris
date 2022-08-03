@@ -1,8 +1,8 @@
 class ScreenManager
 {
-    function int getLocation(Vector2 pos, int i) // stavi u drugu klasu
+    function int getLocation(Vector2 pos) // stavi u drugu klasu
     {
-        return Constants.getScreen() + pos.getX() + (i * (32 + pos.getY()));
+        return Constants.getScreen() + pos.getX() + (32 * pos.getY());
     }
 
     function void clearBlock(int location)

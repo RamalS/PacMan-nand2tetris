@@ -1,170 +1,101 @@
 function PackMan.new 0
-push constant 7
+push constant 5
 call Memory.alloc 1
 pop pointer 0
-push pointer 0
-call PackMan.loadSprite 1
-pop temp 0
 push constant 0
 pop this 0
 push constant 0
 pop this 1
 push constant 0
-pop this 2
-push constant 0
 not
-pop this 3
+pop this 2
 push argument 0
 push argument 1
 call Vector2.new 2
-pop this 6
+pop this 4
+push constant 2
+call AnimationManager.new 1
+pop this 3
+push pointer 0
+call PackMan.loadAnimations 1
+pop temp 0
 push pointer 0
 return
-function PackMan.loadSprite 7
+function PackMan.loadAnimations 1
 push argument 0
 pop pointer 0
 push constant 2
-call Array.new 1
-pop this 4
+call Animation.new 1
+pop local 0
+push local 0
+call PackManAsset.mouthOpenLeft 0
+call Animation.add 2
+pop temp 0
+push local 0
+call PackManAsset.mouthClosed 0
+call Animation.add 2
+pop temp 0
+push this 3
+push local 0
+call AnimationManager.add 2
+pop temp 0
 push constant 2
-call Array.new 1
-pop this 5
-push constant 16
-call Array.new 1
-pop local 3
-push constant 16
-call Array.new 1
-pop local 4
-push constant 16
-call Array.new 1
-pop local 5
-push constant 16
-call Array.new 1
-pop local 6
-push constant 0
+call Animation.new 1
 pop local 0
-label WHILE_EXP0
 push local 0
-push constant 16
-lt
-not
-if-goto WHILE_END0
-call PackManAsset.mouthOpenLeft 0
-pop local 2
+call PackManAsset.mouthOpenRight 0
+call Animation.add 2
+pop temp 0
 push local 0
-push local 5
-add
-push local 2
-push constant 8
-call Shift.right 2
+call PackManAsset.mouthClosed 0
+call Animation.add 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+push this 3
 push local 0
-push local 6
-add
-push local 2
-push constant 8
-call Shift.left 2
+call AnimationManager.add 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 0
-push constant 1
-add
-pop local 0
-goto WHILE_EXP0
-label WHILE_END0
-push constant 0
-push this 4
-add
-call PackManAsset.mouthOpenLeft 0
+push this 3
+call Constants.packManRight 0
+call AnimationManager.set 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 1
-push this 4
-add
-push local 4
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 0
-push this 5
-add
-push local 5
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 1
-push this 5
-add
-push local 6
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push constant 0
 return
 function PackMan.moveRight 0
 push argument 0
 pop pointer 0
-push this 0
-push constant 1
-add
-push constant 2
-call Mathf.mod 2
-pop this 0
-push this 0
-push constant 0
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 6
-push this 6
+push this 4
+push this 4
 call Vector2.getX 1
 push constant 1
 add
 call Vector2.setX 2
 pop temp 0
-label IF_FALSE0
 push constant 0
 not
-pop this 3
+pop this 2
+push this 3
+call Constants.packManRight 0
+call AnimationManager.set 2
+pop temp 0
 push constant 0
 return
 function PackMan.moveLeft 0
 push argument 0
 pop pointer 0
-push this 0
-push constant 1
-add
-push constant 2
-call Mathf.mod 2
-pop this 0
-push this 0
-push constant 0
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 6
-push this 6
+push this 4
+push this 4
 call Vector2.getX 1
 push constant 1
 sub
 call Vector2.setX 2
 pop temp 0
-label IF_FALSE0
 push constant 0
 not
-pop this 3
+pop this 2
+push this 3
+call Constants.packManLeft 0
+call AnimationManager.set 2
+pop temp 0
 push constant 0
 return
 function PackMan.move 1
@@ -175,7 +106,7 @@ pop local 0
 push local 0
 push constant 130
 eq
-push this 1
+push this 0
 push local 0
 eq
 not
@@ -185,14 +116,14 @@ goto IF_FALSE0
 label IF_TRUE0
 push constant 1
 neg
-pop this 2
-push local 0
 pop this 1
+push local 0
+pop this 0
 label IF_FALSE0
 push local 0
 push constant 132
 eq
-push this 1
+push this 0
 push local 0
 eq
 not
@@ -201,14 +132,14 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push constant 1
-pop this 2
-push local 0
 pop this 1
+push local 0
+pop this 0
 label IF_FALSE1
 push local 0
 push constant 0
 eq
-push this 1
+push this 0
 push local 0
 eq
 not
@@ -217,9 +148,9 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push local 0
-pop this 1
+pop this 0
 label IF_FALSE2
-push this 2
+push this 1
 push constant 1
 eq
 if-goto IF_TRUE3
@@ -229,7 +160,7 @@ push pointer 0
 call PackMan.moveRight 1
 pop temp 0
 label IF_FALSE3
-push this 2
+push this 1
 push constant 1
 neg
 eq
@@ -242,125 +173,47 @@ pop temp 0
 label IF_FALSE4
 push constant 0
 return
-function PackMan.draw 4
+function PackMan.draw 1
 push argument 0
 pop pointer 0
-push this 3
+push this 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 6
-push local 0
-call ScreenManager.getLocation 2
-pop local 1
-push constant 0
+push this 4
+call ScreenManager.getLocation 1
 pop local 0
-push this 2
+push this 1
 push constant 1
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push local 1
+push local 0
 push constant 1
 sub
 call ScreenManager.clearBlock 1
 pop temp 0
 label IF_FALSE1
-push this 2
+push this 1
 push constant 1
 neg
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push local 1
+push local 0
 push constant 1
 add
 call ScreenManager.clearBlock 1
 pop temp 0
 label IF_FALSE2
-label WHILE_EXP0
+push this 3
 push local 0
-push constant 16
-lt
-not
-if-goto WHILE_END0
-push this 0
-push constant 0
-eq
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-push constant 0
-push this 4
-add
-pop pointer 1
-push that 0
-pop local 2
-push local 1
-push local 0
-push constant 32
-call Math.multiply 2
-add
-push local 0
-push local 2
-add
-pop pointer 1
-push that 0
-call Memory.poke 2
+call AnimationManager.drawNext 2
 pop temp 0
-label IF_FALSE3
-push this 0
-push constant 1
-eq
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
 push constant 0
-push this 5
-add
-pop pointer 1
-push that 0
-pop local 2
-push constant 1
-push this 5
-add
-pop pointer 1
-push that 0
-pop local 3
-push local 1
-push local 0
-push local 2
-add
-pop pointer 1
-push that 0
-call Memory.poke 2
-pop temp 0
-push local 1
-push constant 1
-sub
-push local 0
-push local 3
-add
-pop pointer 1
-push that 0
-call Memory.poke 2
-pop temp 0
-label IF_FALSE4
-push local 0
-push constant 1
-add
-pop local 0
-goto WHILE_EXP0
-label WHILE_END0
-push constant 0
-pop this 3
+pop this 2
 label IF_FALSE0
-push constant 0
-return
-function PackMan.testDraw 0
-push argument 0
-pop pointer 0
 push constant 0
 return

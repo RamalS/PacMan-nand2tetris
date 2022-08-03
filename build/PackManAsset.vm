@@ -1,11 +1,11 @@
-function PackManAsset.mouthOpenLeft 3
+function PackManAsset.mouthOpenLeft 1
 push constant 16
 call Array.new 1
 pop local 0
 push constant 0
 push local 0
 add
-push constant 4080
+push constant 0
 pop temp 0
 pop pointer 1
 push temp 0
@@ -13,7 +13,7 @@ pop that 0
 push constant 1
 push local 0
 add
-push constant 16380
+push constant 992
 pop temp 0
 pop pointer 1
 push temp 0
@@ -21,7 +21,7 @@ pop that 0
 push constant 2
 push local 0
 add
-push constant 32766
+push constant 4088
 pop temp 0
 pop pointer 1
 push temp 0
@@ -29,7 +29,7 @@ pop that 0
 push constant 3
 push local 0
 add
-push constant 32766
+push constant 8188
 pop temp 0
 pop pointer 1
 push temp 0
@@ -37,8 +37,7 @@ pop that 0
 push constant 4
 push local 0
 add
-push constant 1
-neg
+push constant 16382
 pop temp 0
 pop pointer 1
 push temp 0
@@ -46,7 +45,141 @@ pop that 0
 push constant 5
 push local 0
 add
+push constant 16382
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push local 0
+add
+push constant 32760
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push local 0
+add
+push constant 32704
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 8
+push local 0
+add
+push constant 32512
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push local 0
+add
+push constant 32704
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push local 0
+add
+push constant 32760
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push local 0
+add
+push constant 16382
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push local 0
+add
+push constant 16382
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push local 0
+add
+push constant 8188
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 14
+push local 0
+add
+push constant 992
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 15
+push local 0
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+return
+function PackManAsset.mouthClosed 1
+push constant 16
+call Array.new 1
+pop local 0
+push constant 0
+push local 0
+add
+push constant 896
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push local 0
+add
+push constant 4064
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push local 0
+add
+push constant 16376
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push local 0
+add
+push constant 32764
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push local 0
+add
+push constant 32766
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push local 0
+add
+push constant 1
 neg
 pop temp 0
 pop pointer 1
@@ -55,7 +188,7 @@ pop that 0
 push constant 6
 push local 0
 add
-push constant 64
+push constant 1
 neg
 pop temp 0
 pop pointer 1
@@ -64,40 +197,13 @@ pop that 0
 push constant 7
 push local 0
 add
-push constant 256
+push constant 1
 neg
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
 push constant 8
-push local 0
-add
-push constant 256
-neg
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 9
-push local 0
-add
-push constant 64
-neg
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 10
-push local 0
-add
-push constant 8
-neg
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 11
 push local 0
 add
 push constant 1
@@ -106,10 +212,36 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+push constant 9
+push local 0
+add
+push constant 1
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push local 0
+add
+push constant 2
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push local 0
+add
+push constant 32764
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 12
 push local 0
 add
-push constant 32766
+push constant 32764
 pop temp 0
 pop pointer 1
 push temp 0
@@ -117,7 +249,7 @@ pop that 0
 push constant 13
 push local 0
 add
-push constant 32766
+push constant 16376
 pop temp 0
 pop pointer 1
 push temp 0
@@ -125,7 +257,7 @@ pop that 0
 push constant 14
 push local 0
 add
-push constant 16380
+push constant 4064
 pop temp 0
 pop pointer 1
 push temp 0
@@ -133,7 +265,141 @@ pop that 0
 push constant 15
 push local 0
 add
-push constant 4080
+push constant 256
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+return
+function PackManAsset.mouthOpenRight 1
+push constant 16
+call Array.new 1
+pop local 0
+push constant 0
+push local 0
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push local 0
+add
+push constant 1984
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push local 0
+add
+push constant 8176
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push local 0
+add
+push constant 16376
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push local 0
+add
+push constant 32764
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push local 0
+add
+push constant 32764
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push local 0
+add
+push constant 8190
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push local 0
+add
+push constant 1022
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push local 0
+add
+push constant 254
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push local 0
+add
+push constant 1022
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push local 0
+add
+push constant 8188
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push local 0
+add
+push constant 32764
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push local 0
+add
+push constant 32764
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push local 0
+add
+push constant 16376
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 14
+push local 0
+add
+push constant 1984
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 15
+push local 0
+add
+push constant 0
 pop temp 0
 pop pointer 1
 push temp 0

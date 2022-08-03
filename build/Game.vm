@@ -6,7 +6,7 @@ push constant 0
 not
 pop this 0
 push constant 1
-push constant 0
+push constant 40
 call PackMan.new 2
 pop this 2
 push pointer 0

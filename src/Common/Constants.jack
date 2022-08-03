@@ -4,4 +4,14 @@ class Constants
     {
         return 16384; 
     }
+
+    function int packManLeft()
+    {
+        return 0;
+    }
+
+    function int packManRight()
+    {
+        return 1;
+    }
 }

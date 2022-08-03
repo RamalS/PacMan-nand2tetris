@@ -3,11 +3,9 @@ call Constants.getScreen 0
 push argument 0
 call Vector2.getX 1
 add
-push argument 1
 push constant 32
 push argument 0
 call Vector2.getY 1
-add
 call Math.multiply 2
 add
 return

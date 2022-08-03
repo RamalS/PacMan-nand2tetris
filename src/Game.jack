@@ -9,7 +9,7 @@ class Game
     {
         let run = true;
 
-        let packMan = PackMan.new(1, 0);
+        let packMan = PackMan.new(1, 40);
 
         return this;
     }

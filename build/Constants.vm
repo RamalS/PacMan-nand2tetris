@@ -1,3 +1,9 @@
 function Constants.getScreen 0
 push constant 16384
 return
+function Constants.packManLeft 0
+push constant 0
+return
+function Constants.packManRight 0
+push constant 1
+return

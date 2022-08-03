@@ -1,0 +1,55 @@
+class AnimationManager
+{
+    field Array animations;
+    field int counter, size;
+    field Animation currentAnimation;
+
+    constructor AnimationManager new(int s)
+    {
+        let animations = Array.new(s);
+        let counter = 0;
+        let size = s;
+
+        return this;
+    }
+
+    method void add(Animation animation)
+    {
+        if (counter < size)
+        {
+            let animations[counter] = animation;
+            let counter = counter + 1;
+        }
+
+        return;
+    }
+
+    method void set(int id)
+    {
+        let currentAnimation = animations[id];
+
+        return;
+    }
+
+    method Array next()
+    {
+        return currentAnimation.next();
+    }
+
+    method void drawNext(int location)
+    {
+        var int i;
+        var Array sprite;
+
+        let i = 1;
+        let sprite = currentAnimation.next();
+        while (i < 16)
+        {
+            do Memory.poke(location + (i * 32), sprite[i]);
+
+            let i = i + 1;
+        }
+
+        return;
+    }
+}

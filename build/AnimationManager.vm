@@ -1,0 +1,88 @@
+function AnimationManager.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call Array.new 1
+pop this 0
+push constant 0
+pop this 1
+push argument 0
+pop this 2
+push pointer 0
+return
+function AnimationManager.add 0
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+push this 0
+add
+push argument 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push this 1
+push constant 1
+add
+pop this 1
+label IF_FALSE0
+push constant 0
+return
+function AnimationManager.set 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+pop this 3
+push constant 0
+return
+function AnimationManager.next 0
+push argument 0
+pop pointer 0
+push this 3
+call Animation.next 1
+return
+function AnimationManager.drawNext 2
+push argument 0
+pop pointer 0
+push constant 1
+pop local 0
+push this 3
+call Animation.next 1
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push argument 1
+push local 0
+push constant 32
+call Math.multiply 2
+add
+push local 0
+push local 1
+add
+pop pointer 1
+push that 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
