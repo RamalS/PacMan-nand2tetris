@@ -1,8 +1,6 @@
 class ClassicMap
 {
-    field Array map;
-
-    function Array getMap()
+    function Array initMap()
     {   
         var Array map;
 
@@ -529,7 +527,7 @@ class ClassicMap
         var int i, location, shift;
         var Array map;
 
-        let map = ClassicMap.getMap();
+        let map = ClassicMap.initMap();
         let location = Constants.getScreen() - 1;
         let i = 0;
         let shift = 0;

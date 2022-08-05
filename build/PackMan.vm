@@ -1,5 +1,5 @@
 function PackMan.new 2
-push constant 10
+push constant 9
 call Memory.alloc 1
 pop pointer 0
 push constant 0
@@ -17,11 +17,9 @@ pop this 6
 push constant 0
 not
 pop this 7
-push argument 2
-pop this 8
 push constant 4
 call AnimationManager.new 1
-pop this 9
+pop this 8
 push argument 0
 push argument 1
 call ScreenManager.getLocation 2
@@ -56,10 +54,7 @@ push constant 32
 call Math.multiply 2
 push local 1
 add
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 4
 eq
 if-goto IF_TRUE1
@@ -101,7 +96,7 @@ push local 0
 call PackManAsset.mouthClosed 0
 call Animation.add 2
 pop temp 0
-push this 9
+push this 8
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -116,7 +111,7 @@ push local 0
 call PackManAsset.mouthClosed 0
 call Animation.add 2
 pop temp 0
-push this 9
+push this 8
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -131,7 +126,7 @@ push local 0
 call PackManAsset.mouthClosed 0
 call Animation.add 2
 pop temp 0
-push this 9
+push this 8
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -146,11 +141,11 @@ push local 0
 call PackManAsset.mouthClosed 0
 call Animation.add 2
 pop temp 0
-push this 9
+push this 8
 push local 0
 call AnimationManager.add 2
 pop temp 0
-push this 9
+push this 8
 call Constants.packManRight 0
 call AnimationManager.set 2
 pop temp 0
@@ -160,13 +155,9 @@ function PackMan.increaseScore 0
 push argument 0
 pop pointer 0
 push argument 1
-push this 8
-add
 push constant 0
+call Game.setGrid 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push argument 1
 call Game.increaseScore 1
 pop temp 0
@@ -178,10 +169,7 @@ pop pointer 0
 push this 5
 push constant 32
 sub
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 5
 lt
 if-goto IF_TRUE0
@@ -201,10 +189,7 @@ pop pointer 0
 push this 5
 push constant 32
 add
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 5
 lt
 if-goto IF_TRUE0
@@ -224,10 +209,7 @@ pop pointer 0
 push this 5
 push constant 1
 sub
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 5
 lt
 if-goto IF_TRUE0
@@ -247,10 +229,7 @@ pop pointer 0
 push this 5
 push constant 1
 add
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 5
 lt
 if-goto IF_TRUE0
@@ -284,30 +263,46 @@ return
 function PackMan.moveRight 0
 push argument 0
 pop pointer 0
-push pointer 0
-call PackMan.checkCollisionRight 1
+push this 5
+call Game.grid 1
+push constant 3
+eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push this 3
+call ScreenManager.clearBlock 1
+pop temp 0
+push this 3
+push constant 31
+sub
+pop this 3
 push this 5
-push constant 1
-add
-push this 8
-add
-pop pointer 1
-push that 0
-push constant 1
-eq
+push constant 31
+sub
+pop this 5
+label IF_FALSE0
+push pointer 0
+call PackMan.checkCollisionRight 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
+push this 5
+push constant 1
+add
+call Game.grid 1
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
 push pointer 0
 push this 5
 push constant 1
 add
 call PackMan.increaseScore 2
 pop temp 0
-label IF_FALSE1
+label IF_FALSE2
 push pointer 0
 call PackMan.moveInit 1
 pop temp 0
@@ -319,45 +314,61 @@ push this 5
 push constant 1
 add
 pop this 5
-push this 9
+push this 8
 call Constants.packManRight 0
 call AnimationManager.set 2
 pop temp 0
-goto IF_END0
-label IF_FALSE0
+goto IF_END1
+label IF_FALSE1
 push pointer 0
 call PackMan.moveStop 1
 pop temp 0
-label IF_END0
+label IF_END1
 push constant 0
 return
 function PackMan.moveLeft 0
 push argument 0
 pop pointer 0
-push pointer 0
-call PackMan.checkCollisionLeft 1
+push this 5
+call Game.grid 1
+push constant 3
+eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 5
-push constant 1
-sub
-push this 8
+push this 3
+call ScreenManager.clearBlock 1
+pop temp 0
+push this 3
+push constant 31
 add
-pop pointer 1
-push that 0
-push constant 1
-eq
+pop this 3
+push this 5
+push constant 31
+add
+pop this 5
+label IF_FALSE0
+push pointer 0
+call PackMan.checkCollisionLeft 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
+push this 5
+push constant 1
+sub
+call Game.grid 1
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
 push pointer 0
 push this 5
 push constant 1
 sub
 call PackMan.increaseScore 2
 pop temp 0
-label IF_FALSE1
+label IF_FALSE2
 push pointer 0
 call PackMan.moveInit 1
 pop temp 0
@@ -369,16 +380,16 @@ push this 5
 push constant 1
 sub
 pop this 5
-push this 9
+push this 8
 call Constants.packManLeft 0
 call AnimationManager.set 2
 pop temp 0
-goto IF_END0
-label IF_FALSE0
+goto IF_END1
+label IF_FALSE1
 push pointer 0
 call PackMan.moveStop 1
 pop temp 0
-label IF_END0
+label IF_END1
 push constant 0
 return
 function PackMan.moveUp 0
@@ -392,10 +403,7 @@ label IF_TRUE0
 push this 5
 push constant 32
 sub
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 1
 eq
 if-goto IF_TRUE1
@@ -419,7 +427,7 @@ push this 5
 push constant 32
 sub
 pop this 5
-push this 9
+push this 8
 call Constants.packManUp 0
 call AnimationManager.set 2
 pop temp 0
@@ -442,10 +450,7 @@ label IF_TRUE0
 push this 5
 push constant 32
 add
-push this 8
-add
-pop pointer 1
-push that 0
+call Game.grid 1
 push constant 1
 eq
 if-goto IF_TRUE1
@@ -469,7 +474,7 @@ push this 5
 push constant 32
 add
 pop this 5
-push this 9
+push this 8
 call Constants.packManDown 0
 call AnimationManager.set 2
 pop temp 0
@@ -694,7 +699,7 @@ push this 7
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 9
+push this 8
 push this 3
 call AnimationManager.drawNext 2
 pop temp 0

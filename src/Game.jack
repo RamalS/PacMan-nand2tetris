@@ -4,12 +4,14 @@ class Game
     field int counter;
     field PackMan packMan;
     static int score;
+    static Array map;
 
     constructor Game new()
     {
         let run = true;
-        let packMan = PackMan.new(2, 8, ClassicMap.getMap());
         let score = 0;
+        let map = ClassicMap.initMap();
+        let packMan = PackMan.new(2, 8);
 
         do ClassicMap.draw();
 
@@ -26,6 +28,20 @@ class Game
         do Output.moveCursor(0, 2);
         do Output.printString("Score: ");
         do Output.printInt(score);
+
+        return;
+    }
+
+    function int grid(int i)
+    {
+        var int x;
+        let x = map[i];
+        return x;
+    }
+
+    function void setGrid(int i, int x)
+    {
+        let map[i] = x;
 
         return;
     }

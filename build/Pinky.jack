@@ -1,0 +1,6 @@
+class Pinky
+{
+    field int location;
+
+    
+}

@@ -1,4 +1,4 @@
-function ClassicMap.getMap 1
+function ClassicMap.initMap 1
 push constant 512
 call Array.new 1
 pop local 0
@@ -4101,7 +4101,7 @@ pop that 0
 push local 0
 return
 function ClassicMap.draw 4
-call ClassicMap.getMap 0
+call ClassicMap.initMap 0
 pop local 3
 call Constants.getScreen 0
 push constant 1

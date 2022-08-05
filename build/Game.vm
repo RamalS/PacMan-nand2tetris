@@ -5,13 +5,14 @@ pop pointer 0
 push constant 0
 not
 pop this 0
-push constant 2
-push constant 8
-call ClassicMap.getMap 0
-call PackMan.new 3
-pop this 2
 push constant 0
 pop static 0
+call ClassicMap.initMap 0
+pop static 1
+push constant 2
+push constant 8
+call PackMan.new 2
+pop this 2
 call ClassicMap.draw 0
 pop temp 0
 push constant 0
@@ -36,8 +37,9 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push static 0
-call Output.printInt 1
+push constant 0
+call Game.grid 1
+call Logger.logInt 1
 pop temp 0
 push pointer 0
 return
@@ -71,6 +73,26 @@ pop temp 0
 push static 0
 call Output.printInt 1
 pop temp 0
+push constant 0
+return
+function Game.grid 1
+push argument 0
+push static 1
+add
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+return
+function Game.setGrid 0
+push argument 0
+push static 1
+add
+push argument 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 0
 return
 function Game.loop 3
