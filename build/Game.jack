@@ -2,26 +2,48 @@ class Game
 {
     field bool run;
     field int counter;
-
     field PackMan packMan;
 
     constructor Game new()
     {
         let run = true;
+        let packMan = PackMan.new(2, 8, ClassicMap.getMap());
 
-        let packMan = PackMan.new(1, 40);
+        do ClassicMap.draw();
 
         return this;
     }
 
     method void loop()
     {
-        while (run)
-        {   
-            do packMan.draw();
-            do packMan.move();
+        var int factor, drawDuration, moveDuration;
 
-            do Sys.wait(70);
+        let drawDuration = 10;
+        let moveDuration = 10;
+
+        while (run)
+        {
+            if (drawDuration < 0)
+            {
+                do packMan.draw();
+                let drawDuration = 20;
+            }
+
+            if (moveDuration < 0)
+            {
+                do packMan.move();
+                let moveDuration = 40;
+            }
+
+            do packMan.input();
+
+            let drawDuration = drawDuration - 1;
+            let moveDuration = moveDuration - 1;
+            let factor = 100;
+
+            while(factor > 0) {
+                let factor = factor - 1;
+            }
         }
 
         return;

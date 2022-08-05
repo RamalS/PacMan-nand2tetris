@@ -1,5 +1,5 @@
 function PackMan.new 0
-push constant 5
+push constant 9
 call Memory.alloc 1
 pop pointer 0
 push constant 0
@@ -7,15 +7,25 @@ pop this 0
 push constant 0
 pop this 1
 push constant 0
-not
 pop this 2
+push constant 0
+not
+pop this 6
+push argument 2
+pop this 7
+push constant 4
+call AnimationManager.new 1
+pop this 8
 push argument 0
 push argument 1
-call Vector2.new 2
-pop this 4
-push constant 2
-call AnimationManager.new 1
+call ScreenManager.getLocation 2
 pop this 3
+push argument 1
+push constant 32
+call Math.multiply 2
+push argument 0
+add
+pop this 5
 push pointer 0
 call PackMan.loadAnimations 1
 pop temp 0
@@ -35,7 +45,7 @@ push local 0
 call PackManAsset.mouthClosed 0
 call Animation.add 2
 pop temp 0
-push this 3
+push this 8
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -50,55 +60,282 @@ push local 0
 call PackManAsset.mouthClosed 0
 call Animation.add 2
 pop temp 0
-push this 3
+push this 8
 push local 0
 call AnimationManager.add 2
 pop temp 0
-push this 3
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call PackManAsset.mouthOpenUp 0
+call Animation.add 2
+pop temp 0
+push local 0
+call PackManAsset.mouthClosed 0
+call Animation.add 2
+pop temp 0
+push this 8
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call PackManAsset.mouthOpenDown 0
+call Animation.add 2
+pop temp 0
+push local 0
+call PackManAsset.mouthClosed 0
+call Animation.add 2
+pop temp 0
+push this 8
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push this 8
 call Constants.packManRight 0
 call AnimationManager.set 2
 pop temp 0
+push constant 0
+return
+function PackMan.checkCollisionUp 0
+push argument 0
+pop pointer 0
+push this 5
+push constant 32
+sub
+push this 7
+add
+pop pointer 1
+push that 0
+push constant 3
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function PackMan.checkCollisionDown 0
+push argument 0
+pop pointer 0
+push this 5
+push constant 32
+add
+push this 7
+add
+pop pointer 1
+push that 0
+push constant 3
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function PackMan.checkCollisionLeft 0
+push argument 0
+pop pointer 0
+push this 5
+push constant 1
+sub
+push this 7
+add
+pop pointer 1
+push that 0
+push constant 3
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function PackMan.checkCollisionRight 0
+push argument 0
+pop pointer 0
+push this 5
+push constant 1
+add
+push this 7
+add
+pop pointer 1
+push that 0
+push constant 3
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function PackMan.moveInit 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+pop this 6
+push this 3
+pop this 4
+push constant 0
+return
+function PackMan.moveStop 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 1
+push constant 0
+pop this 6
 push constant 0
 return
 function PackMan.moveRight 0
 push argument 0
 pop pointer 0
-push this 4
-push this 4
-call Vector2.getX 1
+push pointer 0
+call PackMan.checkCollisionRight 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call PackMan.moveInit 1
+pop temp 0
+push this 3
 push constant 1
 add
-call Vector2.setX 2
-pop temp 0
-push constant 0
-not
-pop this 2
-push this 3
+pop this 3
+push this 5
+push constant 1
+add
+pop this 5
+push this 8
 call Constants.packManRight 0
 call AnimationManager.set 2
 pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call PackMan.moveStop 1
+pop temp 0
+label IF_END0
 push constant 0
 return
 function PackMan.moveLeft 0
 push argument 0
 pop pointer 0
-push this 4
-push this 4
-call Vector2.getX 1
+push pointer 0
+call PackMan.checkCollisionLeft 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call PackMan.moveInit 1
+pop temp 0
+push this 3
 push constant 1
 sub
-call Vector2.setX 2
-pop temp 0
-push constant 0
-not
-pop this 2
-push this 3
+pop this 3
+push this 5
+push constant 1
+sub
+pop this 5
+push this 8
 call Constants.packManLeft 0
 call AnimationManager.set 2
 pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call PackMan.moveStop 1
+pop temp 0
+label IF_END0
 push constant 0
 return
-function PackMan.move 1
+function PackMan.moveUp 0
+push argument 0
+pop pointer 0
+push pointer 0
+call PackMan.checkCollisionUp 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call PackMan.moveInit 1
+pop temp 0
+push this 3
+push constant 512
+sub
+pop this 3
+push this 5
+push constant 32
+sub
+pop this 5
+push this 8
+call Constants.packManUp 0
+call AnimationManager.set 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call PackMan.moveStop 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function PackMan.moveDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+call PackMan.checkCollisionDown 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call PackMan.moveInit 1
+pop temp 0
+push this 3
+push constant 512
+add
+pop this 3
+push this 5
+push constant 32
+add
+pop this 5
+push this 8
+call Constants.packManDown 0
+call AnimationManager.set 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call PackMan.moveStop 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function PackMan.input 1
 push argument 0
 pop pointer 0
 call Keyboard.keyPressed 0
@@ -116,9 +353,10 @@ goto IF_FALSE0
 label IF_TRUE0
 push constant 1
 neg
-pop this 1
+pop this 2
 push local 0
 pop this 0
+goto IF_END0
 label IF_FALSE0
 push local 0
 push constant 132
@@ -132,12 +370,13 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push constant 1
-pop this 1
+pop this 2
 push local 0
 pop this 0
+goto IF_END1
 label IF_FALSE1
 push local 0
-push constant 0
+push constant 131
 eq
 push this 0
 push local 0
@@ -147,73 +386,172 @@ and
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+push constant 2
+neg
+pop this 2
 push local 0
 pop this 0
+goto IF_END2
+label IF_FALSE2
+push local 0
+push constant 133
+eq
+push this 0
+push local 0
+eq
+not
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 2
+pop this 2
+push local 0
+pop this 0
+goto IF_END3
+label IF_FALSE3
+push local 0
+push constant 0
+eq
+push this 0
+push local 0
+eq
+not
+and
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+pop this 0
+label IF_FALSE4
+label IF_END3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function PackMan.move 0
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 2
+push constant 1
+eq
+push pointer 0
+call PackMan.checkCollisionRight 1
+and
+push this 2
+push constant 1
+neg
+eq
+push pointer 0
+call PackMan.checkCollisionLeft 1
+and
+or
+push this 2
+push constant 2
+eq
+push pointer 0
+call PackMan.checkCollisionDown 1
+and
+or
+push this 2
+push constant 2
+neg
+eq
+push pointer 0
+call PackMan.checkCollisionUp 1
+and
+or
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 2
+pop this 1
+label IF_FALSE1
+label IF_FALSE0
+push this 1
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call PackMan.moveRight 1
+pop temp 0
+goto IF_END2
 label IF_FALSE2
 push this 1
 push constant 1
+neg
 eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push pointer 0
-call PackMan.moveRight 1
+call PackMan.moveLeft 1
 pop temp 0
+goto IF_END3
 label IF_FALSE3
 push this 1
-push constant 1
-neg
+push constant 2
 eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push pointer 0
-call PackMan.moveLeft 1
+call PackMan.moveDown 1
 pop temp 0
+goto IF_END4
 label IF_FALSE4
+push this 1
+push constant 2
+neg
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push pointer 0
+call PackMan.moveUp 1
+pop temp 0
+label IF_FALSE5
+label IF_END4
+label IF_END3
+label IF_END2
 push constant 0
 return
-function PackMan.draw 1
+function PackMan.draw 0
 push argument 0
 pop pointer 0
-push this 2
+push this 4
+call Constants.getScreen 0
+gt
+push this 3
+push this 4
+eq
+not
+and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push this 4
-call ScreenManager.getLocation 1
-pop local 0
-push this 1
-push constant 1
-eq
+call ScreenManager.clearBlock 1
+pop temp 0
+label IF_FALSE0
+push this 6
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push local 0
-push constant 1
-sub
-call ScreenManager.clearBlock 1
-pop temp 0
-label IF_FALSE1
-push this 1
-push constant 1
-neg
-eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push local 0
-push constant 1
-add
-call ScreenManager.clearBlock 1
-pop temp 0
-label IF_FALSE2
+push this 8
 push this 3
-push local 0
 call AnimationManager.drawNext 2
 pop temp 0
-push constant 0
-pop this 2
-label IF_FALSE0
+label IF_FALSE1
 push constant 0
 return

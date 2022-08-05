@@ -14,4 +14,14 @@ class Constants
     {
         return 1;
     }
+
+    function int packManUp()
+    {
+        return 2;
+    }
+
+    function int packManDown()
+    {
+        return 3;
+    }
 }

@@ -42,8 +42,15 @@ pop local 0
 push this 3
 push constant 1
 add
-push this 2
-call Mathf.mod 2
 pop this 3
+push this 3
+push this 2
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 3
+label IF_FALSE0
 push local 0
 return

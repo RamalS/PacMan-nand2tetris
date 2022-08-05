@@ -38,17 +38,26 @@ class AnimationManager
 
     method void drawNext(int location)
     {
-        var int i;
         var Array sprite;
 
-        let i = 1;
         let sprite = currentAnimation.next();
-        while (i < 16)
-        {
-            do Memory.poke(location + (i * 32), sprite[i]);
 
-            let i = i + 1;
-        }
+        do Memory.poke(location, sprite[0]);
+        do Memory.poke(location + 32, sprite[1]);
+        do Memory.poke(location + 64, sprite[2]);
+        do Memory.poke(location + 96, sprite[3]);
+        do Memory.poke(location + 128, sprite[4]);
+        do Memory.poke(location + 160, sprite[5]);
+        do Memory.poke(location + 192, sprite[6]);
+        do Memory.poke(location + 224, sprite[7]);
+        do Memory.poke(location + 256, sprite[8]);
+        do Memory.poke(location + 288, sprite[9]);
+        do Memory.poke(location + 320, sprite[10]);
+        do Memory.poke(location + 352, sprite[11]);
+        do Memory.poke(location + 384, sprite[12]);
+        do Memory.poke(location + 416, sprite[13]);
+        do Memory.poke(location + 448, sprite[14]);
+        do Memory.poke(location + 480, sprite[15]);
 
         return;
     }

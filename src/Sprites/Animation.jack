@@ -26,7 +26,11 @@ class Animation
         var Array sprite;
 
         let sprite = sprites[iterator];
-        let iterator = Mathf.mod(iterator + 1, size); 
+        let iterator = iterator + 1;
+        if (iterator = size)
+        {
+            let iterator = 0;
+        }
 
         return sprite;
     }

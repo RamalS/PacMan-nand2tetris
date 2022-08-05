@@ -1,17 +1,20 @@
 class PackMan
 {
-    field int  lastKey, direction;
+    field int lastKey, direction, nextDirection, location, lastLocation, gridIndex;
     field bool updateSprite;
+    field Array grid;
     field AnimationManager am;
-    field Vector2 position;
 
-    constructor PackMan new(int x, int y)
+    constructor PackMan new(int x, int y, Array mapGrid)
     {
         let lastKey = 0;
         let direction = 0;
+        let nextDirection = 0;
         let updateSprite = true;
-        let position = Vector2.new(x, y);
-        let am = AnimationManager.new(2);
+        let grid = mapGrid;
+        let am = AnimationManager.new(4);
+        let location = ScreenManager.getLocation(x, y);
+        let gridIndex = y * 32 + x;
 
         do loadAnimations();
 
@@ -32,83 +35,178 @@ class PackMan
         do animation.add(PackManAsset.mouthClosed());
         do am.add(animation);
 
+        let animation = Animation.new(2);
+        do animation.add(PackManAsset.mouthOpenUp());
+        do animation.add(PackManAsset.mouthClosed());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(PackManAsset.mouthOpenDown());
+        do animation.add(PackManAsset.mouthClosed());
+        do am.add(animation);
+
         do am.set(Constants.packManRight());
+
+        return;
+    }
+
+    // promjeni da su prva 3 prazno, dot i ability
+    method bool checkCollisionUp()    { if (grid[gridIndex - 32] < 3) {return true;} else {return false;}}
+    method bool checkCollisionDown()  { if (grid[gridIndex + 32] < 3) {return true;} else {return false;}}
+    method bool checkCollisionLeft()  { if (grid[gridIndex - 1] < 3)  {return true;} else {return false;}}
+    method bool checkCollisionRight() { if (grid[gridIndex + 1] < 3)  {return true;} else {return false;}}
+
+    method void moveInit()
+    {
+        let updateSprite = true;
+        let lastLocation = location;
+
+        return;
+    }
+
+    method void moveStop()
+    {
+        let direction = 0;
+        let updateSprite = false;
 
         return;
     }
 
     method void moveRight()
     {
-        do position.setX(position.getX() + 1);
-        let updateSprite = true;
-        do am.set(Constants.packManRight());
+        if (checkCollisionRight())
+        {
+            do moveInit();
+            let location = location + 1;
+            let gridIndex = gridIndex + 1;
+            do am.set(Constants.packManRight());
+        }
+        else { do moveStop(); }
 
         return;
     }
 
     method void moveLeft()
     {
-        do position.setX(position.getX() - 1);
-        let updateSprite = true;
-        do am.set(Constants.packManLeft());
+        if (checkCollisionLeft())
+        {
+            do moveInit();
+            let location = location - 1;
+            let gridIndex = gridIndex - 1;
+            do am.set(Constants.packManLeft());
+        }
+        else { do moveStop(); }
 
         return;
     }
 
-    method void move()
-    {  
+    method void moveUp()
+    {
+        if (checkCollisionUp())
+        {
+            do moveInit();
+            let location = location - 512;
+            let gridIndex = gridIndex - 32;
+            do am.set(Constants.packManUp());
+        }
+        else { do moveStop(); }
+        
+        return;
+    }
+
+    method void moveDown()
+    {
+        if (checkCollisionDown())
+        {
+            do moveInit();
+            let location = location + 512;
+            let gridIndex = gridIndex + 32;
+            do am.set(Constants.packManDown());
+        }
+        else { do moveStop(); }
+        
+        return;
+    }
+
+    method void input()
+    {
         var int kybrd;
         
         let kybrd = Keyboard.keyPressed();
-        //  do Logger.logInt(kybrd); 
+        //do Logger.logInt(kybrd); 
 
         if ((kybrd = 130) & ~(lastKey = kybrd))
         {
-            let direction = -1;
+            let nextDirection = -1;
             let lastKey = kybrd;   
         } 
-        if (kybrd = 132 & ~(lastKey = kybrd))
+        else {if (kybrd = 132 & ~(lastKey = kybrd))
         {
-            let direction = 1;
+            let nextDirection = 1;
             let lastKey = kybrd;   
         }
-        if (kybrd = 0 & ~(lastKey = kybrd))
+        else {if ((kybrd = 131) & ~(lastKey = kybrd))
+        {
+            let nextDirection = -2;
+            let lastKey = kybrd;   
+        } 
+        else {if (kybrd = 133 & ~(lastKey = kybrd))
+        {
+            let nextDirection = 2;
+            let lastKey = kybrd;   
+        }
+        else {if (kybrd = 0 & ~(lastKey = kybrd))
         {
             let lastKey = kybrd;
-        }
+        }}}}}
+          
+        return;
+    }
 
+    method void move()
+    {
+        if (~(direction = nextDirection))
+        {
+            if ((nextDirection = 1  & checkCollisionRight()) | 
+                (nextDirection = -1 & checkCollisionLeft())  |
+                (nextDirection = 2  & checkCollisionDown())  |
+                (nextDirection = -2 & checkCollisionUp()))
+            {
+                let direction = nextDirection;
+            }
+        }
+        
         if (direction = 1)
         {
             do moveRight();
         }
-        if (direction = -1)
+        else {if (direction = -1)
         {
-           do moveLeft();
+            do moveLeft();
         }
-          
+        else {if (direction = 2)
+        {
+            do moveDown();
+        }
+        else {if (direction = -2)
+        {
+            do moveUp();
+        }}}}
+
         return;
     }
 
     method void draw()
     {
-        var int location;
+        if (lastLocation > Constants.getScreen() & ~(location = lastLocation))
+        {
+            //do Logger.logInt(lastLocation);
+            do ScreenManager.clearBlock(lastLocation);
+        }
 
         if (updateSprite)
         {
-            let location = ScreenManager.getLocation(position);
-
-            if (direction = 1)
-            {
-                do ScreenManager.clearBlock(location - 1);
-            }
-            if (direction = -1)
-            {
-                do ScreenManager.clearBlock(location + 1);
-            }
-
             do am.drawNext(location);
-
-            let updateSprite = false;
         } 
 
         return; 

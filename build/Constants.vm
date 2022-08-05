@@ -7,3 +7,9 @@ return
 function Constants.packManRight 0
 push constant 1
 return
+function Constants.packManUp 0
+push constant 2
+return
+function Constants.packManDown 0
+push constant 3
+return

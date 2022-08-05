@@ -1,0 +1,1166 @@
+function MapAsset.top 0
+push argument 0
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 7800
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.bottom 0
+push argument 0
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 7800
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.left 0
+push argument 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 16
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 12
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 6
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 3
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 6
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 12
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 16
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.right 0
+push argument 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 4095
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 12288
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 24576
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 16384
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 24576
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 12288
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 4095
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.vertical 0
+push argument 0
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 16386
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.horizontal 0
+push argument 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.tl 0
+push argument 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 3072
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 768
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 32
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 16
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 16
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 4
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 4
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.tr 0
+push argument 0
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 48
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 768
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 1024
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 2048
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 2048
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 4096
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 4096
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 8192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 8192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.bl 0
+push argument 0
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 4
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 4
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 16
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 16
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 32
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 768
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 3072
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 4096
+neg
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.br 0
+push argument 0
+push constant 0
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 16384
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 8192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 8192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 4096
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 4096
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 2048
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 2048
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 1024
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 768
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 192
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 48
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 15
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.dot 0
+push argument 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function MapAsset.ability 0
+push argument 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 128
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 160
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 192
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 224
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 256
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 288
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 320
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 352
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push argument 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
