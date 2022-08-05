@@ -1,20 +1,42 @@
 class PackMan
 {
-    field int lastKey, direction, nextDirection, location, lastLocation, gridIndex;
+    field int lastKey, direction, nextDirection, location, lastLocation, gridIndex, score;
     field bool updateSprite;
     field Array grid;
     field AnimationManager am;
 
     constructor PackMan new(int x, int y, Array mapGrid)
     {
+        var int i, j;
+        let i = 0;
+        let j = 0;
+
         let lastKey = 0;
         let direction = 0;
         let nextDirection = 0;
+        let score = 0;
         let updateSprite = true;
         let grid = mapGrid;
         let am = AnimationManager.new(4);
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
+
+        while (i < 16)
+        {
+            if (j = 32)
+            {
+                let i = i + 1;
+                let j = 0;
+            }
+
+            if (grid[i * 32 + j] = 4)
+            {
+                let location = ScreenManager.getLocation(j, i);
+                let gridIndex = i * 32 + j;
+            }
+
+            let j = j + 1;
+        }
 
         do loadAnimations();
 
@@ -50,11 +72,19 @@ class PackMan
         return;
     }
 
+    method void increaseScore(int index)
+    {
+        let grid[index] = 0;
+        do Game.increaseScore(index);
+
+        return;
+    }
+
     // promjeni da su prva 3 prazno, dot i ability
-    method bool checkCollisionUp()    { if (grid[gridIndex - 32] < 3) {return true;} else {return false;}}
-    method bool checkCollisionDown()  { if (grid[gridIndex + 32] < 3) {return true;} else {return false;}}
-    method bool checkCollisionLeft()  { if (grid[gridIndex - 1] < 3)  {return true;} else {return false;}}
-    method bool checkCollisionRight() { if (grid[gridIndex + 1] < 3)  {return true;} else {return false;}}
+    method bool checkCollisionUp()    { if (grid[gridIndex - 32] < 5) {return true;} else {return false;}}
+    method bool checkCollisionDown()  { if (grid[gridIndex + 32] < 5) {return true;} else {return false;}}
+    method bool checkCollisionLeft()  { if (grid[gridIndex - 1] < 5)  {return true;} else {return false;}}
+    method bool checkCollisionRight() { if (grid[gridIndex + 1] < 5)  {return true;} else {return false;}}
 
     method void moveInit()
     {
@@ -67,7 +97,7 @@ class PackMan
     method void moveStop()
     {
         let direction = 0;
-        let updateSprite = false;
+        //let updateSprite = false;
 
         return;
     }
@@ -76,6 +106,9 @@ class PackMan
     {
         if (checkCollisionRight())
         {
+            if (grid[gridIndex + 1] = 1) 
+                {do increaseScore(gridIndex + 1);}
+
             do moveInit();
             let location = location + 1;
             let gridIndex = gridIndex + 1;
@@ -90,6 +123,9 @@ class PackMan
     {
         if (checkCollisionLeft())
         {
+            if (grid[gridIndex - 1] = 1) 
+                {do increaseScore(gridIndex - 1);}
+
             do moveInit();
             let location = location - 1;
             let gridIndex = gridIndex - 1;
@@ -104,6 +140,8 @@ class PackMan
     {
         if (checkCollisionUp())
         {
+            if (grid[gridIndex - 32] = 1) 
+                {do increaseScore(gridIndex - 32);}
             do moveInit();
             let location = location - 512;
             let gridIndex = gridIndex - 32;
@@ -118,6 +156,8 @@ class PackMan
     {
         if (checkCollisionDown())
         {
+            if (grid[gridIndex + 32] = 1) 
+                {do increaseScore(gridIndex + 32);}
             do moveInit();
             let location = location + 512;
             let gridIndex = gridIndex + 32;
@@ -165,6 +205,7 @@ class PackMan
 
     method void move()
     {
+        //do Logger.logInt(gridIndex);
         if (~(direction = nextDirection))
         {
             if ((nextDirection = 1  & checkCollisionRight()) | 

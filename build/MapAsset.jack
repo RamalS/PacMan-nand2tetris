@@ -200,7 +200,7 @@ class MapAsset
 
     function void br(int location)
     {
-        do Memory.poke(location + 0, 16384);
+        do Memory.poke(location, 16384);
         do Memory.poke(location + 32, 16384);
         do Memory.poke(location + 64, 16384);
         do Memory.poke(location + 96, 16384);
@@ -222,7 +222,7 @@ class MapAsset
 
     function void dot(int location)
     {
-        do Memory.poke(location + 0, 0);
+        do Memory.poke(location, 0);
         do Memory.poke(location + 32, 0);
         do Memory.poke(location + 64, 0);
         do Memory.poke(location + 96, 0);
@@ -244,7 +244,7 @@ class MapAsset
 
     function void ability(int location)
     {
-        do Memory.poke(location + 0, 0);
+        do Memory.poke(location, 0);
         do Memory.poke(location + 32, 0);
         do Memory.poke(location + 64, 0);
         do Memory.poke(location + 96, 0);
@@ -259,6 +259,136 @@ class MapAsset
         do Memory.poke(location + 384, 0);
         do Memory.poke(location + 416, 0);
         do Memory.poke(location + 448, 0);
+        do Memory.poke(location + 480, 0);
+
+        return;
+    }
+
+    function void ht(int location)
+    {
+        do Memory.poke(location, 16386);
+        do Memory.poke(location + 32, -32767);
+        do Memory.poke(location + 64, 0);
+        do Memory.poke(location + 96, 0);
+        do Memory.poke(location + 128, 0);
+        do Memory.poke(location + 160, 0);
+        do Memory.poke(location + 192, 0);
+        do Memory.poke(location + 224, 0);
+        do Memory.poke(location + 256, 0);
+        do Memory.poke(location + 288, 0);
+        do Memory.poke(location + 320, 0);
+        do Memory.poke(location + 352, 0);
+        do Memory.poke(location + 384, 0);
+        do Memory.poke(location + 416, 0);
+        do Memory.poke(location + 448, -1);
+        do Memory.poke(location + 480, 0);
+
+        return;
+    }
+
+    function void hb(int location)
+    {
+        do Memory.poke(location, 0);
+        do Memory.poke(location + 32, -1);
+        do Memory.poke(location + 64, 0);
+        do Memory.poke(location + 96, 0);
+        do Memory.poke(location + 128, 0);
+        do Memory.poke(location + 160, 0);
+        do Memory.poke(location + 192, 0);
+        do Memory.poke(location + 224, 0);
+        do Memory.poke(location + 256, 0);
+        do Memory.poke(location + 288, 0);
+        do Memory.poke(location + 320, 0);
+        do Memory.poke(location + 352, 0);
+        do Memory.poke(location + 384, 0);
+        do Memory.poke(location + 416, 0);
+        do Memory.poke(location + 448, -32767);
+        do Memory.poke(location + 480, 16386);
+
+        return;
+    }
+
+    function void vr(int location)
+    {
+        do Memory.poke(location, 16386);
+        do Memory.poke(location + 32, -32766);
+        do Memory.poke(location + 64, 2);
+        do Memory.poke(location + 96, 2);
+        do Memory.poke(location + 128, 2);
+        do Memory.poke(location + 160, 2);
+        do Memory.poke(location + 192, 2);
+        do Memory.poke(location + 224, 2);
+        do Memory.poke(location + 256, 2);
+        do Memory.poke(location + 288, 2);
+        do Memory.poke(location + 320, 2);
+        do Memory.poke(location + 352, 2);
+        do Memory.poke(location + 384, 2);
+        do Memory.poke(location + 416, 2);
+        do Memory.poke(location + 448, -32766);
+        do Memory.poke(location + 480, 16386);
+
+        return;
+    }
+
+    function void vl(int location)
+    {
+        do Memory.poke(location, 16386);
+        do Memory.poke(location + 32, 16385);
+        do Memory.poke(location + 64, 16384);
+        do Memory.poke(location + 96, 16384);
+        do Memory.poke(location + 128, 16384);
+        do Memory.poke(location + 160, 16384);
+        do Memory.poke(location + 192, 16384);
+        do Memory.poke(location + 224, 16384);
+        do Memory.poke(location + 256, 16384);
+        do Memory.poke(location + 288, 16384);
+        do Memory.poke(location + 320, 16384);
+        do Memory.poke(location + 352, 16384);
+        do Memory.poke(location + 384, 16384);
+        do Memory.poke(location + 416, 16384);
+        do Memory.poke(location + 448, 16385);
+        do Memory.poke(location + 480, 16386);
+
+        return;
+    }
+
+    function void genterLeft(int location)
+    {
+        do Memory.poke(location, 0);
+        do Memory.poke(location + 32, 1);
+        do Memory.poke(location + 64, 2);
+        do Memory.poke(location + 96, 2);
+        do Memory.poke(location + 128, -4);
+        do Memory.poke(location + 160, 0);
+        do Memory.poke(location + 192, 0);
+        do Memory.poke(location + 224, 0);
+        do Memory.poke(location + 256, 0);
+        do Memory.poke(location + 288, 0);
+        do Memory.poke(location + 320, -4);
+        do Memory.poke(location + 352, 2);
+        do Memory.poke(location + 384, 2);
+        do Memory.poke(location + 416, 2);
+        do Memory.poke(location + 448, 1);
+        do Memory.poke(location + 480, 0);
+
+        return;
+    }
+
+    function void genterRight(int location)
+    {
+        do Memory.poke(location, 0);
+        do Memory.poke(location + 64, 16384);
+        do Memory.poke(location + 96, 16384);
+        do Memory.poke(location + 128, 16383);
+        do Memory.poke(location + 160, 0);
+        do Memory.poke(location + 192, 0);
+        do Memory.poke(location + 224, 0);
+        do Memory.poke(location + 256, 0);
+        do Memory.poke(location + 288, 0);
+        do Memory.poke(location + 320, 16383);
+        do Memory.poke(location + 352, 16384);
+        do Memory.poke(location + 384, 16384);
+        do Memory.poke(location + 416, 16384);
         do Memory.poke(location + 480, 0);
 
         return;

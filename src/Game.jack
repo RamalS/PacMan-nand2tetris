@@ -3,15 +3,31 @@ class Game
     field bool run;
     field int counter;
     field PackMan packMan;
+    static int score;
 
     constructor Game new()
     {
         let run = true;
         let packMan = PackMan.new(2, 8, ClassicMap.getMap());
+        let score = 0;
 
         do ClassicMap.draw();
 
+        do Output.moveCursor(0, 2);
+        do Output.printString("Score: ");
+        do Output.printInt(score);
+
         return this;
+    }
+
+    function void increaseScore(int index)
+    {
+        let score = score + 1;
+        do Output.moveCursor(0, 2);
+        do Output.printString("Score: ");
+        do Output.printInt(score);
+
+        return;
     }
 
     method void loop()
