@@ -5,6 +5,7 @@ class Constants
         return 16384; 
     }
 
+    //Packman
     function int packManLeft()
     {
         return 0;
@@ -23,5 +24,36 @@ class Constants
     function int packManDown()
     {
         return 3;
+    }
+
+    //Pinky
+    function int pinkyRight()
+    {
+        return 0;
+    }
+
+    function int pinkyLeft()
+    {
+        return 1;
+    }
+
+    function int pinkyDown()
+    {
+        return 2;
+    }
+
+    function int pinkyUp()
+    {
+        return 3;
+    }
+
+    function int pinkyDead()
+    {
+        return 4;
+    }
+
+    function int pinkyFrightened()
+    {
+        return 5;
     }
 }

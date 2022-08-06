@@ -13,3 +13,21 @@ return
 function Constants.packManDown 0
 push constant 3
 return
+function Constants.pinkyRight 0
+push constant 0
+return
+function Constants.pinkyLeft 0
+push constant 1
+return
+function Constants.pinkyDown 0
+push constant 2
+return
+function Constants.pinkyUp 0
+push constant 3
+return
+function Constants.pinkyDead 0
+push constant 4
+return
+function Constants.pinkyFrightened 0
+push constant 5
+return

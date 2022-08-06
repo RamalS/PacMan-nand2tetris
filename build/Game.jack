@@ -1,27 +1,39 @@
 class Game
 {
     field bool run;
-    field int counter;
-    field PackMan packMan;
-    static int score;
+    field int scatterState;
+
+    static int score, factor;
+    static bool scatter, frightened;
+    static PackMan pacMan;
+    static Pinky pinky;
     static Array map;
 
     constructor Game new()
     {
         let run = true;
+        let scatter = true;
+        let frightened = false;
         let score = 0;
+        let scatterState = 0;
         let map = ClassicMap.initMap();
-        let packMan = PackMan.new(2, 8);
+        let pacMan = PackMan.new(2, 8);
+        let pinky = Pinky.new(14, 6);
 
         do ClassicMap.draw();
 
         do Output.moveCursor(0, 2);
         do Output.printString("Score: ");
-        //do Output.printInt(score);
-
-        do Logger.logInt(Game.grid(0));
+        do Output.printInt(score);
 
         return this;
+    }
+
+    function void setSeed()
+    {
+        do LCGRandom.setSeed(factor);
+
+        return;
     }
 
     function void increaseScore(int index)
@@ -48,32 +60,82 @@ class Game
         return;
     }
 
+    function Vector2 pacManPosition()
+    {
+        return pacMan.getPosition();
+    }
+
+    function bool isScatter()
+    {
+        return scatter;
+    }
+
+    function void setFrightened()
+    {
+        let frightened = true;
+        return;
+    }
+
+    function bool isFrightened()
+    {
+        return frightened;
+    }
+
     method void loop()
     {
-        var int factor, drawDuration, moveDuration;
+        var int drawDuration, moveDuration, scatterDuration, frightenedDuration;
 
         let drawDuration = 10;
         let moveDuration = 10;
+        let scatterDuration = 2000;
+        let frightenedDuration = 2000;
 
         while (run)
         {
             if (drawDuration < 0)
             {
-                do packMan.draw();
+                do pacMan.draw();
+                do pinky.draw();
                 let drawDuration = 20;
             }
 
             if (moveDuration < 0)
             {
-                do packMan.move();
+                do pacMan.move();
+                do pinky.move();
                 let moveDuration = 40;
             }
 
-            do packMan.input();
+            if (frightened)
+            {
+                if (frightenedDuration < 0)
+                {
+                    let frightenedDuration = 2000;
+                    let frightened = false;
+                }
+
+                let frightenedDuration = frightenedDuration - 1;
+            }
+            else
+            {
+                let scatterDuration = scatterDuration - 1;
+            }
+
+            if (scatterDuration < 0)
+            {
+                if (scatterState < 7)
+                {
+                    let scatter = ~scatter;
+                    let scatterDuration = 2000;
+                    let scatterState = scatterState + 1;
+                }
+            }
+
+            do pacMan.input();
 
             let drawDuration = drawDuration - 1;
             let moveDuration = moveDuration - 1;
-            let factor = 100;
+            let factor = 80;
 
             while(factor > 0) {
                 let factor = factor - 1;

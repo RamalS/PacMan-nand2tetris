@@ -32,3 +32,72 @@ push argument 1
 pop this 1
 push constant 0
 return
+function Vector2.incX 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 1
+add
+pop this 0
+push constant 0
+return
+function Vector2.incY 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+add
+pop this 1
+push constant 0
+return
+function Vector2.decX 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 1
+sub
+pop this 0
+push constant 0
+return
+function Vector2.decY 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+sub
+pop this 1
+push constant 0
+return
+function Vector2.distance 3
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call Vector2.getX 1
+call Math.max 2
+push this 0
+push argument 1
+call Vector2.getX 1
+call Math.min 2
+sub
+pop local 0
+push this 1
+push argument 1
+call Vector2.getY 1
+call Math.max 2
+push this 1
+push argument 1
+call Vector2.getY 1
+call Math.min 2
+sub
+pop local 1
+push local 0
+push local 0
+call Math.multiply 2
+push local 1
+push local 1
+call Math.multiply 2
+add
+pop local 2
+push local 2
+return

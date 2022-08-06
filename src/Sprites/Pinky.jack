@@ -1,6 +1,288 @@
 class Pinky
 {
-    field int location;
+    field int location, lastLocation, gridIndex, lastIndex, homeState;
+    field AnimationManager am;
+    field Vector2 position, scatterPoint;
 
-    
+    constructor Pinky new(int x, int y)
+    {
+        let am = AnimationManager.new(6);
+        let location = ScreenManager.getLocation(x, y);
+        let gridIndex = y * 32 + x;
+        let lastIndex = 0;
+        let homeState = 0;
+        let position = Vector2.new(x, y);
+        let scatterPoint = Vector2.new(1, 1);
+
+        do loadAnimations();
+
+        return this;
+    }
+
+    method void loadAnimations()
+    {
+        var Animation animation;
+
+        let animation = Animation.new(2);
+        do animation.add(PinkyAsset.right1());
+        do animation.add(PinkyAsset.right2());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(PinkyAsset.left1());
+        do animation.add(PinkyAsset.left2());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(PinkyAsset.down1());
+        do animation.add(PinkyAsset.down2());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(PinkyAsset.up1());
+        do animation.add(PinkyAsset.up2());
+        do am.add(animation);
+
+        let animation = Animation.new(1);
+        do animation.add(GhostAsset.dead());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(GhostAsset.frightened1());
+        do animation.add(GhostAsset.frightened2());
+        do am.add(animation);
+
+        do am.set(Constants.pinkyRight());
+
+        return;
+    }
+
+    method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 5) {return true;} else {return false;}}
+    method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 5) {return true;} else {return false;}}
+    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 5)  {return true;} else {return false;}}
+    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 5)  {return true;} else {return false;}}
+
+    method void moveInit()
+    {
+        let lastLocation = location;
+        let lastIndex = gridIndex;
+
+        return;
+    }
+
+    method void moveRight(int animation)
+    {
+        do moveInit();
+        let location = location + 1;
+        let gridIndex = gridIndex + 1;
+        do position.incX();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveLeft(int animation)
+    {
+        do moveInit();
+        let location = location - 1;
+        let gridIndex = gridIndex - 1;
+        do position.decX();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveUp(int animation)
+    {
+        do moveInit();
+        let location = location - 512;
+        let gridIndex = gridIndex - 32;
+        do position.decY();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveDown(int animation)
+    {
+        do moveInit();
+        let location = location + 512;
+        let gridIndex = gridIndex + 32;
+        do position.incY();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveToPoint(Vector2 point)
+    {
+        var int minDistance, direction, dist;
+        //do Logger.logInt(position.distance(Game.pacManPosition()));
+
+        let minDistance = 1300;
+
+        if (~(lastIndex = (gridIndex - 32)) & checkCollisionUp())
+        {
+            do position.decY();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 1;
+            }
+            do position.incY();
+        }
+
+        if (~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
+        {
+            do position.decX();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 2;
+            }
+            do position.incX();
+        }
+
+        if (~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
+        {
+            do position.incY();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 3;
+            }
+            do position.decY();
+        }
+
+        if (~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
+        {
+            do position.incX();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 4;
+            }
+            do position.decX();
+        }
+
+        if (direction = 1)
+        {
+            do moveUp(Constants.pinkyUp());
+        }
+        else {if (direction = 2)
+        {
+            do moveLeft(Constants.pinkyLeft());
+        }
+        else {if (direction = 3)
+        {
+            do moveDown(Constants.pinkyDown());
+        }
+        else {if (direction = 4)
+        {
+            do moveRight(Constants.pinkyRight());
+        }}}}
+
+        return;
+    }
+
+    method void exitHome()
+    {
+        if (homeState = 0)
+        {
+            do moveRight(Constants.pinkyRight());
+        }
+        else {if (homeState = 1)
+        {
+            do moveUp(Constants.pinkyUp());
+        }
+        else {if (homeState = 2)
+        {
+            do moveUp(Constants.pinkyUp());
+        }}}
+
+        let homeState = homeState + 1;
+
+        return;
+    }
+
+    method void frightenedState()
+    {   
+        var int direction;
+        var bool moved;
+
+        let direction = LCGRandom.randRange(1, 4);
+        let moved = true;
+
+        while (moved)
+        {
+            if (direction = 1 & ~(lastIndex = (gridIndex - 32)) & checkCollisionUp())
+            {
+                do moveUp(Constants.pinkyFrightened());
+                let moved = false;
+            }
+            else {if (direction = 2 & ~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
+            {
+                do moveLeft(Constants.pinkyFrightened());
+                let moved = false;
+            }
+            else {if (direction = 3 & ~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
+            {
+                do moveDown(Constants.pinkyFrightened());
+                let moved = false;
+            }
+            else {if (direction = 4 & ~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
+            {
+                do moveRight(Constants.pinkyFrightened());
+                let moved = false;
+            }
+            else
+            {
+                let direction = LCGRandom.randRange(1, 4);
+            }}}}
+        }
+
+        return;
+    }
+
+    method void move()
+    {
+        if (homeState = 3)
+        {
+            if (Game.isFrightened())
+                { do frightenedState(); }
+            else {if (Game.isScatter())
+                { do moveToPoint(scatterPoint); }
+            else
+                { do moveToPoint(Game.pacManPosition()); }}
+        }
+        else
+        {
+            do exitHome();
+        }
+        return;
+    }
+
+    method void draw()
+    {
+        if (lastLocation > Constants.getScreen() & ~(location = lastLocation))
+        {
+            //do Logger.logInt(lastLocation);
+            if (Game.grid(lastIndex) = 1)
+                { do MapAsset.dot(lastLocation); }
+            else {if(Game.grid(lastIndex) = 0)
+                { do ScreenManager.clearBlock(lastLocation); }
+            else {if (Game.grid(lastIndex) = 2)
+                { do MapAsset.ability(lastLocation); } 
+            else 
+                { do MapAsset.genterLeft(lastLocation); }}}
+        }
+
+        do am.drawNext(location);
+
+        return;
+    }
 }

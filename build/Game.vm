@@ -1,18 +1,29 @@
 function Game.new 0
-push constant 3
+push constant 2
 call Memory.alloc 1
 pop pointer 0
 push constant 0
 not
 pop this 0
 push constant 0
+not
+pop static 2
+push constant 0
+pop static 3
+push constant 0
 pop static 0
+push constant 0
+pop this 1
 call ClassicMap.initMap 0
-pop static 1
+pop static 6
 push constant 2
 push constant 8
 call PackMan.new 2
-pop this 2
+pop static 4
+push constant 14
+push constant 6
+call Pinky.new 2
+pop static 5
 call ClassicMap.draw 0
 pop temp 0
 push constant 0
@@ -37,11 +48,16 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 0
-call Game.grid 1
-call Logger.logInt 1
+push static 0
+call Output.printInt 1
 pop temp 0
 push pointer 0
+return
+function Game.setSeed 0
+push static 1
+call LCGRandom.setSeed 1
+pop temp 0
+push constant 0
 return
 function Game.increaseScore 0
 push static 0
@@ -77,7 +93,7 @@ push constant 0
 return
 function Game.grid 1
 push argument 0
-push static 1
+push static 6
 add
 pop pointer 1
 push that 0
@@ -86,7 +102,7 @@ push local 0
 return
 function Game.setGrid 0
 push argument 0
-push static 1
+push static 6
 add
 push argument 1
 pop temp 0
@@ -95,64 +111,139 @@ push temp 0
 pop that 0
 push constant 0
 return
-function Game.loop 3
+function Game.pacManPosition 0
+push static 4
+call PackMan.getPosition 1
+return
+function Game.isScatter 0
+push static 2
+return
+function Game.setFrightened 0
+push constant 0
+not
+pop static 3
+push constant 0
+return
+function Game.isFrightened 0
+push static 3
+return
+function Game.loop 4
 push argument 0
 pop pointer 0
 push constant 10
-pop local 1
+pop local 0
 push constant 10
+pop local 1
+push constant 2000
 pop local 2
+push constant 2000
+pop local 3
 label WHILE_EXP0
 push this 0
 not
 if-goto WHILE_END0
-push local 1
+push local 0
 push constant 0
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 2
+push static 4
 call PackMan.draw 1
 pop temp 0
+push static 5
+call Pinky.draw 1
+pop temp 0
 push constant 20
-pop local 1
+pop local 0
 label IF_FALSE0
-push local 2
+push local 1
 push constant 0
 lt
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 2
+push static 4
 call PackMan.move 1
 pop temp 0
-push constant 40
-pop local 2
-label IF_FALSE1
-push this 2
-call PackMan.input 1
+push static 5
+call Pinky.move 1
 pop temp 0
-push local 1
+push constant 40
+pop local 1
+label IF_FALSE1
+push static 3
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 3
+push constant 0
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 2000
+pop local 3
+push constant 0
+pop static 3
+label IF_FALSE3
+push local 3
 push constant 1
 sub
-pop local 1
+pop local 3
+goto IF_END2
+label IF_FALSE2
 push local 2
 push constant 1
 sub
 pop local 2
-push constant 100
-pop local 0
-label WHILE_EXP1
-push local 0
+label IF_END2
+push local 2
 push constant 0
-gt
+lt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 1
+push constant 7
+lt
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push static 2
 not
-if-goto WHILE_END1
+pop static 2
+push constant 2000
+pop local 2
+push this 1
+push constant 1
+add
+pop this 1
+label IF_FALSE5
+label IF_FALSE4
+push static 4
+call PackMan.input 1
+pop temp 0
 push local 0
 push constant 1
 sub
 pop local 0
+push local 1
+push constant 1
+sub
+pop local 1
+push constant 80
+pop static 1
+label WHILE_EXP1
+push static 1
+push constant 0
+gt
+not
+if-goto WHILE_END1
+push static 1
+push constant 1
+sub
+pop static 1
 goto WHILE_EXP1
 label WHILE_END1
 goto WHILE_EXP0

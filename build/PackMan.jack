@@ -1,8 +1,9 @@
 class PackMan
 {
-    field int lastKey, direction, nextDirection, location, lastLocation, gridIndex, score;
+    field int lastKey, direction, nextDirection, location, lastLocation, gridIndex;
     field bool updateSprite;
     field AnimationManager am;
+    field Vector2 position;
 
     constructor PackMan new(int x, int y)
     {
@@ -13,9 +14,9 @@ class PackMan
         let lastKey = 0;
         let direction = 0;
         let nextDirection = 0;
-        let score = 0;
         let updateSprite = true;
         let am = AnimationManager.new(4);
+        let position = Vector2.new(x, y);
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
 
@@ -31,6 +32,8 @@ class PackMan
             {
                 let location = ScreenManager.getLocation(j, i);
                 let gridIndex = i * 32 + j;
+                do position.setX(j);
+                do position.setY(i);
             }
 
             let j = j + 1;
@@ -70,6 +73,11 @@ class PackMan
         return;
     }
 
+    method Vector2 getPosition()
+    {
+        return position;
+    }
+
     method void increaseScore(int index)
     {
         do Game.setGrid(index, 0);
@@ -107,6 +115,7 @@ class PackMan
             do ScreenManager.clearBlock(location);
             let location = location - 31;
             let gridIndex = gridIndex - 31;
+            //dodati position logiku
         }
 
         if (checkCollisionRight())
@@ -117,6 +126,7 @@ class PackMan
             do moveInit();
             let location = location + 1;
             let gridIndex = gridIndex + 1;
+            do position.incX();
             do am.set(Constants.packManRight());
         }
         else { do moveStop(); }
@@ -131,6 +141,7 @@ class PackMan
             do ScreenManager.clearBlock(location);
             let location = location + 31;
             let gridIndex = gridIndex + 31;
+            //dodaj position logiku
         }
 
         if (checkCollisionLeft())
@@ -141,6 +152,7 @@ class PackMan
             do moveInit();
             let location = location - 1;
             let gridIndex = gridIndex - 1;
+            do position.decX();
             do am.set(Constants.packManLeft());
         }
         else { do moveStop(); }
@@ -157,6 +169,7 @@ class PackMan
             do moveInit();
             let location = location - 512;
             let gridIndex = gridIndex - 32;
+            do position.decY();
             do am.set(Constants.packManUp());
         }
         else { do moveStop(); }
@@ -173,6 +186,7 @@ class PackMan
             do moveInit();
             let location = location + 512;
             let gridIndex = gridIndex + 32;
+            do position.incY();
             do am.set(Constants.packManDown());
         }
         else { do moveStop(); }
@@ -190,22 +204,26 @@ class PackMan
         if ((kybrd = 130) & ~(lastKey = kybrd))
         {
             let nextDirection = -1;
-            let lastKey = kybrd;   
+            let lastKey = kybrd;
+            do Game.setSeed(); 
         } 
         else {if (kybrd = 132 & ~(lastKey = kybrd))
         {
             let nextDirection = 1;
-            let lastKey = kybrd;   
+            let lastKey = kybrd;
+            do Game.setSeed();
         }
         else {if ((kybrd = 131) & ~(lastKey = kybrd))
         {
             let nextDirection = -2;
-            let lastKey = kybrd;   
+            let lastKey = kybrd;
+            do Game.setSeed();
         } 
         else {if (kybrd = 133 & ~(lastKey = kybrd))
         {
             let nextDirection = 2;
-            let lastKey = kybrd;   
+            let lastKey = kybrd;
+            do Game.setSeed();
         }
         else {if (kybrd = 0 & ~(lastKey = kybrd))
         {
@@ -217,6 +235,9 @@ class PackMan
 
     method void move()
     {
+        if (Game.grid(gridIndex) = 2)
+            { do Game.setFrightened(); }
+
         if (~(direction = nextDirection))
         {
             if ((nextDirection = 1  & checkCollisionRight()) | 
@@ -229,21 +250,13 @@ class PackMan
         }
         
         if (direction = 1)
-        {
-            do moveRight();
-        }
+            { do moveRight(); }
         else {if (direction = -1)
-        {
-            do moveLeft();
-        }
+            { do moveLeft(); }
         else {if (direction = 2)
-        {
-            do moveDown();
-        }
+            { do moveDown(); }
         else {if (direction = -2)
-        {
-            do moveUp();
-        }}}}
+            { do moveUp(); }}}}
 
         return;
     }
