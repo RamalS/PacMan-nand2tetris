@@ -37,7 +37,7 @@ push this 3
 push constant 32
 sub
 call Game.grid 1
-push constant 5
+push constant 7
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -57,7 +57,7 @@ push this 3
 push constant 32
 add
 call Game.grid 1
-push constant 5
+push constant 7
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -77,7 +77,7 @@ push this 3
 push constant 1
 sub
 call Game.grid 1
-push constant 5
+push constant 7
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -97,7 +97,7 @@ push this 3
 push constant 1
 add
 call Game.grid 1
-push constant 5
+push constant 7
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -155,10 +155,8 @@ return
 function Ghost.checkIntersect 0
 push argument 0
 pop pointer 0
-push this 13
-call Game.pacManPosition 0
-call Vector2.distance 2
-push constant 0
+push this 3
+call Game.pacManGridIndex 0
 eq
 call Game.isFrightened 0
 and
@@ -168,7 +166,36 @@ label IF_TRUE0
 push constant 0
 not
 pop this 11
+push this 3
+push constant 1
+add
+push constant 10
+call Game.increaseScore 2
+pop temp 0
+goto IF_END0
 label IF_FALSE0
+call Game.isFrightened 0
+not
+push this 11
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+pop this 11
+goto IF_END1
+label IF_FALSE1
+push this 3
+call Game.pacManGridIndex 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+call Game.decHP 0
+pop temp 0
+label IF_FALSE2
+label IF_END1
+label IF_END0
 push constant 0
 return
 function Ghost.isDead 0
@@ -193,6 +220,81 @@ return
 function Ghost.drawNext 0
 push argument 0
 pop pointer 0
+push this 1
+call Constants.getScreen 0
+gt
+push this 0
+push this 1
+eq
+not
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 4
+call Game.grid 1
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+call MapAsset.dot 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 4
+call Game.grid 1
+push constant 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 1
+call ScreenManager.clearBlock 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 4
+call Game.grid 1
+push constant 2
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 1
+call MapAsset.ability 1
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 4
+call Game.grid 1
+push constant 5
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 1
+call MapAsset.genterLeft 1
+pop temp 0
+goto IF_END4
+label IF_FALSE4
+push this 4
+call Game.grid 1
+push constant 6
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 1
+call MapAsset.genterRight 1
+pop temp 0
+label IF_FALSE5
+label IF_END4
+label IF_END3
+label IF_END2
+label IF_END1
+label IF_FALSE0
 push this 12
 push this 0
 call AnimationManager.drawNext 2

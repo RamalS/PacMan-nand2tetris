@@ -6,39 +6,39 @@ class ClassicMap
 
         let map = Array.new(512);
 
-        let map[0] = 11;
-        let map[1] = 10;
-        let map[2] = 10;
-        let map[3] = 10;
-        let map[4] = 10;
-        let map[5] = 10;
-        let map[6] = 10;
-        let map[7] = 10;
-        let map[8] = 10;
-        let map[9] = 10;
-        let map[10] = 10;
-        let map[11] = 10;
-        let map[12] = 10;
-        let map[13] = 10;
-        let map[14] = 10;
-        let map[15] = 12;
-        let map[16] = 11;
-        let map[17] = 10;
-        let map[18] = 10;
-        let map[19] = 10;
-        let map[20] = 10;
-        let map[21] = 10;
-        let map[22] = 10;
-        let map[23] = 10;
-        let map[24] = 10;
-        let map[25] = 10;
-        let map[26] = 10;
-        let map[27] = 10;
-        let map[28] = 10;
-        let map[29] = 10;
-        let map[30] = 10;
-        let map[31] = 12;
-        let map[32] = 9;
+        let map[0] = 13;
+        let map[1] = 12;
+        let map[2] = 12;
+        let map[3] = 12;
+        let map[4] = 12;
+        let map[5] = 12;
+        let map[6] = 12;
+        let map[7] = 12;
+        let map[8] = 12;
+        let map[9] = 12;
+        let map[10] = 12;
+        let map[11] = 12;
+        let map[12] = 12;
+        let map[13] = 12;
+        let map[14] = 12;
+        let map[15] = 14;
+        let map[16] = 13;
+        let map[17] = 12;
+        let map[18] = 12;
+        let map[19] = 12;
+        let map[20] = 12;
+        let map[21] = 12;
+        let map[22] = 12;
+        let map[23] = 12;
+        let map[24] = 12;
+        let map[25] = 12;
+        let map[26] = 12;
+        let map[27] = 12;
+        let map[28] = 12;
+        let map[29] = 12;
+        let map[30] = 12;
+        let map[31] = 14;
+        let map[32] = 11;
         let map[33] = 1;
         let map[34] = 1;
         let map[35] = 1;
@@ -53,8 +53,8 @@ class ClassicMap
         let map[44] = 1;
         let map[45] = 1;
         let map[46] = 1;
-        let map[47] = 9;
-        let map[48] = 9;
+        let map[47] = 11;
+        let map[48] = 11;
         let map[49] = 1;
         let map[50] = 1;
         let map[51] = 1;
@@ -69,40 +69,40 @@ class ClassicMap
         let map[60] = 1;
         let map[61] = 1;
         let map[62] = 1;
-        let map[63] = 9;
-        let map[64] = 9;
+        let map[63] = 11;
+        let map[64] = 11;
         let map[65] = 2;
-        let map[66] = 7;
-        let map[67] = 10;
-        let map[68] = 10;
-        let map[69] = 10;
-        let map[70] = 10;
-        let map[71] = 10;
-        let map[72] = 8;
+        let map[66] = 9;
+        let map[67] = 12;
+        let map[68] = 12;
+        let map[69] = 12;
+        let map[70] = 12;
+        let map[71] = 12;
+        let map[72] = 10;
         let map[73] = 1;
-        let map[74] = 7;
-        let map[75] = 10;
-        let map[76] = 16;
-        let map[77] = 8;
+        let map[74] = 9;
+        let map[75] = 12;
+        let map[76] = 18;
+        let map[77] = 10;
         let map[78] = 1;
-        let map[79] = 9;
-        let map[80] = 9;
+        let map[79] = 11;
+        let map[80] = 11;
         let map[81] = 1;
-        let map[82] = 7;
-        let map[83] = 16;
-        let map[84] = 10;
-        let map[85] = 10;
-        let map[86] = 10;
-        let map[87] = 10;
-        let map[88] = 16;
-        let map[89] = 10;
-        let map[90] = 10;
-        let map[91] = 10;
-        let map[92] = 8;
+        let map[82] = 9;
+        let map[83] = 18;
+        let map[84] = 12;
+        let map[85] = 12;
+        let map[86] = 12;
+        let map[87] = 12;
+        let map[88] = 18;
+        let map[89] = 12;
+        let map[90] = 12;
+        let map[91] = 12;
+        let map[92] = 10;
         let map[93] = 1;
         let map[94] = 2;
-        let map[95] = 9;
-        let map[96] = 9;
+        let map[95] = 11;
+        let map[96] = 11;
         let map[97] = 1;
         let map[98] = 1;
         let map[99] = 1;
@@ -114,37 +114,37 @@ class ClassicMap
         let map[105] = 1;
         let map[106] = 1;
         let map[107] = 1;
-        let map[108] = 6;
+        let map[108] = 8;
         let map[109] = 1;
         let map[110] = 1;
-        let map[111] = 13;
-        let map[112] = 14;
+        let map[111] = 15;
+        let map[112] = 16;
         let map[113] = 1;
         let map[114] = 1;
-        let map[115] = 6;
+        let map[115] = 8;
         let map[116] = 1;
         let map[117] = 1;
         let map[118] = 1;
         let map[119] = 1;
-        let map[120] = 6;
+        let map[120] = 8;
         let map[121] = 1;
         let map[122] = 1;
         let map[123] = 1;
         let map[124] = 1;
         let map[125] = 1;
         let map[126] = 1;
-        let map[127] = 9;
-        let map[128] = 13;
-        let map[129] = 10;
-        let map[130] = 10;
-        let map[131] = 10;
-        let map[132] = 12;
+        let map[127] = 11;
+        let map[128] = 15;
+        let map[129] = 12;
+        let map[130] = 12;
+        let map[131] = 12;
+        let map[132] = 14;
         let map[133] = 1;
         let map[134] = 1;
-        let map[135] = 1;
+        let map[135] = 7;
         let map[136] = 1;
         let map[137] = 1;
-        let map[138] = 5;
+        let map[138] = 0;
         let map[139] = 1;
         let map[140] = 1;
         let map[141] = 1;
@@ -156,80 +156,80 @@ class ClassicMap
         let map[147] = 1;
         let map[148] = 1;
         let map[149] = 1;
-        let map[150] = 5;
+        let map[150] = 7;
         let map[151] = 1;
         let map[152] = 1;
         let map[153] = 1;
         let map[154] = 1;
-        let map[155] = 11;
-        let map[156] = 10;
-        let map[157] = 10;
-        let map[158] = 10;
-        let map[159] = 14;
+        let map[155] = 13;
+        let map[156] = 12;
+        let map[157] = 12;
+        let map[158] = 12;
+        let map[159] = 16;
         let map[160] = 0;
         let map[161] = 0;
         let map[162] = 0;
         let map[163] = 0;
-        let map[164] = 9;
+        let map[164] = 11;
         let map[165] = 1;
-        let map[166] = 7;
-        let map[167] = 16;
-        let map[168] = 10;
-        let map[169] = 10;
-        let map[170] = 18;
+        let map[166] = 9;
+        let map[167] = 17;
+        let map[168] = 12;
+        let map[169] = 12;
+        let map[170] = 14;
         let map[171] = 1;
-        let map[172] = 11;
-        let map[173] = 10;
-        let map[174] = 10;
-        let map[175] = 19;
-        let map[176] = 20;
-        let map[177] = 10;
-        let map[178] = 10;
-        let map[179] = 12;
+        let map[172] = 1;
+        let map[173] = 1;
+        let map[174] = 1;
+        let map[175] = 1;
+        let map[176] = 1;
+        let map[177] = 1;
+        let map[178] = 1;
+        let map[179] = 1;
         let map[180] = 1;
-        let map[181] = 7;
-        let map[182] = 18;
+        let map[181] = 9;
+        let map[182] = 20;
         let map[183] = 1;
         let map[184] = 1;
         let map[185] = 1;
         let map[186] = 1;
-        let map[187] = 9;
+        let map[187] = 11;
         let map[188] = 1;
         let map[189] = 0;
         let map[190] = 0;
         let map[191] = 0;
-        let map[192] = 10;
-        let map[193] = 10;
-        let map[194] = 10;
-        let map[195] = 10;
-        let map[196] = 14;
+        let map[192] = 12;
+        let map[193] = 12;
+        let map[194] = 12;
+        let map[195] = 12;
+        let map[196] = 16;
         let map[197] = 1;
         let map[198] = 1;
-        let map[199] = 6;
+        let map[199] = 1;
         let map[200] = 1;
         let map[201] = 1;
-        let map[202] = 9;
+        let map[202] = 11;
         let map[203] = 1;
-        let map[204] = 9;
-        let map[205] = 0;
-        let map[206] = 0;
-        let map[207] = 0;
-        let map[208] = 0;
-        let map[209] = 0;
-        let map[210] = 0;
-        let map[211] = 9;
+        let map[204] = 1;
+        let map[205] = 1;
+        let map[206] = 13;
+        let map[207] = 5;
+        let map[208] = 6;
+        let map[209] = 14;
+        let map[210] = 1;
+        let map[211] = 1;
         let map[212] = 1;
         let map[213] = 1;
-        let map[214] = 9;
+        let map[214] = 11;
         let map[215] = 1;
         let map[216] = 1;
         let map[217] = 1;
         let map[218] = 1;
-        let map[219] = 13;
-        let map[220] = 10;
-        let map[221] = 10;
-        let map[222] = 10;
-        let map[223] = 10;
+        let map[219] = 15;
+        let map[220] = 12;
+        let map[221] = 12;
+        let map[222] = 12;
+        let map[223] = 12;
         let map[224] = 3;
         let map[225] = 1;
         let map[226] = 1;
@@ -240,22 +240,22 @@ class ClassicMap
         let map[231] = 1;
         let map[232] = 1;
         let map[233] = 1;
-        let map[234] = 9;
+        let map[234] = 11;
         let map[235] = 1;
-        let map[236] = 9;
-        let map[237] = 0;
-        let map[238] = 0;
+        let map[236] = 1;
+        let map[237] = 1;
+        let map[238] = 11;
         let map[239] = 0;
         let map[240] = 0;
-        let map[241] = 0;
-        let map[242] = 0;
-        let map[243] = 9;
+        let map[241] = 11;
+        let map[242] = 1;
+        let map[243] = 1;
         let map[244] = 1;
         let map[245] = 1;
-        let map[246] = 17;
-        let map[247] = 10;
-        let map[248] = 10;
-        let map[249] = 8;
+        let map[246] = 19;
+        let map[247] = 12;
+        let map[248] = 12;
+        let map[249] = 10;
         let map[250] = 1;
         let map[251] = 1;
         let map[252] = 1;
@@ -270,21 +270,21 @@ class ClassicMap
         let map[261] = 1;
         let map[262] = 1;
         let map[263] = 1;
-        let map[264] = 5;
+        let map[264] = 7;
         let map[265] = 1;
-        let map[266] = 9;
-        let map[267] = 1;
-        let map[268] = 9;
-        let map[269] = 0;
-        let map[270] = 0;
+        let map[266] = 19;
+        let map[267] = 10;
+        let map[268] = 1;
+        let map[269] = 1;
+        let map[270] = 11;
         let map[271] = 0;
         let map[272] = 0;
-        let map[273] = 0;
-        let map[274] = 0;
-        let map[275] = 9;
+        let map[273] = 11;
+        let map[274] = 1;
+        let map[275] = 1;
         let map[276] = 1;
         let map[277] = 1;
-        let map[278] = 6;
+        let map[278] = 8;
         let map[279] = 1;
         let map[280] = 1;
         let map[281] = 1;
@@ -294,81 +294,81 @@ class ClassicMap
         let map[285] = 1;
         let map[286] = 1;
         let map[287] = 3;
-        let map[288] = 10;
-        let map[289] = 10;
-        let map[290] = 10;
-        let map[291] = 10;
-        let map[292] = 12;
+        let map[288] = 12;
+        let map[289] = 12;
+        let map[290] = 12;
+        let map[291] = 12;
+        let map[292] = 14;
         let map[293] = 1;
-        let map[294] = 5;
+        let map[294] = 7;
         let map[295] = 1;
-        let map[296] = 9;
+        let map[296] = 11;
         let map[297] = 1;
-        let map[298] = 9;
+        let map[298] = 11;
         let map[299] = 1;
-        let map[300] = 9;
-        let map[301] = 0;
-        let map[302] = 0;
-        let map[303] = 0;
-        let map[304] = 0;
-        let map[305] = 0;
-        let map[306] = 0;
-        let map[307] = 9;
+        let map[300] = 1;
+        let map[301] = 1;
+        let map[302] = 15;
+        let map[303] = 12;
+        let map[304] = 12;
+        let map[305] = 16;
+        let map[306] = 1;
+        let map[307] = 1;
         let map[308] = 1;
         let map[309] = 1;
         let map[310] = 1;
         let map[311] = 1;
-        let map[312] = 5;
+        let map[312] = 7;
         let map[313] = 1;
         let map[314] = 1;
-        let map[315] = 11;
-        let map[316] = 10;
-        let map[317] = 10;
-        let map[318] = 10;
-        let map[319] = 10;
+        let map[315] = 13;
+        let map[316] = 12;
+        let map[317] = 12;
+        let map[318] = 12;
+        let map[319] = 12;
         let map[320] = 0;
         let map[321] = 0;
         let map[322] = 0;
         let map[323] = 0;
-        let map[324] = 9;
+        let map[324] = 11;
         let map[325] = 2;
-        let map[326] = 9;
+        let map[326] = 11;
         let map[327] = 1;
-        let map[328] = 9;
+        let map[328] = 11;
         let map[329] = 1;
-        let map[330] = 9;
+        let map[330] = 11;
         let map[331] = 1;
-        let map[332] = 13;
-        let map[333] = 10;
-        let map[334] = 10;
-        let map[335] = 10;
-        let map[336] = 10;
-        let map[337] = 10;
-        let map[338] = 10;
-        let map[339] = 14;
+        let map[332] = 1;
+        let map[333] = 1;
+        let map[334] = 1;
+        let map[335] = 1;
+        let map[336] = 1;
+        let map[337] = 1;
+        let map[338] = 1;
+        let map[339] = 1;
         let map[340] = 1;
-        let map[341] = 5;
+        let map[341] = 7;
         let map[342] = 1;
-        let map[343] = 7;
-        let map[344] = 15;
-        let map[345] = 8;
+        let map[343] = 9;
+        let map[344] = 17;
+        let map[345] = 10;
         let map[346] = 2;
-        let map[347] = 9;
+        let map[347] = 11;
         let map[348] = 0;
         let map[349] = 0;
         let map[350] = 0;
         let map[351] = 0;
-        let map[352] = 11;
-        let map[353] = 10;
-        let map[354] = 10;
-        let map[355] = 10;
-        let map[356] = 14;
+        let map[352] = 13;
+        let map[353] = 12;
+        let map[354] = 12;
+        let map[355] = 12;
+        let map[356] = 16;
         let map[357] = 1;
-        let map[358] = 9;
+        let map[358] = 11;
         let map[359] = 1;
-        let map[360] = 6;
+        let map[360] = 8;
         let map[361] = 1;
-        let map[362] = 6;
+        let map[362] = 8;
         let map[363] = 1;
         let map[364] = 1;
         let map[365] = 1;
@@ -379,24 +379,24 @@ class ClassicMap
         let map[370] = 1;
         let map[371] = 1;
         let map[372] = 1;
-        let map[373] = 9;
+        let map[373] = 11;
         let map[374] = 1;
         let map[375] = 1;
         let map[376] = 1;
         let map[377] = 1;
         let map[378] = 1;
-        let map[379] = 13;
-        let map[380] = 10;
-        let map[381] = 10;
-        let map[382] = 10;
-        let map[383] = 12;
-        let map[384] = 9;
+        let map[379] = 15;
+        let map[380] = 12;
+        let map[381] = 12;
+        let map[382] = 12;
+        let map[383] = 14;
+        let map[384] = 11;
         let map[385] = 1;
         let map[386] = 1;
         let map[387] = 1;
         let map[388] = 1;
         let map[389] = 1;
-        let map[390] = 9;
+        let map[390] = 11;
         let map[391] = 1;
         let map[392] = 1;
         let map[393] = 1;
@@ -405,56 +405,56 @@ class ClassicMap
         let map[396] = 1;
         let map[397] = 1;
         let map[398] = 1;
-        let map[399] = 11;
-        let map[400] = 12;
+        let map[399] = 13;
+        let map[400] = 14;
         let map[401] = 1;
-        let map[402] = 5;
+        let map[402] = 7;
         let map[403] = 1;
         let map[404] = 1;
-        let map[405] = 9;
+        let map[405] = 11;
         let map[406] = 1;
         let map[407] = 1;
         let map[408] = 1;
-        let map[409] = 5;
+        let map[409] = 7;
         let map[410] = 1;
         let map[411] = 1;
         let map[412] = 1;
         let map[413] = 1;
         let map[414] = 1;
-        let map[415] = 9;
-        let map[416] = 9;
+        let map[415] = 11;
+        let map[416] = 11;
         let map[417] = 1;
-        let map[418] = 7;
-        let map[419] = 10;
-        let map[420] = 8;
+        let map[418] = 9;
+        let map[419] = 12;
+        let map[420] = 10;
         let map[421] = 1;
-        let map[422] = 13;
-        let map[423] = 10;
-        let map[424] = 10;
-        let map[425] = 10;
-        let map[426] = 10;
-        let map[427] = 10;
-        let map[428] = 10;
-        let map[429] = 8;
+        let map[422] = 15;
+        let map[423] = 12;
+        let map[424] = 12;
+        let map[425] = 12;
+        let map[426] = 12;
+        let map[427] = 12;
+        let map[428] = 12;
+        let map[429] = 10;
         let map[430] = 1;
-        let map[431] = 9;
-        let map[432] = 9;
+        let map[431] = 11;
+        let map[432] = 11;
         let map[433] = 1;
-        let map[434] = 13;
-        let map[435] = 10;
-        let map[436] = 10;
-        let map[437] = 15;
-        let map[438] = 10;
-        let map[439] = 8;
+        let map[434] = 15;
+        let map[435] = 12;
+        let map[436] = 12;
+        let map[437] = 17;
+        let map[438] = 12;
+        let map[439] = 10;
         let map[440] = 1;
-        let map[441] = 13;
-        let map[442] = 10;
-        let map[443] = 10;
-        let map[444] = 10;
-        let map[445] = 8;
+        let map[441] = 15;
+        let map[442] = 12;
+        let map[443] = 12;
+        let map[444] = 12;
+        let map[445] = 10;
         let map[446] = 1;
-        let map[447] = 9;
-        let map[448] = 9;
+        let map[447] = 11;
+        let map[448] = 11;
         let map[449] = 1;
         let map[450] = 1;
         let map[451] = 1;
@@ -469,8 +469,8 @@ class ClassicMap
         let map[460] = 1;
         let map[461] = 1;
         let map[462] = 2;
-        let map[463] = 9;
-        let map[464] = 9;
+        let map[463] = 11;
+        let map[464] = 11;
         let map[465] = 1;
         let map[466] = 1;
         let map[467] = 1;
@@ -485,39 +485,39 @@ class ClassicMap
         let map[476] = 1;
         let map[477] = 1;
         let map[478] = 1;
-        let map[479] = 9;
-        let map[480] = 13;
-        let map[481] = 10;
-        let map[482] = 10;
-        let map[483] = 10;
-        let map[484] = 10;
-        let map[485] = 10;
-        let map[486] = 10;
-        let map[487] = 10;
-        let map[488] = 10;
-        let map[489] = 10;
-        let map[490] = 10;
-        let map[491] = 10;
-        let map[492] = 10;
-        let map[493] = 10;
-        let map[494] = 10;
-        let map[495] = 14;
-        let map[496] = 13;
-        let map[497] = 10;
-        let map[498] = 10;
-        let map[499] = 10;
-        let map[500] = 10;
-        let map[501] = 10;
-        let map[502] = 10;
-        let map[503] = 10;
-        let map[504] = 10;
-        let map[505] = 10;
-        let map[506] = 10;
-        let map[507] = 10;
-        let map[508] = 10;
-        let map[509] = 10;
-        let map[510] = 10;
-        let map[511] = 14;
+        let map[479] = 11;
+        let map[480] = 15;
+        let map[481] = 12;
+        let map[482] = 12;
+        let map[483] = 12;
+        let map[484] = 12;
+        let map[485] = 12;
+        let map[486] = 12;
+        let map[487] = 12;
+        let map[488] = 12;
+        let map[489] = 12;
+        let map[490] = 12;
+        let map[491] = 12;
+        let map[492] = 12;
+        let map[493] = 12;
+        let map[494] = 12;
+        let map[495] = 16;
+        let map[496] = 15;
+        let map[497] = 12;
+        let map[498] = 12;
+        let map[499] = 12;
+        let map[500] = 12;
+        let map[501] = 12;
+        let map[502] = 12;
+        let map[503] = 12;
+        let map[504] = 12;
+        let map[505] = 12;
+        let map[506] = 12;
+        let map[507] = 12;
+        let map[508] = 12;
+        let map[509] = 12;
+        let map[510] = 12;
+        let map[511] = 16;
 
         return map;
     }
@@ -544,7 +544,8 @@ class ClassicMap
                 let location = location + 1;
             }
 
-            if (map[i] = 0){
+            if (map[i] = 0)
+            {
                 do ScreenManager.clearBlock(location);
             }
             else {if(map[i] = 1)
@@ -555,61 +556,69 @@ class ClassicMap
             {
                 do MapAsset.ability(location);
             }
-            else {if(map[i] = 5){
-                do MapAsset.top(location);
-            }
-            else {if(map[i] = 6){
-                do MapAsset.bottom(location);
-            }
-            else {if(map[i] = 7){
-                do MapAsset.left(location);
-            }
-            else {if(map[i] = 8){
-                do MapAsset.right(location);
-            }
-            else {if(map[i] = 9){
-                do MapAsset.vertical(location);
-            }
-            else {if(map[i] = 10){
-                do MapAsset.horizontal(location);
-            }
-            else {if(map[i] = 11){
-                do MapAsset.tl(location);
-            }
-            else {if(map[i] = 12){
-                do MapAsset.tr(location);
-            }
-            else {if (map[i] = 13)
-            {
-                do MapAsset.bl(location);
-            }
-            else {if (map[i] = 14)
-            {
-                do MapAsset.br(location);
-            }
-            else {if (map[i] = 15)
-            {
-                do MapAsset.ht(location);
-            }
-            else {if (map[i] = 16)
-            {
-                do MapAsset.hb(location);
-            }
-            else {if (map[i] = 17)
-            {
-                do MapAsset.vr(location);
-            }
-            else {if (map[i] = 18)
-            {
-                do MapAsset.vl(location);
-            }
-            else {if (map[i] = 19)
+            else {if(map[i] = 5)
             {
                 do MapAsset.genterLeft(location);
             }
-            else {if (map[i] = 20)
+            else {if(map[i] = 6)
             {
                 do MapAsset.genterRight(location);
+            }
+            else {if(map[i] = 7)
+            {
+                do MapAsset.top(location);
+            }
+            else {if(map[i] = 8)
+            {
+                do MapAsset.bottom(location);
+            }
+            else {if(map[i] = 9)
+            {
+                do MapAsset.left(location);
+            }
+            else {if(map[i] = 10)
+            {
+                do MapAsset.right(location);
+            }
+            else {if(map[i] = 11)
+            {
+                do MapAsset.vertical(location);
+            }
+            else {if(map[i] = 12)
+            {
+                do MapAsset.horizontal(location);
+            }
+            else {if (map[i] = 13)
+            {
+                do MapAsset.tl(location);
+            }
+            else {if (map[i] = 14)
+            {
+                do MapAsset.tr(location);
+            }
+            else {if (map[i] = 15)
+            {
+                do MapAsset.bl(location);
+            }
+            else {if (map[i] = 16)
+            {
+                do MapAsset.br(location);
+            }
+            else {if (map[i] = 17)
+            {
+                do MapAsset.ht(location);
+            }
+            else {if (map[i] = 18)
+            {
+                do MapAsset.hb(location);
+            }
+            else {if (map[i] = 19)
+            {
+                do MapAsset.vr(location);
+            }
+            else {if (map[i] = 20)
+            {
+                do MapAsset.vl(location);
             }}}}}}}}}}}}}}}}}}}
 
             let i = i + 1;

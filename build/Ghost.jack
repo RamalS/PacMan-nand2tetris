@@ -20,10 +20,10 @@ class Ghost
         return this;
     }
 
-    method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 5) {return true;} else {return false;}}
-    method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 5) {return true;} else {return false;}}
-    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 5)  {return true;} else {return false;}}
-    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 5)  {return true;} else {return false;}}
+    method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 7) {return true;} else {return false;}}
+    method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 7) {return true;} else {return false;}}
+    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 7)  {return true;} else {return false;}}
+    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 7)  {return true;} else {return false;}}
 
     method int getLocation() { return location; }
     method int getLastLocation() { return lastLocation; }
@@ -45,8 +45,19 @@ class Ghost
 
     method void checkIntersect()
     {
-        if ((position.distance(Game.pacManPosition()) = 0) & Game.isFrightened())
-            { let dead = true; }
+        if ((gridIndex = Game.pacManGridIndex()) & Game.isFrightened())
+        { 
+            let dead = true; 
+            do Game.increaseScore(gridIndex + 1, 10);
+        }
+        else {if (~Game.isFrightened() & dead)
+        { 
+            let dead = false; 
+        }
+        else {if ((gridIndex = Game.pacManGridIndex()))
+        {
+            do Game.decHP();
+        }}}
         return;
     }
 
@@ -64,6 +75,21 @@ class Ghost
 
     method void drawNext()
     {
+        if (lastLocation > Constants.getScreen() & ~(location = lastLocation))
+        {
+            //do Logger.logInt(lastLocation);
+            if (Game.grid(lastIndex) = 1)
+                { do MapAsset.dot(lastLocation); }
+            else {if(Game.grid(lastIndex) = 0)
+                { do ScreenManager.clearBlock(lastLocation); }
+            else {if (Game.grid(lastIndex) = 2)
+                { do MapAsset.ability(lastLocation); } 
+            else {if (Game.grid(lastIndex) = 5)
+                { do MapAsset.genterLeft(lastLocation); }
+            else {if (Game.grid(lastIndex) = 6)
+                {do MapAsset.genterRight(lastLocation); }}}}}
+        }
+
         do am.drawNext(location);
         return;
     }

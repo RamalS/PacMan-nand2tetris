@@ -18,6 +18,17 @@ push argument 0
 pop pointer 0
 push this 1
 return
+function Vector2.set 0
+push argument 0
+pop pointer 0
+push argument 1
+call Vector2.getX 1
+pop this 0
+push argument 1
+call Vector2.getY 1
+pop this 1
+push constant 0
+return
 function Vector2.setX 0
 push argument 0
 pop pointer 0

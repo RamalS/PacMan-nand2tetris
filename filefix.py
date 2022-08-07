@@ -3,40 +3,38 @@ with open(f'./saves/map1.txt') as f:
         for line in f:
             n = int(line)
             tw = 0
-            if (n == 4):
-                tw = 5
-            elif (n == 5):
-                tw = 6
-            elif (n == 6):
+            if (n == 5):
                 tw = 7
-            elif (n == 7):
+            elif (n == 6):
                 tw = 8
-            elif (n == 8):
+            elif (n == 7):
                 tw = 9
-            elif (n == 9):
+            elif (n == 8):
                 tw = 10
-            elif (n == 10):
+            elif (n == 9):
                 tw = 11
-            elif (n == 11):
+            elif (n == 10):
                 tw = 12
-            elif (n == 12):
+            elif (n == 11):
                 tw = 13
-            elif (n == 13):
+            elif (n == 12):
                 tw = 14
-            elif (n == 14):
+            elif (n == 13):
                 tw = 15
-            elif (n == 15):
+            elif (n == 14):
                 tw = 16
-            elif (n == 16):
+            elif (n == 15):
                 tw = 17
-            elif (n == 17):
+            elif (n == 16):
                 tw = 18
-            elif (n == 18):
+            elif (n == 17):
                 tw = 19
-            elif (n == 19):
+            elif (n == 18):
                 tw = 20
+            elif (n == 19):
+                tw = 5
             elif (n == 20):
-                tw = 4
+                tw = 6
             else:
                 tw = n
 

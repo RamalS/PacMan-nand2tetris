@@ -62,74 +62,25 @@ class Pinky
         return;
     }
 
-    method void exitHome()
-    {
-        if (homeState = 0)
-        {
-            do ghost.moveRight(Constants.pinkyRight());
-        }
-        else {if (homeState = 1)
-        {
-            do ghost.moveUp(Constants.pinkyUp());
-        }
-        else {if (homeState = 2)
-        {
-            do ghost.moveUp(Constants.pinkyUp());
-        }}}
-
-        let homeState = homeState + 1;
-
-        return;
-    }
-
     method void move()
     {
-        if (homeState = 3)
-        {
-            do ghost.checkIntersect();
+        do ghost.checkIntersect();
 
-            if (ghost.isDead())
-                { do ghost.moveToHome(); }
-            else {if (Game.isFrightened())
-                { do ghost.frightenedState(); }
-            else {if (Game.isScatter())
-                { do ghost.moveToPoint(scatterPoint); }
-            else
-                { do ghost.moveToPoint(Game.pacManPosition()); }}}
-
-            // if (Game.isFrightened())
-            //     { do ghost.frightenedState(); }
-            // else {if (Game.isScatter())
-            //     { do ghost.moveToPoint(scatterPoint); }
-            // else {if (ghost.isDead())
-            //     { do ghost.moveToHome(); }
-            // else
-            //     { do ghost.moveToPoint(Game.pacManPosition()); }}}
-        }
+        if (ghost.isDead())
+            { do ghost.moveToHome(); }
+        else {if (Game.isFrightened())
+            { do ghost.frightenedState(); }
+        else {if (Game.isScatter())
+            { do ghost.moveToPoint(scatterPoint); }
         else
-        {
-            do exitHome();
-        }
+            { do ghost.moveToPoint(Game.pacManPosition()); }}}
+
         return;
     }
 
     method void draw()
     {
-        if (ghost.getLastLocation() > Constants.getScreen() & ~(ghost.getLocation() = ghost.getLastLocation()))
-        {
-            //do Logger.logInt(lastLocation);
-            if (Game.grid(ghost.getLastIndex()) = 1)
-                { do MapAsset.dot(ghost.getLastLocation()); }
-            else {if(Game.grid(ghost.getLastIndex()) = 0)
-                { do ScreenManager.clearBlock(ghost.getLastLocation()); }
-            else {if (Game.grid(ghost.getLastIndex()) = 2)
-                { do MapAsset.ability(ghost.getLastLocation()); } 
-            else 
-                { do MapAsset.genterLeft(ghost.getLastLocation()); }}}
-        }
-
         do ghost.drawNext();
-
         return;
     }
 }

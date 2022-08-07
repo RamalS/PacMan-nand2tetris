@@ -13,6 +13,13 @@ class Vector2
     method int getX() { return x; }
     method int getY() { return y; }
 
+    method void set(Vector2 vec2)
+    {
+        let x = vec2.getX();
+        let y = vec2.getY();
+        return;
+    }
+
     method void setX(int t)
     {
         let x = t;

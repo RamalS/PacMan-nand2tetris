@@ -1,8 +1,7 @@
-function Main.main 2
-call Game.new 0
-pop local 0
-push local 0
-call Game.loop 1
+function Main.main 0
+call Game.init 0
+pop temp 0
+call Game.loop 0
 pop temp 0
 push constant 0
 return

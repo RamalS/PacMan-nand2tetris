@@ -1,24 +1,25 @@
 class Game
 {
-    field bool run;
-    field int scatterState;
+    static bool run;
+    static int scatterState;
 
-    static int score, factor;
+    static int score, hp, factor;
     static bool scatter, frightened;
     static PackMan pacMan;
     static Pinky pinky;
     static Array map;
 
-    constructor Game new()
+    function void init()
     {
         let run = true;
         let scatter = true;
         let frightened = false;
         let score = 0;
+        let hp = 3;
         let scatterState = 0;
         let map = ClassicMap.initMap();
         let pacMan = PackMan.new(2, 8);
-        let pinky = Pinky.new(14, 6);
+        let pinky = Pinky.new(15,7);
 
         do ClassicMap.draw();
 
@@ -26,7 +27,17 @@ class Game
         do Output.printString("Score: ");
         do Output.printInt(score);
 
-        return this;
+        do Output.moveCursor(0, 13);
+        do Output.printString("Lives: ");
+        do Output.printInt(hp);
+
+        return;
+    }
+
+    function void setRun(bool _run)
+    {
+        let run = _run;
+        return;
     }
 
     function void setSeed()
@@ -36,13 +47,25 @@ class Game
         return;
     }
 
-    function void increaseScore(int index)
+    function void increaseScore(int index, int x)
     {
-        let score = score + 1;
+        let score = score + x;
+        do Game.setGrid(index, 0);
         do Output.moveCursor(0, 2);
         do Output.printString("Score: ");
         do Output.printInt(score);
 
+        return;
+    }
+
+    function void decHP()
+    {
+        let hp = hp - 1;
+        do pacMan.resetPosititon();
+        do Output.moveCursor(0, 13);
+        do Output.printString("Lives: ");
+        do Output.printInt(hp);
+       
         return;
     }
 
@@ -91,7 +114,7 @@ class Game
         return frightened;
     }
 
-    method void loop()
+    function void loop()
     {
         var int drawDuration, moveDuration, scatterDuration, frightenedDuration;
 
@@ -103,18 +126,18 @@ class Game
 
         while (run)
         {
-            if (drawDuration < 0)
-            {
-                do pacMan.draw();
-                do pinky.draw();
-                let drawDuration = 20;
-            }
-
             if (moveDuration < 0)
             {
                 do pinky.move();
                 do pacMan.move();
                 let moveDuration = 40;
+            }
+
+            if (drawDuration < 0)
+            {
+                do pacMan.draw();
+                do pinky.draw();
+                let drawDuration = 20;
             }
 
             if (frightened)

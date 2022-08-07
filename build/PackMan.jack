@@ -1,9 +1,9 @@
 class PackMan
 {
     field int lastKey, direction, nextDirection, location, lastLocation, gridIndex;
-    field bool updateSprite;
+    field bool updateSprite, reseted;
     field AnimationManager am;
-    field Vector2 position;
+    field Vector2 position, defaultPosition;
 
     constructor PackMan new(int x, int y)
     {
@@ -15,8 +15,10 @@ class PackMan
         let direction = 0;
         let nextDirection = 0;
         let updateSprite = true;
+        let reseted = false;
         let am = AnimationManager.new(4);
         let position = Vector2.new(x, y);
+        let defaultPosition = Vector2.new(x, y);
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
 
@@ -34,6 +36,7 @@ class PackMan
                 let gridIndex = i * 32 + j;
                 do position.setX(j);
                 do position.setY(i);
+                do defaultPosition.set(position);
             }
 
             let j = j + 1;
@@ -77,14 +80,6 @@ class PackMan
     method int getLocation() { return location; }
     method int getGridIndex() { return gridIndex; }
 
-    method void increaseScore(int index)
-    {
-        do Game.setGrid(index, 0);
-        do Game.increaseScore(index);
-
-        return;
-    }
-
     // promjeni da su prva 3 prazno, dot i ability
     method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 5) {return true;} else {return false;}}
     method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 5) {return true;} else {return false;}}
@@ -95,6 +90,12 @@ class PackMan
     {
         let updateSprite = true;
         let lastLocation = location;
+
+        if (Game.grid(gridIndex) = 2)
+        {
+            do Game.setFrightened(); 
+            do Game.setGrid(gridIndex, 0);
+        }
 
         return;
     }
@@ -120,7 +121,7 @@ class PackMan
         if (checkCollisionRight())
         {
             if (Game.grid(gridIndex + 1) = 1) 
-                {do increaseScore(gridIndex + 1);}
+                {do Game.increaseScore(gridIndex + 1, 1);}
 
             do moveInit();
             let location = location + 1;
@@ -146,7 +147,7 @@ class PackMan
         if (checkCollisionLeft())
         {
             if (Game.grid(gridIndex - 1) = 1) 
-                {do increaseScore(gridIndex - 1);}
+                {do Game.increaseScore(gridIndex - 1, 1);}
 
             do moveInit();
             let location = location - 1;
@@ -164,7 +165,7 @@ class PackMan
         if (checkCollisionUp())
         {
             if (Game.grid(gridIndex - 32) = 1) 
-                {do increaseScore(gridIndex - 32);}
+                {do Game.increaseScore(gridIndex - 32, 1);}
             do moveInit();
             let location = location - 512;
             let gridIndex = gridIndex - 32;
@@ -181,7 +182,7 @@ class PackMan
         if (checkCollisionDown())
         {
             if (Game.grid(gridIndex + 32) = 1) 
-                {do increaseScore(gridIndex + 32);}
+                {do Game.increaseScore(gridIndex + 32, 1);}
             do moveInit();
             let location = location + 512;
             let gridIndex = gridIndex + 32;
@@ -190,6 +191,17 @@ class PackMan
         }
         else { do moveStop(); }
         
+        return;
+    }
+
+    method void resetPosititon()
+    {
+        do moveInit();
+        do position.set(defaultPosition);
+        let location = ScreenManager.getLocation(position.getX(), position.getY());
+        let gridIndex = position.getY() * 32 + position.getX();
+        let reseted = true;
+
         return;
     }
 
@@ -231,9 +243,6 @@ class PackMan
 
     method void move()
     {
-        if (Game.grid(gridIndex) = 2)
-            { do Game.setFrightened(); }
-
         if (~(direction = nextDirection))
         {
             if ((nextDirection = 1  & checkCollisionRight()) | 
@@ -268,6 +277,12 @@ class PackMan
         if (updateSprite)
         {
             do am.drawNext(location);
+        }
+
+        if (reseted)
+        {
+            let reseted = false;
+            do Sys.wait(1000);
         } 
 
         return; 
