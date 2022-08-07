@@ -1,0 +1,249 @@
+class Ghost
+{
+    field int location, lastLocation, homeLocation, gridIndex, lastIndex;
+    field int anUp, anLeft, anDown, anRight, anFrightened, anDead;
+    field bool dead;
+    field AnimationManager am;
+    field Vector2 position, homePoint;
+
+    constructor Ghost new(int x, int y, AnimationManager animationManager)
+    {
+        let lastIndex = 0;
+        let am = animationManager;
+        let location = ScreenManager.getLocation(x, y);
+        let gridIndex = y * 32 + x;
+        let dead = false;
+        let homeLocation = gridIndex;
+        let position = Vector2.new(x, y);
+        let homePoint = Vector2.new(x, y);
+
+        return this;
+    }
+
+    method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 5) {return true;} else {return false;}}
+    method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 5) {return true;} else {return false;}}
+    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 5)  {return true;} else {return false;}}
+    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 5)  {return true;} else {return false;}}
+
+    method int getLocation() { return location; }
+    method int getLastLocation() { return lastLocation; }
+    method int getGridIndex() { return gridIndex; }
+    method int getLastIndex() { return lastIndex;}
+    method int getAM() { return am; }
+
+    method void bindAnimations(int _anUp, int _anLeft, int _anDown, int _anRight, int _anFrightened, int _anDead)
+    {
+        let anUp = _anUp;
+        let anLeft = _anLeft;
+        let anDown = _anDown;
+        let anRight = _anRight;
+        let anFrightened = _anFrightened;
+        let anDead = _anDead;
+
+        return;
+    }
+
+    method void checkIntersect()
+    {
+        if ((position.distance(Game.pacManPosition()) = 0) & Game.isFrightened())
+            { let dead = true; }
+        return;
+    }
+
+    method bool isDead()
+    {
+        return dead;
+    }
+
+    method void isHome()
+    {
+        if (gridIndex = homeLocation)
+            { let dead = false; }
+        return;
+    }
+
+    method void drawNext()
+    {
+        do am.drawNext(location);
+        return;
+    }
+
+    method void moveInit()
+    {
+        let lastLocation = location;
+        let lastIndex = gridIndex;
+
+        return;
+    }
+
+    method void moveRight(int animation)
+    {
+        do moveInit();
+        let location = location + 1;
+        let gridIndex = gridIndex + 1;
+        do position.incX();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveLeft(int animation)
+    {
+        do moveInit();
+        let location = location - 1;
+        let gridIndex = gridIndex - 1;
+        do position.decX();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveUp(int animation)
+    {
+        do moveInit();
+        let location = location - 512;
+        let gridIndex = gridIndex - 32;
+        do position.decY();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveDown(int animation)
+    {
+        do moveInit();
+        let location = location + 512;
+        let gridIndex = gridIndex + 32;
+        do position.incY();
+        do am.set(animation);
+
+        return;
+    }
+
+    method void moveToPointAnim(Vector2 point, int _anUp, int _anLeft, int _anDown, int _anRight)
+    {
+        var int minDistance, direction, dist;
+        //do Logger.logInt(position.distance(Game.pacManPosition()));
+
+        let minDistance = 1300;
+
+        if (~(lastIndex = (gridIndex - 32)) & checkCollisionUp())
+        {
+            do position.decY();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 1;
+            }
+            do position.incY();
+        }
+
+        if (~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
+        {
+            do position.decX();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 2;
+            }
+            do position.incX();
+        }
+
+        if (~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
+        {
+            do position.incY();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 3;
+            }
+            do position.decY();
+        }
+
+        if (~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
+        {
+            do position.incX();
+            let dist = position.distance(point);
+            if (dist < minDistance)
+            {
+                let minDistance = dist;
+                let direction = 4;
+            }
+            do position.decX();
+        }
+
+        if (direction = 1)
+        {
+            do moveUp(_anUp);
+        }
+        else {if (direction = 2)
+        {
+            do moveLeft(_anLeft);
+        }
+        else {if (direction = 3)
+        {
+            do moveDown(_anDown);
+        }
+        else {if (direction = 4)
+        {
+            do moveRight(_anRight);
+        }}}}
+
+        return;
+    }
+
+    method void moveToPoint(Vector2 point)
+    {
+        do moveToPointAnim(point, anUp, anLeft, anDown, anRight);
+
+        return;
+    }
+
+    method void moveToHome()
+    {
+        do moveToPointAnim(homePoint, anDead, anDead, anDead, anDead);
+        return;
+    }
+
+    method void frightenedState()
+    {   
+        var int direction;
+        var bool moved;
+
+        let direction = LCGRandom.randRange(1, 4);
+        let moved = true;
+
+        while (moved)
+        {
+            if (direction = 1 & ~(lastIndex = (gridIndex - 32)) & checkCollisionUp())
+            {
+                do moveUp(anFrightened);
+                let moved = false;
+            }
+            else {if (direction = 2 & ~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
+            {
+                do moveLeft(anFrightened);
+                let moved = false;
+            }
+            else {if (direction = 3 & ~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
+            {
+                do moveDown(anFrightened);
+                let moved = false;
+            }
+            else {if (direction = 4 & ~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
+            {
+                do moveRight(anFrightened);
+                let moved = false;
+            }
+            else
+            {
+                let direction = LCGRandom.randRange(1, 4);
+            }}}}
+        }
+
+        return;
+    }
+}

@@ -166,6 +166,16 @@ push argument 0
 pop pointer 0
 push this 8
 return
+function PackMan.getLocation 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function PackMan.getGridIndex 0
+push argument 0
+pop pointer 0
+push this 5
+return
 function PackMan.increaseScore 0
 push argument 0
 pop pointer 0
@@ -553,8 +563,6 @@ push constant 1
 pop this 2
 push local 0
 pop this 0
-call Game.setSeed 0
-pop temp 0
 goto IF_END1
 label IF_FALSE1
 push local 0
@@ -573,8 +581,6 @@ neg
 pop this 2
 push local 0
 pop this 0
-call Game.setSeed 0
-pop temp 0
 goto IF_END2
 label IF_FALSE2
 push local 0
@@ -592,8 +598,6 @@ push constant 2
 pop this 2
 push local 0
 pop this 0
-call Game.setSeed 0
-pop temp 0
 goto IF_END3
 label IF_FALSE3
 push local 0

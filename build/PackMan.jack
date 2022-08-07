@@ -73,10 +73,9 @@ class PackMan
         return;
     }
 
-    method Vector2 getPosition()
-    {
-        return position;
-    }
+    method Vector2 getPosition() { return position; }
+    method int getLocation() { return location; }
+    method int getGridIndex() { return gridIndex; }
 
     method void increaseScore(int index)
     {
@@ -211,19 +210,16 @@ class PackMan
         {
             let nextDirection = 1;
             let lastKey = kybrd;
-            do Game.setSeed();
         }
         else {if ((kybrd = 131) & ~(lastKey = kybrd))
         {
             let nextDirection = -2;
             let lastKey = kybrd;
-            do Game.setSeed();
         } 
         else {if (kybrd = 133 & ~(lastKey = kybrd))
         {
             let nextDirection = 2;
             let lastKey = kybrd;
-            do Game.setSeed();
         }
         else {if (kybrd = 0 & ~(lastKey = kybrd))
         {

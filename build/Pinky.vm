@@ -1,34 +1,32 @@
 function Pinky.new 0
-push constant 8
+push constant 4
 call Memory.alloc 1
 pop pointer 0
+push constant 0
+pop this 0
 push constant 6
 call AnimationManager.new 1
-pop this 5
-push argument 0
-push argument 1
-call ScreenManager.getLocation 2
-pop this 0
-push argument 1
-push constant 32
-call Math.multiply 2
-push argument 0
-add
+pop this 1
+push constant 1
+push constant 1
+call Vector2.new 2
 pop this 2
-push constant 0
-pop this 3
-push constant 0
-pop this 4
-push argument 0
-push argument 1
-call Vector2.new 2
-pop this 6
-push constant 1
-push constant 1
-call Vector2.new 2
-pop this 7
 push pointer 0
 call Pinky.loadAnimations 1
+pop temp 0
+push argument 0
+push argument 1
+push this 1
+call Ghost.new 3
+pop this 3
+push this 3
+call Constants.pinkyUp 0
+call Constants.pinkyLeft 0
+call Constants.pinkyDown 0
+call Constants.pinkyRight 0
+call Constants.pinkyFrightened 0
+call Constants.pinkyDead 0
+call Ghost.bindAnimations 7
 pop temp 0
 push pointer 0
 return
@@ -46,7 +44,7 @@ push local 0
 call PinkyAsset.right2 0
 call Animation.add 2
 pop temp 0
-push this 5
+push this 1
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -61,7 +59,7 @@ push local 0
 call PinkyAsset.left2 0
 call Animation.add 2
 pop temp 0
-push this 5
+push this 1
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -76,7 +74,7 @@ push local 0
 call PinkyAsset.down2 0
 call Animation.add 2
 pop temp 0
-push this 5
+push this 1
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -91,7 +89,7 @@ push local 0
 call PinkyAsset.up2 0
 call Animation.add 2
 pop temp 0
-push this 5
+push this 1
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -102,7 +100,7 @@ push local 0
 call GhostAsset.dead 0
 call Animation.add 2
 pop temp 0
-push this 5
+push this 1
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -117,590 +115,108 @@ push local 0
 call GhostAsset.frightened2 0
 call Animation.add 2
 pop temp 0
-push this 5
+push this 1
 push local 0
 call AnimationManager.add 2
 pop temp 0
-push this 5
+push this 1
 call Constants.pinkyRight 0
 call AnimationManager.set 2
 pop temp 0
-push constant 0
-return
-function Pinky.checkCollisionUp 0
-push argument 0
-pop pointer 0
-push this 2
-push constant 32
-sub
-call Game.grid 1
-push constant 5
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-not
-return
-goto IF_END0
-label IF_FALSE0
-push constant 0
-return
-label IF_END0
-function Pinky.checkCollisionDown 0
-push argument 0
-pop pointer 0
-push this 2
-push constant 32
-add
-call Game.grid 1
-push constant 5
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-not
-return
-goto IF_END0
-label IF_FALSE0
-push constant 0
-return
-label IF_END0
-function Pinky.checkCollisionLeft 0
-push argument 0
-pop pointer 0
-push this 2
-push constant 1
-sub
-call Game.grid 1
-push constant 5
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-not
-return
-goto IF_END0
-label IF_FALSE0
-push constant 0
-return
-label IF_END0
-function Pinky.checkCollisionRight 0
-push argument 0
-pop pointer 0
-push this 2
-push constant 1
-add
-call Game.grid 1
-push constant 5
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-not
-return
-goto IF_END0
-label IF_FALSE0
-push constant 0
-return
-label IF_END0
-function Pinky.moveInit 0
-push argument 0
-pop pointer 0
-push this 0
-pop this 1
-push this 2
-pop this 3
-push constant 0
-return
-function Pinky.moveRight 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Pinky.moveInit 1
-pop temp 0
-push this 0
-push constant 1
-add
-pop this 0
-push this 2
-push constant 1
-add
-pop this 2
-push this 6
-call Vector2.incX 1
-pop temp 0
-push this 5
-push argument 1
-call AnimationManager.set 2
-pop temp 0
-push constant 0
-return
-function Pinky.moveLeft 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Pinky.moveInit 1
-pop temp 0
-push this 0
-push constant 1
-sub
-pop this 0
-push this 2
-push constant 1
-sub
-pop this 2
-push this 6
-call Vector2.decX 1
-pop temp 0
-push this 5
-push argument 1
-call AnimationManager.set 2
-pop temp 0
-push constant 0
-return
-function Pinky.moveUp 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Pinky.moveInit 1
-pop temp 0
-push this 0
-push constant 512
-sub
-pop this 0
-push this 2
-push constant 32
-sub
-pop this 2
-push this 6
-call Vector2.decY 1
-pop temp 0
-push this 5
-push argument 1
-call AnimationManager.set 2
-pop temp 0
-push constant 0
-return
-function Pinky.moveDown 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Pinky.moveInit 1
-pop temp 0
-push this 0
-push constant 512
-add
-pop this 0
-push this 2
-push constant 32
-add
-pop this 2
-push this 6
-call Vector2.incY 1
-pop temp 0
-push this 5
-push argument 1
-call AnimationManager.set 2
-pop temp 0
-push constant 0
-return
-function Pinky.moveToPoint 3
-push argument 0
-pop pointer 0
-push constant 1300
-pop local 0
-push this 3
-push this 2
-push constant 32
-sub
-eq
-not
-push pointer 0
-call Pinky.checkCollisionUp 1
-and
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 6
-call Vector2.decY 1
-pop temp 0
-push this 6
-push argument 1
-call Vector2.distance 2
-pop local 2
-push local 2
-push local 0
-lt
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push local 2
-pop local 0
-push constant 1
-pop local 1
-label IF_FALSE1
-push this 6
-call Vector2.incY 1
-pop temp 0
-label IF_FALSE0
-push this 3
-push this 2
-push constant 1
-sub
-eq
-not
-push pointer 0
-call Pinky.checkCollisionLeft 1
-and
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push this 6
-call Vector2.decX 1
-pop temp 0
-push this 6
-push argument 1
-call Vector2.distance 2
-pop local 2
-push local 2
-push local 0
-lt
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-push local 2
-pop local 0
-push constant 2
-pop local 1
-label IF_FALSE3
-push this 6
-call Vector2.incX 1
-pop temp 0
-label IF_FALSE2
-push this 3
-push this 2
-push constant 32
-add
-eq
-not
-push pointer 0
-call Pinky.checkCollisionDown 1
-and
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
-push this 6
-call Vector2.incY 1
-pop temp 0
-push this 6
-push argument 1
-call Vector2.distance 2
-pop local 2
-push local 2
-push local 0
-lt
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
-push local 2
-pop local 0
-push constant 3
-pop local 1
-label IF_FALSE5
-push this 6
-call Vector2.decY 1
-pop temp 0
-label IF_FALSE4
-push this 3
-push this 2
-push constant 1
-add
-eq
-not
-push pointer 0
-call Pinky.checkCollisionRight 1
-and
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
-push this 6
-call Vector2.incX 1
-pop temp 0
-push this 6
-push argument 1
-call Vector2.distance 2
-pop local 2
-push local 2
-push local 0
-lt
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
-push local 2
-pop local 0
-push constant 4
-pop local 1
-label IF_FALSE7
-push this 6
-call Vector2.decX 1
-pop temp 0
-label IF_FALSE6
-push local 1
-push constant 1
-eq
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
-push pointer 0
-call Constants.pinkyUp 0
-call Pinky.moveUp 2
-pop temp 0
-goto IF_END8
-label IF_FALSE8
-push local 1
-push constant 2
-eq
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
-push pointer 0
-call Constants.pinkyLeft 0
-call Pinky.moveLeft 2
-pop temp 0
-goto IF_END9
-label IF_FALSE9
-push local 1
-push constant 3
-eq
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
-push pointer 0
-call Constants.pinkyDown 0
-call Pinky.moveDown 2
-pop temp 0
-goto IF_END10
-label IF_FALSE10
-push local 1
-push constant 4
-eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
-push pointer 0
-call Constants.pinkyRight 0
-call Pinky.moveRight 2
-pop temp 0
-label IF_FALSE11
-label IF_END10
-label IF_END9
-label IF_END8
 push constant 0
 return
 function Pinky.exitHome 0
 push argument 0
 pop pointer 0
-push this 4
+push this 0
 push constant 0
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push pointer 0
+push this 3
 call Constants.pinkyRight 0
-call Pinky.moveRight 2
+call Ghost.moveRight 2
 pop temp 0
 goto IF_END0
 label IF_FALSE0
-push this 4
+push this 0
 push constant 1
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push pointer 0
+push this 3
 call Constants.pinkyUp 0
-call Pinky.moveUp 2
+call Ghost.moveUp 2
 pop temp 0
 goto IF_END1
 label IF_FALSE1
-push this 4
+push this 0
 push constant 2
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push pointer 0
+push this 3
 call Constants.pinkyUp 0
-call Pinky.moveUp 2
+call Ghost.moveUp 2
 pop temp 0
 label IF_FALSE2
 label IF_END1
 label IF_END0
-push this 4
+push this 0
 push constant 1
 add
-pop this 4
-push constant 0
-return
-function Pinky.frightenedState 2
-push argument 0
-pop pointer 0
-push constant 1
-push constant 4
-call LCGRandom.randRange 2
-pop local 0
-push constant 0
-not
-pop local 1
-label WHILE_EXP0
-push local 1
-not
-if-goto WHILE_END0
-push local 0
-push constant 1
-eq
-push this 3
-push this 2
-push constant 32
-sub
-eq
-not
-and
-push pointer 0
-call Pinky.checkCollisionUp 1
-and
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push pointer 0
-call Constants.pinkyFrightened 0
-call Pinky.moveUp 2
-pop temp 0
-push constant 0
-pop local 1
-goto IF_END0
-label IF_FALSE0
-push local 0
-push constant 2
-eq
-push this 3
-push this 2
-push constant 1
-sub
-eq
-not
-and
-push pointer 0
-call Pinky.checkCollisionLeft 1
-and
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push pointer 0
-call Constants.pinkyFrightened 0
-call Pinky.moveLeft 2
-pop temp 0
-push constant 0
-pop local 1
-goto IF_END1
-label IF_FALSE1
-push local 0
-push constant 3
-eq
-push this 3
-push this 2
-push constant 32
-add
-eq
-not
-and
-push pointer 0
-call Pinky.checkCollisionDown 1
-and
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push pointer 0
-call Constants.pinkyFrightened 0
-call Pinky.moveDown 2
-pop temp 0
-push constant 0
-pop local 1
-goto IF_END2
-label IF_FALSE2
-push local 0
-push constant 4
-eq
-push this 3
-push this 2
-push constant 1
-add
-eq
-not
-and
-push pointer 0
-call Pinky.checkCollisionRight 1
-and
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-push pointer 0
-call Constants.pinkyFrightened 0
-call Pinky.moveRight 2
-pop temp 0
-push constant 0
-pop local 1
-goto IF_END3
-label IF_FALSE3
-push constant 1
-push constant 4
-call LCGRandom.randRange 2
-pop local 0
-label IF_END3
-label IF_END2
-label IF_END1
-label IF_END0
-goto WHILE_EXP0
-label WHILE_END0
+pop this 0
 push constant 0
 return
 function Pinky.move 0
 push argument 0
 pop pointer 0
-push this 4
+push this 0
 push constant 3
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-call Game.isFrightened 0
+push this 3
+call Ghost.checkIntersect 1
+pop temp 0
+push this 3
+call Ghost.isDead 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push pointer 0
-call Pinky.frightenedState 1
+push this 3
+call Ghost.moveToHome 1
 pop temp 0
 goto IF_END1
 label IF_FALSE1
-call Game.isScatter 0
+call Game.isFrightened 0
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push pointer 0
-push this 7
-call Pinky.moveToPoint 2
+push this 3
+call Ghost.frightenedState 1
 pop temp 0
 goto IF_END2
 label IF_FALSE2
-push pointer 0
-call Game.pacManPosition 0
-call Pinky.moveToPoint 2
+call Game.isScatter 0
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 3
+push this 2
+call Ghost.moveToPoint 2
 pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 3
+call Game.pacManPosition 0
+call Ghost.moveToPoint 2
+pop temp 0
+label IF_END3
 label IF_END2
 label IF_END1
 goto IF_END0
@@ -714,11 +230,14 @@ return
 function Pinky.draw 0
 push argument 0
 pop pointer 0
-push this 1
+push this 3
+call Ghost.getLastLocation 1
 call Constants.getScreen 0
 gt
-push this 0
-push this 1
+push this 3
+call Ghost.getLocation 1
+push this 3
+call Ghost.getLastLocation 1
 eq
 not
 and
@@ -726,51 +245,57 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push this 3
+call Ghost.getLastIndex 1
 call Game.grid 1
 push constant 1
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 1
+push this 3
+call Ghost.getLastLocation 1
 call MapAsset.dot 1
 pop temp 0
 goto IF_END1
 label IF_FALSE1
 push this 3
+call Ghost.getLastIndex 1
 call Game.grid 1
 push constant 0
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push this 1
+push this 3
+call Ghost.getLastLocation 1
 call ScreenManager.clearBlock 1
 pop temp 0
 goto IF_END2
 label IF_FALSE2
 push this 3
+call Ghost.getLastIndex 1
 call Game.grid 1
 push constant 2
 eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push this 1
+push this 3
+call Ghost.getLastLocation 1
 call MapAsset.ability 1
 pop temp 0
 goto IF_END3
 label IF_FALSE3
-push this 1
+push this 3
+call Ghost.getLastLocation 1
 call MapAsset.genterLeft 1
 pop temp 0
 label IF_END3
 label IF_END2
 label IF_END1
 label IF_FALSE0
-push this 5
-push this 0
-call AnimationManager.drawNext 2
+push this 3
+call Ghost.drawNext 1
 pop temp 0
 push constant 0
 return

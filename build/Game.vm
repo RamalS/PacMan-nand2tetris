@@ -115,6 +115,14 @@ function Game.pacManPosition 0
 push static 4
 call PackMan.getPosition 1
 return
+function Game.pacManLocation 0
+push static 4
+call PackMan.getLocation 1
+return
+function Game.pacManGridIndex 0
+push static 4
+call PackMan.getGridIndex 1
+return
 function Game.isScatter 0
 push static 2
 return
@@ -138,6 +146,9 @@ push constant 2000
 pop local 2
 push constant 2000
 pop local 3
+push constant 1234
+call LCGRandom.setSeed 1
+pop temp 0
 label WHILE_EXP0
 push this 0
 not
@@ -163,11 +174,11 @@ lt
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push static 4
-call PackMan.move 1
-pop temp 0
 push static 5
 call Pinky.move 1
+pop temp 0
+push static 4
+call PackMan.move 1
 pop temp 0
 push constant 40
 pop local 1

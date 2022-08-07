@@ -1,20 +1,25 @@
 class Pinky
 {
-    field int location, lastLocation, gridIndex, lastIndex, homeState;
+    field int homeState;
     field AnimationManager am;
-    field Vector2 position, scatterPoint;
+    field Vector2 scatterPoint;
+    field Ghost ghost;
 
     constructor Pinky new(int x, int y)
     {
-        let am = AnimationManager.new(6);
-        let location = ScreenManager.getLocation(x, y);
-        let gridIndex = y * 32 + x;
-        let lastIndex = 0;
         let homeState = 0;
-        let position = Vector2.new(x, y);
+        let am = AnimationManager.new(6);
         let scatterPoint = Vector2.new(1, 1);
 
         do loadAnimations();
+
+        let ghost = Ghost.new(x, y, am);
+        do ghost.bindAnimations(Constants.pinkyUp(),
+                                Constants.pinkyLeft(),
+                                Constants.pinkyDown(),
+                                Constants.pinkyRight(),
+                                Constants.pinkyFrightened(),
+                                Constants.pinkyDead());
 
         return this;
     }
@@ -57,193 +62,22 @@ class Pinky
         return;
     }
 
-    method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 5) {return true;} else {return false;}}
-    method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 5) {return true;} else {return false;}}
-    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 5)  {return true;} else {return false;}}
-    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 5)  {return true;} else {return false;}}
-
-    method void moveInit()
-    {
-        let lastLocation = location;
-        let lastIndex = gridIndex;
-
-        return;
-    }
-
-    method void moveRight(int animation)
-    {
-        do moveInit();
-        let location = location + 1;
-        let gridIndex = gridIndex + 1;
-        do position.incX();
-        do am.set(animation);
-
-        return;
-    }
-
-    method void moveLeft(int animation)
-    {
-        do moveInit();
-        let location = location - 1;
-        let gridIndex = gridIndex - 1;
-        do position.decX();
-        do am.set(animation);
-
-        return;
-    }
-
-    method void moveUp(int animation)
-    {
-        do moveInit();
-        let location = location - 512;
-        let gridIndex = gridIndex - 32;
-        do position.decY();
-        do am.set(animation);
-
-        return;
-    }
-
-    method void moveDown(int animation)
-    {
-        do moveInit();
-        let location = location + 512;
-        let gridIndex = gridIndex + 32;
-        do position.incY();
-        do am.set(animation);
-
-        return;
-    }
-
-    method void moveToPoint(Vector2 point)
-    {
-        var int minDistance, direction, dist;
-        //do Logger.logInt(position.distance(Game.pacManPosition()));
-
-        let minDistance = 1300;
-
-        if (~(lastIndex = (gridIndex - 32)) & checkCollisionUp())
-        {
-            do position.decY();
-            let dist = position.distance(point);
-            if (dist < minDistance)
-            {
-                let minDistance = dist;
-                let direction = 1;
-            }
-            do position.incY();
-        }
-
-        if (~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
-        {
-            do position.decX();
-            let dist = position.distance(point);
-            if (dist < minDistance)
-            {
-                let minDistance = dist;
-                let direction = 2;
-            }
-            do position.incX();
-        }
-
-        if (~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
-        {
-            do position.incY();
-            let dist = position.distance(point);
-            if (dist < minDistance)
-            {
-                let minDistance = dist;
-                let direction = 3;
-            }
-            do position.decY();
-        }
-
-        if (~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
-        {
-            do position.incX();
-            let dist = position.distance(point);
-            if (dist < minDistance)
-            {
-                let minDistance = dist;
-                let direction = 4;
-            }
-            do position.decX();
-        }
-
-        if (direction = 1)
-        {
-            do moveUp(Constants.pinkyUp());
-        }
-        else {if (direction = 2)
-        {
-            do moveLeft(Constants.pinkyLeft());
-        }
-        else {if (direction = 3)
-        {
-            do moveDown(Constants.pinkyDown());
-        }
-        else {if (direction = 4)
-        {
-            do moveRight(Constants.pinkyRight());
-        }}}}
-
-        return;
-    }
-
     method void exitHome()
     {
         if (homeState = 0)
         {
-            do moveRight(Constants.pinkyRight());
+            do ghost.moveRight(Constants.pinkyRight());
         }
         else {if (homeState = 1)
         {
-            do moveUp(Constants.pinkyUp());
+            do ghost.moveUp(Constants.pinkyUp());
         }
         else {if (homeState = 2)
         {
-            do moveUp(Constants.pinkyUp());
+            do ghost.moveUp(Constants.pinkyUp());
         }}}
 
         let homeState = homeState + 1;
-
-        return;
-    }
-
-    method void frightenedState()
-    {   
-        var int direction;
-        var bool moved;
-
-        let direction = LCGRandom.randRange(1, 4);
-        let moved = true;
-
-        while (moved)
-        {
-            if (direction = 1 & ~(lastIndex = (gridIndex - 32)) & checkCollisionUp())
-            {
-                do moveUp(Constants.pinkyFrightened());
-                let moved = false;
-            }
-            else {if (direction = 2 & ~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
-            {
-                do moveLeft(Constants.pinkyFrightened());
-                let moved = false;
-            }
-            else {if (direction = 3 & ~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
-            {
-                do moveDown(Constants.pinkyFrightened());
-                let moved = false;
-            }
-            else {if (direction = 4 & ~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
-            {
-                do moveRight(Constants.pinkyFrightened());
-                let moved = false;
-            }
-            else
-            {
-                let direction = LCGRandom.randRange(1, 4);
-            }}}}
-        }
 
         return;
     }
@@ -252,12 +86,25 @@ class Pinky
     {
         if (homeState = 3)
         {
-            if (Game.isFrightened())
-                { do frightenedState(); }
+            do ghost.checkIntersect();
+
+            if (ghost.isDead())
+                { do ghost.moveToHome(); }
+            else {if (Game.isFrightened())
+                { do ghost.frightenedState(); }
             else {if (Game.isScatter())
-                { do moveToPoint(scatterPoint); }
+                { do ghost.moveToPoint(scatterPoint); }
             else
-                { do moveToPoint(Game.pacManPosition()); }}
+                { do ghost.moveToPoint(Game.pacManPosition()); }}}
+
+            // if (Game.isFrightened())
+            //     { do ghost.frightenedState(); }
+            // else {if (Game.isScatter())
+            //     { do ghost.moveToPoint(scatterPoint); }
+            // else {if (ghost.isDead())
+            //     { do ghost.moveToHome(); }
+            // else
+            //     { do ghost.moveToPoint(Game.pacManPosition()); }}}
         }
         else
         {
@@ -268,20 +115,20 @@ class Pinky
 
     method void draw()
     {
-        if (lastLocation > Constants.getScreen() & ~(location = lastLocation))
+        if (ghost.getLastLocation() > Constants.getScreen() & ~(ghost.getLocation() = ghost.getLastLocation()))
         {
             //do Logger.logInt(lastLocation);
-            if (Game.grid(lastIndex) = 1)
-                { do MapAsset.dot(lastLocation); }
-            else {if(Game.grid(lastIndex) = 0)
-                { do ScreenManager.clearBlock(lastLocation); }
-            else {if (Game.grid(lastIndex) = 2)
-                { do MapAsset.ability(lastLocation); } 
+            if (Game.grid(ghost.getLastIndex()) = 1)
+                { do MapAsset.dot(ghost.getLastLocation()); }
+            else {if(Game.grid(ghost.getLastIndex()) = 0)
+                { do ScreenManager.clearBlock(ghost.getLastLocation()); }
+            else {if (Game.grid(ghost.getLastIndex()) = 2)
+                { do MapAsset.ability(ghost.getLastLocation()); } 
             else 
-                { do MapAsset.genterLeft(lastLocation); }}}
+                { do MapAsset.genterLeft(ghost.getLastLocation()); }}}
         }
 
-        do am.drawNext(location);
+        do ghost.drawNext();
 
         return;
     }

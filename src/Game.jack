@@ -65,6 +65,16 @@ class Game
         return pacMan.getPosition();
     }
 
+    function int pacManLocation()
+    {
+        return pacMan.getLocation();
+    }
+
+    function int pacManGridIndex()
+    {
+        return pacMan.getGridIndex();
+    }
+
     function bool isScatter()
     {
         return scatter;
@@ -89,6 +99,7 @@ class Game
         let moveDuration = 10;
         let scatterDuration = 2000;
         let frightenedDuration = 2000;
+        do LCGRandom.setSeed(1234);
 
         while (run)
         {
@@ -101,8 +112,8 @@ class Game
 
             if (moveDuration < 0)
             {
-                do pacMan.move();
                 do pinky.move();
+                do pacMan.move();
                 let moveDuration = 40;
             }
 
