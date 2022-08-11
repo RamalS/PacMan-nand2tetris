@@ -1,0 +1,46 @@
+class GameOver
+{
+    static Animation pacManAnimation, pinkyAnimation;
+    static int i, location;
+
+
+    function void init()
+    {
+        let pacManAnimation = Animation.new(2);
+        do pacManAnimation.add(PacManAsset.mouthOpenRight());
+        do pacManAnimation.add(PacManAsset.mouthClosed());
+
+        let pinkyAnimation = Animation.new(2);
+        do pinkyAnimation.add(PinkyAsset.right1());
+        do pinkyAnimation.add(PinkyAsset.right2());
+
+        return;
+    }
+
+    function void draw()
+    {
+        do ScreenManager.clearScreenAnimated();
+
+        do Output.moveCursor(11, 27);
+        do Output.printString("GAME OVER");
+
+        //do Sys.wait(2000); //Simulation of pacman and ghost animation
+
+        // pacman and ghost aniamtion
+
+        let location = Constants.getScreen() + (15 * 512);
+        let i = 0;
+        while (i < 28)
+        {
+            do ScreenManager.clearBlock(location + i - 1);
+            do ScreenManager.clearBlock(location + i + 3);
+            do pacManAnimation.next(location + i + 4);
+            do pinkyAnimation.next(location + i);
+            do Sys.wait(200);
+
+            let i = i + 1;
+        }
+
+        return;
+    }
+}

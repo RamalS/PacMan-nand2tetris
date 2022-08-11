@@ -1,17 +1,20 @@
 function Constants.getScreen 0
 push constant 16384
 return
-function Constants.packManLeft 0
+function Constants.pacManLeft 0
 push constant 0
 return
-function Constants.packManRight 0
+function Constants.pacManRight 0
 push constant 1
 return
-function Constants.packManUp 0
+function Constants.pacManUp 0
 push constant 2
 return
-function Constants.packManDown 0
+function Constants.pacManDown 0
 push constant 3
+return
+function Constants.pacManDead 0
+push constant 4
 return
 function Constants.pinkyRight 0
 push constant 0

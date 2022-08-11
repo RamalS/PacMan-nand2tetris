@@ -8,7 +8,14 @@ class Vector2
         let y = _y;
 
         return this;
-    } 
+    }
+
+    method void dispose()
+    {
+      do Memory.deAlloc(this);
+
+      return;
+    }
 
     method int getX() { return x; }
     method int getY() { return y; }
@@ -62,6 +69,7 @@ class Vector2
         let a = Math.max(x, pos.getX()) - Math.min(x, pos.getX());
         let b = Math.max(y, pos.getY()) - Math.min(y, pos.getY());
         let c = (a * a) + (b * b);
+        
         return c;
     }
 }

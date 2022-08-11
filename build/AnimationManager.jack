@@ -1,7 +1,7 @@
 class AnimationManager
 {
-    field Array animations;
     field int counter, size;
+    field Array animations;
     field Animation currentAnimation;
 
     constructor AnimationManager new(int s)
@@ -12,6 +12,14 @@ class AnimationManager
 
         return this;
     }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(animations);
+        do Memory.deAlloc(this);
+        
+        return;
+    }    
 
     method void add(Animation animation)
     {
@@ -31,34 +39,19 @@ class AnimationManager
         return;
     }
 
-    method Array next()
+    method void setKeyFrame(int id, int frame)
     {
-        return currentAnimation.next();
-    }
-
-    method void drawNext(int location)
-    {
-        var Array sprite;
-
-        let sprite = currentAnimation.next();
-
-        do Memory.poke(location, sprite[0]);
-        do Memory.poke(location + 32, sprite[1]);
-        do Memory.poke(location + 64, sprite[2]);
-        do Memory.poke(location + 96, sprite[3]);
-        do Memory.poke(location + 128, sprite[4]);
-        do Memory.poke(location + 160, sprite[5]);
-        do Memory.poke(location + 192, sprite[6]);
-        do Memory.poke(location + 224, sprite[7]);
-        do Memory.poke(location + 256, sprite[8]);
-        do Memory.poke(location + 288, sprite[9]);
-        do Memory.poke(location + 320, sprite[10]);
-        do Memory.poke(location + 352, sprite[11]);
-        do Memory.poke(location + 384, sprite[12]);
-        do Memory.poke(location + 416, sprite[13]);
-        do Memory.poke(location + 448, sprite[14]);
-        do Memory.poke(location + 480, sprite[15]);
+        do set(id);
+        do currentAnimation.setKeyFrame(frame);
 
         return;
+    }
+
+    method bool drawNext(int location)
+    {
+        var bool result;
+        let result = currentAnimation.next(location);
+
+        return result;
     }
 }

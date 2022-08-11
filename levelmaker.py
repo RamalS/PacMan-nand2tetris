@@ -34,6 +34,18 @@ vlimg = pygame.image.load('./assets/vl.png')
 ghostleftimg = pygame.image.load('./assets/ghostleft.png')
 ghostrightimg = pygame.image.load('./assets/ghostright.png')
 pacmanimg = pygame.image.load('./assets/pacman.png')
+thinhbimg = pygame.image.load('./assets/thinhb.png')
+thinhtimg = pygame.image.load('./assets/thinht.png')
+thinvlimg = pygame.image.load('./assets/thinvl.png')
+thinvrimg = pygame.image.load('./assets/thinvr.png')
+thinblimg = pygame.image.load('./assets/thinbl.png')
+thinbrimg = pygame.image.load('./assets/thinbr.png')
+thintlimg = pygame.image.load('./assets/thintl.png')
+thintrimg = pygame.image.load('./assets/thintr.png')
+thinbleimg = pygame.image.load('./assets/thinble.png')
+thinbreimg = pygame.image.load('./assets/thinbre.png')
+thintleimg = pygame.image.load('./assets/thintle.png')
+thintreimg = pygame.image.load('./assets/thintre.png')
 
 upimg = pygame.transform.scale(upimg, (500/16, 500/16))
 leftimg = pygame.transform.scale(leftimg, (500/16, 500/16))
@@ -55,6 +67,19 @@ vlimg = pygame.transform.scale(vlimg, (500/16, 500/16))
 ghostleftimg = pygame.transform.scale(ghostleftimg, (500/16, 500/16))
 ghostrightimg = pygame.transform.scale(ghostrightimg, (500/16, 500/16))
 pacmanimg = pygame.transform.scale(pacmanimg, (500/16, 500/16))
+thinhbimg = pygame.transform.scale(thinhbimg, (500/16, 500/16))
+thinhtimg = pygame.transform.scale(thinhtimg, (500/16, 500/16))
+thinvlimg = pygame.transform.scale(thinvlimg, (500/16, 500/16))
+thinvrimg = pygame.transform.scale(thinvrimg, (500/16, 500/16))
+thinblimg = pygame.transform.scale(thinblimg, (500/16, 500/16))
+thinbrimg = pygame.transform.scale(thinbrimg, (500/16, 500/16))
+thintlimg = pygame.transform.scale(thintlimg, (500/16, 500/16))
+thintrimg = pygame.transform.scale(thintrimg, (500/16, 500/16))
+thinbleimg = pygame.transform.scale(thinbleimg, (500/16, 500/16))
+thinbreimg = pygame.transform.scale(thinbreimg, (500/16, 500/16))
+thintleimg = pygame.transform.scale(thintleimg, (500/16, 500/16))
+thintreimg = pygame.transform.scale(thintreimg, (500/16, 500/16))
+
 
 print(len(grid[0]))
 
@@ -142,6 +167,42 @@ while running:
             elif (event.key == pygame.K_LEFT):
                 block = 20
                 print("vertical left")
+            elif (event.key == pygame.K_z):
+                block = 21
+                print("thin bottom right")
+            elif (event.key == pygame.K_x):
+                block = 22
+                print("thin bottom left")
+            elif (event.key == pygame.K_c):
+                block = 23
+                print("thin top left")
+            elif (event.key == pygame.K_v):
+                block = 24
+                print("thin top right")
+            elif (event.key == pygame.K_b):
+                block = 25
+                print("thin horizontal bottom")
+            elif (event.key == pygame.K_n):
+                block = 26
+                print("thin horizontal top")
+            elif (event.key == pygame.K_m):
+                block = 27
+                print("thin vertical left")
+            elif (event.key == pygame.K_COMMA):
+                block = 28
+                print("thin vertical right")
+            elif (event.key == pygame.K_q):
+                block = 29
+                print("thin bottom right extended")
+            elif (event.key == pygame.K_w):
+                block = 30
+                print("thin bottom left exctended")
+            elif (event.key == pygame.K_e):
+                block = 31
+                print("thin top left extended")
+            elif (event.key == pygame.K_r):
+                block = 32
+                print("thin top right")
             elif (event.key == pygame.K_d):
                 block = 1
                 print("dot")
@@ -253,6 +314,30 @@ while running:
                     screen.blit(vrimg, (stepx, stepy))
                 elif (blo == 20):
                     screen.blit(vlimg, (stepx, stepy))
+                elif (blo == 21):
+                    screen.blit(thinblimg, (stepx, stepy))
+                elif (blo == 22):
+                    screen.blit(thinbrimg, (stepx, stepy))
+                elif (blo == 23):
+                    screen.blit(thintlimg, (stepx, stepy))
+                elif (blo == 24):
+                    screen.blit(thintrimg, (stepx, stepy))
+                elif (blo == 25):
+                    screen.blit(thinhbimg, (stepx, stepy))
+                elif (blo == 26):
+                    screen.blit(thinhtimg, (stepx, stepy))
+                elif (blo == 27):
+                    screen.blit(thinvlimg, (stepx, stepy))
+                elif (blo == 28):
+                    screen.blit(thinvrimg, (stepx, stepy))
+                elif (blo == 29):
+                    screen.blit(thinbleimg, (stepx, stepy))
+                elif (blo == 30):
+                    screen.blit(thinbreimg, (stepx, stepy))
+                elif (blo == 31):
+                    screen.blit(thintleimg, (stepx, stepy))
+                elif (blo == 32):
+                    screen.blit(thintreimg, (stepx, stepy))
                 elif (blo == 1):
                     screen.blit(dotimg, (stepx, stepy))
                 elif (blo == 2):

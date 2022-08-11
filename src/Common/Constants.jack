@@ -6,24 +6,29 @@ class Constants
     }
 
     //Packman
-    function int packManLeft()
+    function int pacManLeft()
     {
         return 0;
     }
 
-    function int packManRight()
+    function int pacManRight()
     {
         return 1;
     }
 
-    function int packManUp()
+    function int pacManUp()
     {
         return 2;
     }
 
-    function int packManDown()
+    function int pacManDown()
     {
         return 3;
+    }
+
+    function int pacManDead()
+    {
+        return 4;
     }
 
     //Pinky

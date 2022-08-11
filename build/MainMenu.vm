@@ -1,0 +1,165 @@
+function MainMenu.init 0
+push constant 12
+push constant 12
+call ScreenManager.getLocation 2
+pop static 0
+push constant 0
+pop static 1
+push constant 2
+call Animation.new 1
+pop static 2
+push static 2
+call PacManAsset.mouthOpenRight 0
+call Animation.add 2
+pop temp 0
+push static 2
+call PacManAsset.mouthClosed 0
+call Animation.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop static 3
+push static 3
+call PinkyAsset.right1 0
+call Animation.add 2
+pop temp 0
+push static 3
+call PinkyAsset.right2 0
+call Animation.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop static 4
+push static 4
+call PinkyAsset.right1 0
+call Animation.add 2
+pop temp 0
+push static 4
+call PinkyAsset.right2 0
+call Animation.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop static 5
+push static 5
+call PinkyAsset.right1 0
+call Animation.add 2
+pop temp 0
+push static 5
+call PinkyAsset.right2 0
+call Animation.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop static 6
+push static 6
+call PinkyAsset.right1 0
+call Animation.add 2
+pop temp 0
+push static 6
+call PinkyAsset.right2 0
+call Animation.add 2
+pop temp 0
+push constant 0
+return
+function MainMenu.draw 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 6
+push constant 2
+call ScreenManager.getLocation 2
+call ScreenAsset.pacManBaner 1
+pop temp 0
+push constant 15
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 12
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+pop static 1
+label WHILE_EXP0
+push static 1
+push constant 32
+eq
+not
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop static 1
+push static 3
+push static 0
+call Animation.next 2
+pop temp 0
+push static 4
+push static 0
+push constant 1
+add
+call Animation.next 2
+pop temp 0
+push static 5
+push static 0
+push constant 2
+add
+call Animation.next 2
+pop temp 0
+push static 6
+push static 0
+push constant 3
+add
+call Animation.next 2
+pop temp 0
+push static 2
+push static 0
+push constant 4
+add
+call Animation.next 2
+pop temp 0
+push static 0
+push constant 5
+add
+call MapAsset.dot 1
+pop temp 0
+push static 0
+push constant 6
+add
+call MapAsset.dot 1
+pop temp 0
+push static 0
+push constant 7
+add
+call MapAsset.dot 1
+pop temp 0
+push constant 100
+call Sys.wait 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

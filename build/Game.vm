@@ -9,7 +9,7 @@ push constant 0
 pop static 6
 push constant 0
 pop static 2
-push constant 3
+push constant 1
 pop static 3
 push constant 0
 pop static 1
@@ -17,7 +17,7 @@ call ClassicMap.initMap 0
 pop static 9
 push constant 2
 push constant 8
-call PackMan.new 2
+call PacMan.new 2
 pop static 7
 push constant 15
 push constant 7
@@ -77,6 +77,18 @@ call Output.printInt 1
 pop temp 0
 push constant 0
 return
+function Game.dispose 0
+push static 7
+call PacMan.dispose 1
+pop temp 0
+push static 8
+call Pinky.dispose 1
+pop temp 0
+push static 9
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
 function Game.setRun 0
 push argument 0
 pop static 0
@@ -130,7 +142,10 @@ push constant 1
 sub
 pop static 3
 push static 7
-call PackMan.resetPosititon 1
+call PacMan.resetPosition 1
+pop temp 0
+push static 8
+call Pinky.resetPosition 1
 pop temp 0
 push constant 0
 push constant 13
@@ -159,6 +174,9 @@ call Output.printInt 1
 pop temp 0
 push constant 0
 return
+function Game.getHp 0
+push static 3
+return
 function Game.grid 1
 push argument 0
 push static 9
@@ -181,15 +199,15 @@ push constant 0
 return
 function Game.pacManPosition 0
 push static 7
-call PackMan.getPosition 1
+call PacMan.getPosition 1
 return
 function Game.pacManLocation 0
 push static 7
-call PackMan.getLocation 1
+call PacMan.getLocation 1
 return
 function Game.pacManGridIndex 0
 push static 7
-call PackMan.getGridIndex 1
+call PacMan.getGridIndex 1
 return
 function Game.isScatter 0
 push static 5
@@ -229,7 +247,7 @@ push static 8
 call Pinky.move 1
 pop temp 0
 push static 7
-call PackMan.move 1
+call PacMan.move 1
 pop temp 0
 push constant 40
 pop local 1
@@ -241,7 +259,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push static 7
-call PackMan.draw 1
+call PacMan.draw 1
 pop temp 0
 push static 8
 call Pinky.draw 1
@@ -299,7 +317,7 @@ pop static 1
 label IF_FALSE5
 label IF_FALSE4
 push static 7
-call PackMan.input 1
+call PacMan.input 1
 pop temp 0
 push local 0
 push constant 1

@@ -2,12 +2,22 @@ class Main
 {
 	function void main()
 	{
-		do Game.init();
 		//do Memory.poke(Constants.getScreen(), -31680);
 		//do Logger.logInt(Shift.toBinary(57));
 		//do Shift.toBinary(29);
 		//do Logger.logInt(Mathf.pow(2, 3));
-		do Game.loop();
+		do MainMenu.init();
+		do GameOver.init();
+
+		while (true)
+		{
+			do MainMenu.draw();
+			do Game.init();
+			do Game.setRun(true);
+			do Game.loop();
+			do Game.dispose();
+			do GameOver.draw();
+		}
 
 		return;	
 	}

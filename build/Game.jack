@@ -5,7 +5,7 @@ class Game
 
     static int score, hp, factor;
     static bool scatter, frightened;
-    static PackMan pacMan;
+    static PacMan pacMan;
     static Pinky pinky;
     static Array map;
 
@@ -15,10 +15,10 @@ class Game
         let scatter = true;
         let frightened = false;
         let score = 0;
-        let hp = 3;
+        let hp = 1;
         let scatterState = 0;
         let map = ClassicMap.initMap();
-        let pacMan = PackMan.new(2, 8);
+        let pacMan = PacMan.new(2, 8);
         let pinky = Pinky.new(15,7);
 
         do ClassicMap.draw();
@@ -34,9 +34,19 @@ class Game
         return;
     }
 
+    function void dispose()
+    {
+        do pacMan.dispose();
+        do pinky.dispose();
+        do Memory.deAlloc(map);
+
+        return;
+    }
+
     function void setRun(bool _run)
     {
         let run = _run;
+
         return;
     }
 
@@ -61,7 +71,8 @@ class Game
     function void decHP()
     {
         let hp = hp - 1;
-        do pacMan.resetPosititon();
+        do pacMan.resetPosition();
+        do pinky.resetPosition();
         do Output.moveCursor(0, 13);
         do Output.printString("Lives: ");
         do Output.printInt(hp);
@@ -69,10 +80,13 @@ class Game
         return;
     }
 
+    function int getHp() { return hp; }
+
     function int grid(int i)
     {
         var int x;
         let x = map[i];
+
         return x;
     }
 
@@ -106,6 +120,7 @@ class Game
     function void setFrightened()
     {
         let frightened = true;
+
         return;
     }
 

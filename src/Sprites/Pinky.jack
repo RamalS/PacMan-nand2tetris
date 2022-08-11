@@ -24,6 +24,16 @@ class Pinky
         return this;
     }
 
+    method void dispose()
+    {
+        do am.dispose();
+        do scatterPoint.dispose();
+        do ghost.dispose();
+        do Memory.deAlloc(this);
+
+        return;
+    }
+
     method void loadAnimations()
     {
         var Animation animation;
@@ -59,6 +69,12 @@ class Pinky
 
         do am.set(Constants.pinkyRight());
 
+        return;
+    }
+
+    method void resetPosition()
+    {
+        do ghost.resetPosition();
         return;
     }
 

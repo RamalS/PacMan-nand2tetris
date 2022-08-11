@@ -30,6 +30,23 @@ call Ghost.bindAnimations 7
 pop temp 0
 push pointer 0
 return
+function Pinky.dispose 0
+push argument 0
+pop pointer 0
+push this 1
+call AnimationManager.dispose 1
+pop temp 0
+push this 2
+call Vector2.dispose 1
+pop temp 0
+push this 3
+call Ghost.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
 function Pinky.loadAnimations 1
 push argument 0
 pop pointer 0
@@ -122,6 +139,14 @@ pop temp 0
 push this 1
 call Constants.pinkyRight 0
 call AnimationManager.set 2
+pop temp 0
+push constant 0
+return
+function Pinky.resetPosition 0
+push argument 0
+pop pointer 0
+push this 3
+call Ghost.resetPosition 1
 pop temp 0
 push constant 0
 return

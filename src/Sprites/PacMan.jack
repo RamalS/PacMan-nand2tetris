@@ -1,11 +1,11 @@
-class PackMan
+class PacMan
 {
     field int lastKey, direction, nextDirection, location, lastLocation, gridIndex;
     field bool updateSprite, reseted;
     field AnimationManager am;
     field Vector2 position, defaultPosition;
 
-    constructor PackMan new(int x, int y)
+    constructor PacMan new(int x, int y)
     {
         var int i, j;
         let i = 0;
@@ -16,7 +16,7 @@ class PackMan
         let nextDirection = 0;
         let updateSprite = true;
         let reseted = false;
-        let am = AnimationManager.new(4);
+        let am = AnimationManager.new(5);
         let position = Vector2.new(x, y);
         let defaultPosition = Vector2.new(x, y);
         let location = ScreenManager.getLocation(x, y);
@@ -47,31 +47,54 @@ class PackMan
         return this;
     }
 
+    method void dispose()
+    {
+        do am.dispose();
+        do position.dispose();
+        do defaultPosition.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
     method void loadAnimations()
     {
         var Animation animation;
 
         let animation = Animation.new(2);
-        do animation.add(PackManAsset.mouthOpenLeft());
-        do animation.add(PackManAsset.mouthClosed());
+        do animation.add(PacManAsset.mouthOpenLeft());
+        do animation.add(PacManAsset.mouthClosed());
         do am.add(animation);
 
         let animation = Animation.new(2);
-        do animation.add(PackManAsset.mouthOpenRight());
-        do animation.add(PackManAsset.mouthClosed());
+        do animation.add(PacManAsset.mouthOpenRight());
+        do animation.add(PacManAsset.mouthClosed());
         do am.add(animation);
 
         let animation = Animation.new(2);
-        do animation.add(PackManAsset.mouthOpenUp());
-        do animation.add(PackManAsset.mouthClosed());
+        do animation.add(PacManAsset.mouthOpenUp());
+        do animation.add(PacManAsset.mouthClosed());
         do am.add(animation);
 
         let animation = Animation.new(2);
-        do animation.add(PackManAsset.mouthOpenDown());
-        do animation.add(PackManAsset.mouthClosed());
+        do animation.add(PacManAsset.mouthOpenDown());
+        do animation.add(PacManAsset.mouthClosed());
         do am.add(animation);
 
-        do am.set(Constants.packManRight());
+        let animation = Animation.new(11);
+        do animation.add(PacManAsset.mouthClosed());
+        do animation.add(PacManAsset.death1());
+        do animation.add(PacManAsset.death2());
+        do animation.add(PacManAsset.death3());
+        do animation.add(PacManAsset.death4());
+        do animation.add(PacManAsset.death5());
+        do animation.add(PacManAsset.death6());
+        do animation.add(PacManAsset.death7());
+        do animation.add(PacManAsset.death8());
+        do animation.add(PacManAsset.death9());
+        do animation.add(PacManAsset.death10());
+        do am.add(animation);
+
+        do am.set(Constants.pacManRight());
 
         return;
     }
@@ -127,7 +150,7 @@ class PackMan
             let location = location + 1;
             let gridIndex = gridIndex + 1;
             do position.incX();
-            do am.set(Constants.packManRight());
+            do am.set(Constants.pacManRight());
         }
         else { do moveStop(); }
 
@@ -153,7 +176,7 @@ class PackMan
             let location = location - 1;
             let gridIndex = gridIndex - 1;
             do position.decX();
-            do am.set(Constants.packManLeft());
+            do am.set(Constants.pacManLeft());
         }
         else { do moveStop(); }
 
@@ -170,7 +193,7 @@ class PackMan
             let location = location - 512;
             let gridIndex = gridIndex - 32;
             do position.decY();
-            do am.set(Constants.packManUp());
+            do am.set(Constants.pacManUp());
         }
         else { do moveStop(); }
         
@@ -187,20 +210,23 @@ class PackMan
             let location = location + 512;
             let gridIndex = gridIndex + 32;
             do position.incY();
-            do am.set(Constants.packManDown());
+            do am.set(Constants.pacManDown());
         }
         else { do moveStop(); }
         
         return;
     }
 
-    method void resetPosititon()
+    method void resetPosition()
     {
         do moveInit();
         do position.set(defaultPosition);
         let location = ScreenManager.getLocation(position.getX(), position.getY());
         let gridIndex = position.getY() * 32 + position.getX();
+        do am.set(Constants.pacManDead());
         let reseted = true;
+        let direction = 0;
+        let nextDirection = 0;
 
         return;
     }
@@ -210,7 +236,7 @@ class PackMan
         var int kybrd;
         
         let kybrd = Keyboard.keyPressed();
-        //do Logger.logInt(kybrd); 
+        // do Logger.logInt(kybrd); 
 
         if ((kybrd = 130) & ~(lastKey = kybrd))
         {
@@ -276,14 +302,19 @@ class PackMan
 
         if (updateSprite)
         {
-            do am.drawNext(location);
+            if (reseted)
+            {
+                do am.setKeyFrame(Constants.pacManDead(), 0);
+                while (am.drawNext(location) = false)
+                    { do Sys.wait(200); }
+                let reseted = false;
+                do am.setKeyFrame(Constants.pacManLeft(), 0);
+                if (Game.getHp() = 0)
+                    { do Game.setRun(false); }
+            } 
+            else
+                { do am.drawNext(location); }
         }
-
-        if (reseted)
-        {
-            let reseted = false;
-            do Sys.wait(1000);
-        } 
 
         return; 
     }

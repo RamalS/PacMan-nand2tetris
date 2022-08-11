@@ -8,6 +8,14 @@ push argument 1
 pop this 1
 push pointer 0
 return
+function Vector2.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
 function Vector2.getX 0
 push argument 0
 pop pointer 0

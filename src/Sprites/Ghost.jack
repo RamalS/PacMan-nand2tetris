@@ -4,7 +4,7 @@ class Ghost
     field int anUp, anLeft, anDown, anRight, anFrightened, anDead;
     field bool dead;
     field AnimationManager am;
-    field Vector2 position, homePoint;
+    field Vector2 position, defaultPosition, homePosition;
 
     constructor Ghost new(int x, int y, AnimationManager animationManager)
     {
@@ -15,9 +15,17 @@ class Ghost
         let dead = false;
         let homeLocation = gridIndex;
         let position = Vector2.new(x, y);
-        let homePoint = Vector2.new(x, y);
+        let defaultPosition = Vector2.new(x, y);
+        let homePosition  = Vector2.new(15, 8);
 
         return this;
+    }
+
+    method void dispose()
+    {
+      do Memory.deAlloc(this);
+      
+      return;
     }
 
     method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 7) {return true;} else {return false;}}
@@ -146,6 +154,17 @@ class Ghost
         return;
     }
 
+    method void resetPosition()
+    {
+        do moveInit();
+        do position.set(defaultPosition);
+        let location = ScreenManager.getLocation(position.getX(), position.getY());
+        let gridIndex = position.getY() * 32 + position.getX();
+        do am.set(Constants.pinkyRight());
+
+        return;
+    }
+
     method void moveToPointAnim(Vector2 point, int _anUp, int _anLeft, int _anDown, int _anRight)
     {
         var int minDistance, direction, dist;
@@ -230,7 +249,7 @@ class Ghost
 
     method void moveToHome()
     {
-        do moveToPointAnim(homePoint, anDead, anDead, anDead, anDead);
+        do moveToPointAnim(homePosition, anDead, anDead, anDead, anDead);
         return;
     }
 

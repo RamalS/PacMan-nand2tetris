@@ -27,4 +27,57 @@ class ScreenManager
 
         return;
     }
+
+    function void clearRow(int location)
+    {
+        do ScreenManager.clearBlock(location);
+        do ScreenManager.clearBlock(location + 1);
+        do ScreenManager.clearBlock(location + 2);
+        do ScreenManager.clearBlock(location + 3);
+        do ScreenManager.clearBlock(location + 4);
+        do ScreenManager.clearBlock(location + 5);
+        do ScreenManager.clearBlock(location + 6);
+        do ScreenManager.clearBlock(location + 7);
+        do ScreenManager.clearBlock(location + 8);
+        do ScreenManager.clearBlock(location + 9);
+        do ScreenManager.clearBlock(location + 10);
+        do ScreenManager.clearBlock(location + 11);
+        do ScreenManager.clearBlock(location + 12);
+        do ScreenManager.clearBlock(location + 13);
+        do ScreenManager.clearBlock(location + 14);
+        do ScreenManager.clearBlock(location + 15);
+        do ScreenManager.clearBlock(location + 16);
+        do ScreenManager.clearBlock(location + 17);
+        do ScreenManager.clearBlock(location + 18);
+        do ScreenManager.clearBlock(location + 19);
+        do ScreenManager.clearBlock(location + 20);
+        do ScreenManager.clearBlock(location + 21);
+        do ScreenManager.clearBlock(location + 22);
+        do ScreenManager.clearBlock(location + 23);
+        do ScreenManager.clearBlock(location + 24);
+        do ScreenManager.clearBlock(location + 25);
+        do ScreenManager.clearBlock(location + 26);
+        do ScreenManager.clearBlock(location + 27);
+        do ScreenManager.clearBlock(location + 28);
+        do ScreenManager.clearBlock(location + 29);
+        do ScreenManager.clearBlock(location + 30);
+        do ScreenManager.clearBlock(location + 31);
+
+        return;
+    }
+
+    function void clearScreenAnimated()
+    {
+        var int i;
+
+        let i = 0;
+        while (i < 8192)
+        {
+            do ScreenManager.clearRow(Constants.getScreen() + i); 
+            let i = i + 512;
+            do Sys.wait(100);
+        }
+
+        return;
+    }
 }
