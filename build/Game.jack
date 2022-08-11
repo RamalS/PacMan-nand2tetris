@@ -3,34 +3,76 @@ class Game
     static bool run;
     static int scatterState;
 
-    static int score, hp, factor;
+    static int score, dotsEaten, hp, totalDots, factor, scatterDuration, frightenedDuration;
     static bool scatter, frightened;
     static PacMan pacMan;
     static Pinky pinky;
+    static Blinky blinky;
     static Array map;
 
     function void init()
     {
+        var int i, j, index, pacManX, pacManY;
+
+        let i = 0;
+        let j = 0;
+        let totalDots = 0;
         let map = ClassicMap.initMap();
-        let pacMan = PacMan.new(2, 8);
-        let pinky = Pinky.new(15,7);
+
+        while (i < 16)
+        {
+            if (j = 32)
+            {
+                let i = i + 1;
+                let j = 0;
+            }
+
+            let index = i * 32 + j;
+
+            if (Game.grid(index) = 1)
+                { let totalDots = totalDots + 1; }
+
+            if (Game.grid(index) = 4)
+            {
+                let pacManX = j;
+                let pacManY = i;
+            }
+
+            let j = j + 1;
+        }
+
+        let pacMan = PacMan.new(pacManX, pacManY);
+        let pinky = Pinky.new(15, 7);
+        let blinky = Blinky.new(16, 7);
 
         return;
     }
 
-    function void reset()
+    function void reset(bool resetScore)
     {
         do Memory.deAlloc(map);
-
         let map = ClassicMap.initMap();
+
+        if (resetScore)
+            { let score = 0; }
+        else
+        {
+            do Sys.wait(1000);
+            do ScreenManager.clearScreenAnimated();
+        }
+        
+        let hp = 3;
+        let dotsEaten = 0;
+        let scatterState = 0;
+        let scatterDuration = 2000;
+        let frightenedDuration = 2000;
+
         let run = true;
         let scatter = true;
         let frightened = false;
-        let score = 0;
-        let hp = 1;
-        let scatterState = 0;
 
         do pinky.reset();
+        do blinky.reset();
         do pacMan.reset();
         do ClassicMap.draw();
 
@@ -49,6 +91,7 @@ class Game
     {
         do pacMan.dispose();
         do pinky.dispose();
+        do blinky.dispose();
         do Memory.deAlloc(map);
 
         return;
@@ -71,10 +114,17 @@ class Game
     function void increaseScore(int index, int x)
     {
         let score = score + x;
+        let dotsEaten = dotsEaten + 1;
         do Game.setGrid(index, 0);
         do Output.moveCursor(0, 2);
         do Output.printString("Score: ");
         do Output.printInt(score);
+
+        if (dotsEaten = totalDots)
+        {
+            let dotsEaten = 0;
+            do Game.reset(false);
+        }
 
         return;
     }
@@ -83,6 +133,7 @@ class Game
     {
         let hp = hp - 1;
         do pacMan.resetPosition();
+        do blinky.resetPosition();
         do pinky.resetPosition();
         do Output.moveCursor(0, 13);
         do Output.printString("Lives: ");
@@ -123,6 +174,11 @@ class Game
         return pacMan.getGridIndex();
     }
 
+    function int pacManDirection()
+    {
+        return pacMan.getDirection();
+    }
+
     function bool isScatter()
     {
         return scatter;
@@ -142,18 +198,20 @@ class Game
 
     function void loop()
     {
-        var int drawDuration, moveDuration, scatterDuration, frightenedDuration;
+        var int drawDuration, moveDuration;
 
         let drawDuration = 10;
         let moveDuration = 10;
-        let scatterDuration = 2000;
-        let frightenedDuration = 2000;
         do LCGRandom.setSeed(1234);
 
         while (run)
         {
             if (moveDuration < 0)
             {
+                do blinky.checkIntersect();
+                do pinky.checkIntersect();
+
+                do blinky.move();
                 do pinky.move();
                 do pacMan.move();
                 let moveDuration = 40;
@@ -163,6 +221,7 @@ class Game
             {
                 do pacMan.draw();
                 do pinky.draw();
+                do blinky.draw();
                 let drawDuration = 20;
             }
 
@@ -177,9 +236,7 @@ class Game
                 let frightenedDuration = frightenedDuration - 1;
             }
             else
-            {
-                let scatterDuration = scatterDuration - 1;
-            }
+                { let scatterDuration = scatterDuration - 1; }
 
             if (scatterDuration < 0)
             {

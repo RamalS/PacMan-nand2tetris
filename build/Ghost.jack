@@ -2,17 +2,18 @@ class Ghost
 {
     field int location, lastLocation, homeLocation, gridIndex, lastIndex;
     field int anUp, anLeft, anDown, anRight, anFrightened, anDead;
-    field bool dead;
+    field bool dead, reseted;
     field AnimationManager am;
     field Vector2 position, defaultPosition, homePosition;
 
     constructor Ghost new(int x, int y, AnimationManager animationManager)
     {
         let lastIndex = 0;
+        let dead = false;
+        let reseted = false;
         let am = animationManager;
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
-        let dead = false;
         let homeLocation = gridIndex;
         let position = Vector2.new(x, y);
         let defaultPosition = Vector2.new(x, y);
@@ -29,10 +30,11 @@ class Ghost
         let y = defaultPosition.getY();
 
         let lastIndex = 0;
+        let dead = false;
+        let reseted = false;
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
         do position.set(defaultPosition);
-        let dead = false;
         let homeLocation = gridIndex;
 
         return;
@@ -64,7 +66,7 @@ class Ghost
         let anRight = _anRight;
         let anFrightened = _anFrightened;
         let anDead = _anDead;
-
+        
         return;
     }
 
@@ -95,6 +97,18 @@ class Ghost
     {
         if (gridIndex = homeLocation)
             { let dead = false; }
+        return;
+    }
+
+    method bool isReseted()
+    {
+        return reseted;
+    }
+
+    method void setReseted(int res)
+    {
+        let reseted = res;
+
         return;
     }
 
@@ -150,13 +164,14 @@ class Ghost
         return;
     }
 
-    method void resetPosition()
+    method void resetPosition(int animation)
     {
         do moveInit();
+        let reseted = true;
         do position.set(defaultPosition);
         let location = ScreenManager.getLocation(position.getX(), position.getY());
         let gridIndex = position.getY() * 32 + position.getX();
-        do am.set(Constants.pinkyRight());
+        do am.set(animation);
 
         return;
     }

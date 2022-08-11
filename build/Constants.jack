@@ -61,4 +61,35 @@ class Constants
     {
         return 5;
     }
+
+    //Blinky
+    function int blinkyRight()
+    {
+        return 0;
+    }
+
+    function int blinkyLeft()
+    {
+        return 1;
+    }
+
+    function int blinkyDown()
+    {
+        return 2;
+    }
+
+    function int blinkyUp()
+    {
+        return 3;
+    }
+
+    function int blinkyDead()
+    {
+        return 4;
+    }
+
+    function int blinkyFrightened()
+    {
+        return 5;
+    }
 }

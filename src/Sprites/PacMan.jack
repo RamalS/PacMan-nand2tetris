@@ -7,10 +7,6 @@ class PacMan
 
     constructor PacMan new(int x, int y)
     {
-        var int i, j;
-        let i = 0;
-        let j = 0;
-
         let lastKey = 0;
         let direction = 0;
         let nextDirection = 0;
@@ -21,26 +17,6 @@ class PacMan
         let defaultPosition = Vector2.new(x, y);
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
-
-        while (i < 16)
-        {
-            if (j = 32)
-            {
-                let i = i + 1;
-                let j = 0;
-            }
-
-            if (Game.grid(i * 32 + j) = 4)
-            {
-                let location = ScreenManager.getLocation(j, i);
-                let gridIndex = i * 32 + j;
-                do position.setX(j);
-                do position.setY(i);
-                do defaultPosition.set(position);
-            }
-
-            let j = j + 1;
-        }
 
         do loadAnimations();
 
@@ -63,6 +39,8 @@ class PacMan
         do position.set(defaultPosition);
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
+        
+        do am.set(Constants.pacManRight());
 
         return;
     }
@@ -122,6 +100,7 @@ class PacMan
     method Vector2 getPosition() { return position; }
     method int getLocation() { return location; }
     method int getGridIndex() { return gridIndex; }
+    method int getDirection() { return direction; }
 
     // promjeni da su prva 3 prazno, dot i ability
     method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 5) {return true;} else {return false;}}
@@ -163,9 +142,6 @@ class PacMan
 
         if (checkCollisionRight())
         {
-            if (Game.grid(gridIndex + 1) = 1) 
-                { do Game.increaseScore(gridIndex + 1, 1); }
-
             do moveInit();
             let location = location + 1;
             let gridIndex = gridIndex + 1;
@@ -189,9 +165,6 @@ class PacMan
 
         if (checkCollisionLeft())
         {
-            if (Game.grid(gridIndex - 1) = 1) 
-                { do Game.increaseScore(gridIndex - 1, 1); }
-
             do moveInit();
             let location = location - 1;
             let gridIndex = gridIndex - 1;
@@ -207,8 +180,6 @@ class PacMan
     {
         if (checkCollisionUp())
         {
-            if (Game.grid(gridIndex - 32) = 1) 
-                {do Game.increaseScore(gridIndex - 32, 1);}
             do moveInit();
             let location = location - 512;
             let gridIndex = gridIndex - 32;
@@ -224,8 +195,6 @@ class PacMan
     {
         if (checkCollisionDown())
         {
-            if (Game.grid(gridIndex + 32) = 1) 
-                {do Game.increaseScore(gridIndex + 32, 1);}
             do moveInit();
             let location = location + 512;
             let gridIndex = gridIndex + 32;
@@ -308,6 +277,9 @@ class PacMan
             { do moveDown(); }
         else {if (direction = -2)
             { do moveUp(); }}}}
+
+        if (Game.grid(gridIndex) = 1) 
+            { do Game.increaseScore(gridIndex, 1); }
 
         return;
     }

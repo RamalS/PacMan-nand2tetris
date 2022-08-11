@@ -1,40 +1,126 @@
-function Game.init 0
+function Game.init 5
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+push constant 0
+pop static 5
 call ClassicMap.initMap 0
-pop static 9
-push constant 2
-push constant 8
+pop static 14
+label WHILE_EXP0
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 1
+push constant 32
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push constant 1
+add
+pop local 0
+push constant 0
+pop local 1
+label IF_FALSE0
+push local 0
+push constant 32
+call Math.multiply 2
+push local 1
+add
+pop local 2
+push local 2
+call Game.grid 1
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push static 5
+push constant 1
+add
+pop static 5
+label IF_FALSE1
+push local 2
+call Game.grid 1
+push constant 4
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 1
+pop local 3
+push local 0
+pop local 4
+label IF_FALSE2
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 3
+push local 4
 call PacMan.new 2
-pop static 7
+pop static 11
 push constant 15
 push constant 7
 call Pinky.new 2
-pop static 8
+pop static 12
+push constant 16
+push constant 7
+call Blinky.new 2
+pop static 13
 push constant 0
 return
 function Game.reset 0
-push static 9
+push static 14
 call Memory.deAlloc 1
 pop temp 0
 call ClassicMap.initMap 0
-pop static 9
+pop static 14
+push argument 0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop static 2
+goto IF_END0
+label IF_FALSE0
+push constant 1000
+call Sys.wait 1
+pop temp 0
+call ScreenManager.clearScreenAnimated 0
+pop temp 0
+label IF_END0
+push constant 3
+pop static 4
+push constant 0
+pop static 3
+push constant 0
+pop static 1
+push constant 2000
+pop static 7
+push constant 2000
+pop static 8
 push constant 0
 not
 pop static 0
 push constant 0
 not
-pop static 5
+pop static 9
 push constant 0
-pop static 6
-push constant 0
-pop static 2
-push constant 1
-pop static 3
-push constant 0
-pop static 1
-push static 8
+pop static 10
+push static 12
 call Pinky.reset 1
 pop temp 0
-push static 7
+push static 13
+call Blinky.reset 1
+pop temp 0
+push static 11
 call PacMan.reset 1
 pop temp 0
 call ClassicMap.draw 0
@@ -86,19 +172,22 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push static 3
+push static 4
 call Output.printInt 1
 pop temp 0
 push constant 0
 return
 function Game.dispose 0
-push static 7
+push static 11
 call PacMan.dispose 1
 pop temp 0
-push static 8
+push static 12
 call Pinky.dispose 1
 pop temp 0
-push static 9
+push static 13
+call Blinky.dispose 1
+pop temp 0
+push static 14
 call Memory.deAlloc 1
 pop temp 0
 push constant 0
@@ -109,7 +198,7 @@ pop static 0
 push constant 0
 return
 function Game.setSeed 0
-push static 4
+push static 6
 call LCGRandom.setSeed 1
 pop temp 0
 push constant 0
@@ -119,6 +208,10 @@ push static 2
 push argument 1
 add
 pop static 2
+push static 3
+push constant 1
+add
+pop static 3
 push argument 0
 push constant 0
 call Game.setGrid 2
@@ -148,17 +241,32 @@ pop temp 0
 push static 2
 call Output.printInt 1
 pop temp 0
+push static 3
+push static 5
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop static 3
+push constant 0
+call Game.reset 1
+pop temp 0
+label IF_FALSE0
 push constant 0
 return
 function Game.decHP 0
-push static 3
+push static 4
 push constant 1
 sub
-pop static 3
-push static 7
+pop static 4
+push static 11
 call PacMan.resetPosition 1
 pop temp 0
-push static 8
+push static 13
+call Blinky.resetPosition 1
+pop temp 0
+push static 12
 call Pinky.resetPosition 1
 pop temp 0
 push constant 0
@@ -183,17 +291,17 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push static 3
+push static 4
 call Output.printInt 1
 pop temp 0
 push constant 0
 return
 function Game.getHp 0
-push static 3
+push static 4
 return
 function Game.grid 1
 push argument 0
-push static 9
+push static 14
 add
 pop pointer 1
 push that 0
@@ -202,7 +310,7 @@ push local 0
 return
 function Game.setGrid 0
 push argument 0
-push static 9
+push static 14
 add
 push argument 1
 pop temp 0
@@ -212,38 +320,38 @@ pop that 0
 push constant 0
 return
 function Game.pacManPosition 0
-push static 7
+push static 11
 call PacMan.getPosition 1
 return
 function Game.pacManLocation 0
-push static 7
+push static 11
 call PacMan.getLocation 1
 return
 function Game.pacManGridIndex 0
-push static 7
+push static 11
 call PacMan.getGridIndex 1
 return
+function Game.pacManDirection 0
+push static 11
+call PacMan.getDirection 1
+return
 function Game.isScatter 0
-push static 5
+push static 9
 return
 function Game.setFrightened 0
 push constant 0
 not
-pop static 6
+pop static 10
 push constant 0
 return
 function Game.isFrightened 0
-push static 6
+push static 10
 return
-function Game.loop 4
+function Game.loop 2
 push constant 10
 pop local 0
 push constant 10
 pop local 1
-push constant 2000
-pop local 2
-push constant 2000
-pop local 3
 push constant 1234
 call LCGRandom.setSeed 1
 pop temp 0
@@ -257,10 +365,19 @@ lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push static 8
+push static 13
+call Blinky.checkIntersect 1
+pop temp 0
+push static 12
+call Pinky.checkIntersect 1
+pop temp 0
+push static 13
+call Blinky.move 1
+pop temp 0
+push static 12
 call Pinky.move 1
 pop temp 0
-push static 7
+push static 11
 call PacMan.move 1
 pop temp 0
 push constant 40
@@ -272,42 +389,45 @@ lt
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push static 7
+push static 11
 call PacMan.draw 1
 pop temp 0
-push static 8
+push static 12
 call Pinky.draw 1
+pop temp 0
+push static 13
+call Blinky.draw 1
 pop temp 0
 push constant 20
 pop local 0
 label IF_FALSE1
-push static 6
+push static 10
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push local 3
+push static 8
 push constant 0
 lt
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push constant 2000
-pop local 3
+pop static 8
 push constant 0
-pop static 6
+pop static 10
 label IF_FALSE3
-push local 3
+push static 8
 push constant 1
 sub
-pop local 3
+pop static 8
 goto IF_END2
 label IF_FALSE2
-push local 2
+push static 7
 push constant 1
 sub
-pop local 2
+pop static 7
 label IF_END2
-push local 2
+push static 7
 push constant 0
 lt
 if-goto IF_TRUE4
@@ -319,18 +439,18 @@ lt
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
-push static 5
+push static 9
 not
-pop static 5
+pop static 9
 push constant 2000
-pop local 2
+pop static 7
 push static 1
 push constant 1
 add
 pop static 1
 label IF_FALSE5
 label IF_FALSE4
-push static 7
+push static 11
 call PacMan.input 1
 pop temp 0
 push local 0
@@ -342,17 +462,17 @@ push constant 1
 sub
 pop local 1
 push constant 80
-pop static 4
+pop static 6
 label WHILE_EXP1
-push static 4
+push static 6
 push constant 0
 gt
 not
 if-goto WHILE_END1
-push static 4
+push static 6
 push constant 1
 sub
-pop static 4
+pop static 6
 goto WHILE_EXP1
 label WHILE_END1
 goto WHILE_EXP0

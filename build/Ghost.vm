@@ -1,11 +1,15 @@
 function Ghost.new 0
-push constant 16
+push constant 17
 call Memory.alloc 1
 pop pointer 0
 push constant 0
 pop this 4
-push argument 2
+push constant 0
+pop this 11
+push constant 0
 pop this 12
+push argument 2
+pop this 13
 push argument 0
 push argument 1
 call ScreenManager.getLocation 2
@@ -16,35 +20,37 @@ call Math.multiply 2
 push argument 0
 add
 pop this 3
-push constant 0
-pop this 11
 push this 3
 pop this 2
 push argument 0
 push argument 1
 call Vector2.new 2
-pop this 13
+pop this 14
 push argument 0
 push argument 1
 call Vector2.new 2
-pop this 14
+pop this 15
 push constant 15
 push constant 8
 call Vector2.new 2
-pop this 15
+pop this 16
 push pointer 0
 return
 function Ghost.reset 2
 push argument 0
 pop pointer 0
-push this 14
+push this 15
 call Vector2.getX 1
 pop local 0
-push this 14
+push this 15
 call Vector2.getY 1
 pop local 1
 push constant 0
 pop this 4
+push constant 0
+pop this 11
+push constant 0
+pop this 12
 push local 0
 push local 1
 call ScreenManager.getLocation 2
@@ -55,12 +61,10 @@ call Math.multiply 2
 push local 0
 add
 pop this 3
-push this 13
 push this 14
+push this 15
 call Vector2.set 2
 pop temp 0
-push constant 0
-pop this 11
 push this 3
 pop this 2
 push constant 0
@@ -176,7 +180,7 @@ return
 function Ghost.getAM 0
 push argument 0
 pop pointer 0
-push this 12
+push this 13
 return
 function Ghost.bindAnimations 0
 push argument 0
@@ -264,6 +268,18 @@ pop this 11
 label IF_FALSE0
 push constant 0
 return
+function Ghost.isReseted 0
+push argument 0
+pop pointer 0
+push this 12
+return
+function Ghost.setReseted 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 12
+push constant 0
+return
 function Ghost.moveInit 0
 push argument 0
 pop pointer 0
@@ -287,10 +303,10 @@ push this 3
 push constant 1
 add
 pop this 3
-push this 13
+push this 14
 call Vector2.incX 1
 pop temp 0
-push this 12
+push this 13
 push argument 1
 call AnimationManager.set 2
 pop temp 0
@@ -310,10 +326,10 @@ push this 3
 push constant 1
 sub
 pop this 3
-push this 13
+push this 14
 call Vector2.decX 1
 pop temp 0
-push this 12
+push this 13
 push argument 1
 call AnimationManager.set 2
 pop temp 0
@@ -333,10 +349,10 @@ push this 3
 push constant 32
 sub
 pop this 3
-push this 13
+push this 14
 call Vector2.decY 1
 pop temp 0
-push this 12
+push this 13
 push argument 1
 call AnimationManager.set 2
 pop temp 0
@@ -356,10 +372,10 @@ push this 3
 push constant 32
 add
 pop this 3
-push this 13
+push this 14
 call Vector2.incY 1
 pop temp 0
-push this 12
+push this 13
 push argument 1
 call AnimationManager.set 2
 pop temp 0
@@ -371,26 +387,29 @@ pop pointer 0
 push pointer 0
 call Ghost.moveInit 1
 pop temp 0
-push this 13
+push constant 0
+not
+pop this 12
 push this 14
+push this 15
 call Vector2.set 2
 pop temp 0
-push this 13
+push this 14
 call Vector2.getX 1
-push this 13
+push this 14
 call Vector2.getY 1
 call ScreenManager.getLocation 2
 pop this 0
-push this 13
+push this 14
 call Vector2.getY 1
 push constant 32
 call Math.multiply 2
-push this 13
+push this 14
 call Vector2.getX 1
 add
 pop this 3
-push this 12
-call Constants.pinkyRight 0
+push this 13
+push argument 1
 call AnimationManager.set 2
 pop temp 0
 push constant 0
@@ -412,10 +431,10 @@ and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 13
+push this 14
 call Vector2.decY 1
 pop temp 0
-push this 13
+push this 14
 push argument 1
 call Vector2.distance 2
 pop local 2
@@ -430,7 +449,7 @@ pop local 0
 push constant 1
 pop local 1
 label IF_FALSE1
-push this 13
+push this 14
 call Vector2.incY 1
 pop temp 0
 label IF_FALSE0
@@ -446,10 +465,10 @@ and
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push this 13
+push this 14
 call Vector2.decX 1
 pop temp 0
-push this 13
+push this 14
 push argument 1
 call Vector2.distance 2
 pop local 2
@@ -464,7 +483,7 @@ pop local 0
 push constant 2
 pop local 1
 label IF_FALSE3
-push this 13
+push this 14
 call Vector2.incX 1
 pop temp 0
 label IF_FALSE2
@@ -480,10 +499,10 @@ and
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push this 13
+push this 14
 call Vector2.incY 1
 pop temp 0
-push this 13
+push this 14
 push argument 1
 call Vector2.distance 2
 pop local 2
@@ -498,7 +517,7 @@ pop local 0
 push constant 3
 pop local 1
 label IF_FALSE5
-push this 13
+push this 14
 call Vector2.decY 1
 pop temp 0
 label IF_FALSE4
@@ -514,10 +533,10 @@ and
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
-push this 13
+push this 14
 call Vector2.incX 1
 pop temp 0
-push this 13
+push this 14
 push argument 1
 call Vector2.distance 2
 pop local 2
@@ -532,7 +551,7 @@ pop local 0
 push constant 4
 pop local 1
 label IF_FALSE7
-push this 13
+push this 14
 call Vector2.decX 1
 pop temp 0
 label IF_FALSE6
@@ -605,7 +624,7 @@ function Ghost.moveToHome 0
 push argument 0
 pop pointer 0
 push pointer 0
-push this 15
+push this 16
 push this 10
 push this 10
 push this 10
@@ -840,7 +859,7 @@ label IF_END3
 label IF_END2
 label IF_END1
 label IF_FALSE0
-push this 12
+push this 13
 push this 0
 call AnimationManager.drawNext 2
 pop temp 0

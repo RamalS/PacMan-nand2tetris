@@ -12,7 +12,9 @@ not
 if-goto WHILE_END0
 call MainMenu.draw 0
 pop temp 0
-call Game.reset 0
+push constant 0
+not
+call Game.reset 1
 pop temp 0
 call Game.loop 0
 pop temp 0

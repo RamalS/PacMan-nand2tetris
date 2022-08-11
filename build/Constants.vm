@@ -34,3 +34,21 @@ return
 function Constants.pinkyFrightened 0
 push constant 5
 return
+function Constants.blinkyRight 0
+push constant 0
+return
+function Constants.blinkyLeft 0
+push constant 1
+return
+function Constants.blinkyDown 0
+push constant 2
+return
+function Constants.blinkyUp 0
+push constant 3
+return
+function Constants.blinkyDead 0
+push constant 4
+return
+function Constants.blinkyFrightened 0
+push constant 5
+return

@@ -98,8 +98,8 @@ class ClassicMap
         let map[89] = 12;
         let map[90] = 12;
         let map[91] = 12;
-        let map[92] = 10;
-        let map[93] = 1;
+        let map[92] = 12;
+        let map[93] = 10;
         let map[94] = 2;
         let map[95] = 27;
         let map[96] = 28;
@@ -144,7 +144,7 @@ class ClassicMap
         let map[135] = 7;
         let map[136] = 1;
         let map[137] = 1;
-        let map[138] = 0;
+        let map[138] = 1;
         let map[139] = 1;
         let map[140] = 1;
         let map[141] = 1;
@@ -194,7 +194,7 @@ class ClassicMap
         let map[185] = 1;
         let map[186] = 1;
         let map[187] = 27;
-        let map[188] = 1;
+        let map[188] = 0;
         let map[189] = 0;
         let map[190] = 0;
         let map[191] = 0;

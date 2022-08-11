@@ -1,0 +1,202 @@
+class BlinkyAsset
+{
+    function Array right1()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 3120;
+        let sprite[3] = 6248;
+        let sprite[4] = 9364;
+        let sprite[5] = 780;
+        let sprite[6] = 13260;
+        let sprite[7] = 29642;
+        let sprite[8] = 25746;
+        let sprite[9] = 22626;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 20874;
+        let sprite[13] = 27222;
+        let sprite[14] = 18018;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array right2()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 3120;
+        let sprite[3] = 6248;
+        let sprite[4] = 9364;
+        let sprite[5] = 780;
+        let sprite[6] = 13260;
+        let sprite[7] = 29642;
+        let sprite[8] = 25746;
+        let sprite[9] = 22626;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 17442;
+        let sprite[13] = 19026;
+        let sprite[14] = 12684;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array left1()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 3120;
+        let sprite[3] = 5656;
+        let sprite[4] = 10532;
+        let sprite[5] = 12480;
+        let sprite[6] = 13260;
+        let sprite[7] = 21454;
+        let sprite[8] = 18726;
+        let sprite[9] = 17946;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 20874;
+        let sprite[13] = 27222;
+        let sprite[14] = 18018;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array left2()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 3120;
+        let sprite[3] = 5656;
+        let sprite[4] = 10532;
+        let sprite[5] = 12480;
+        let sprite[6] = 13260;
+        let sprite[7] = 21454;
+        let sprite[8] = 18726;
+        let sprite[9] = 17946;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 17442;
+        let sprite[13] = 19026;
+        let sprite[14] = 12684;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array down1()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+         let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 3120;
+        let sprite[3] = 4104;
+        let sprite[4] = 11316;
+        let sprite[5] = 12876;
+        let sprite[6] = 8580;
+        let sprite[7] = 24966;
+        let sprite[8] = 28086;
+        let sprite[9] = 19506;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 20874;
+        let sprite[13] = 27222;
+        let sprite[14] = 18018;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array down2()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 3120;
+        let sprite[3] = 4104;
+        let sprite[4] = 11316;
+        let sprite[5] = 12876;
+        let sprite[6] = 8580;
+        let sprite[7] = 24966;
+        let sprite[8] = 28086;
+        let sprite[9] = 19506;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 17442;
+        let sprite[13] = 19026;
+        let sprite[14] = 12684;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array up1()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 4080;
+        let sprite[3] = 3504;
+        let sprite[4] = 8580;
+        let sprite[5] = 8580;
+        let sprite[6] = 12876;
+        let sprite[7] = 19506;
+        let sprite[8] = 16386;
+        let sprite[9] = 16386;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 20874;
+        let sprite[13] = 27222;
+        let sprite[14] = 18018;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+
+    function Array up2()
+    {
+        var Array sprite;
+        let sprite = Array.new(16);
+
+        let sprite[0] = 0;
+        let sprite[1] = 960;
+        let sprite[2] = 4080;
+        let sprite[3] = 3504;
+        let sprite[4] = 8580;
+        let sprite[5] = 8580;
+        let sprite[6] = 12876;
+        let sprite[7] = 19506;
+        let sprite[8] = 16386;
+        let sprite[9] = 16386;
+        let sprite[10] = 16386;
+        let sprite[11] = 16386;
+        let sprite[12] = 17442;
+        let sprite[13] = 19026;
+        let sprite[14] = 12684;
+        let sprite[15] = 0;
+
+        return sprite;
+    }
+}

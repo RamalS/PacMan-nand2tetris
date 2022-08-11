@@ -17,8 +17,8 @@ class MainMenu
         do pinkyAnimation.add(PinkyAsset.right2());
 
         let blinkyAnimation = Animation.new(2);
-        do blinkyAnimation.add(PinkyAsset.right1());
-        do blinkyAnimation.add(PinkyAsset.right2());
+        do blinkyAnimation.add(BlinkyAsset.right1());
+        do blinkyAnimation.add(BlinkyAsset.right2());
 
         let inkyAnimation = Animation.new(2);
         do inkyAnimation.add(PinkyAsset.right1());

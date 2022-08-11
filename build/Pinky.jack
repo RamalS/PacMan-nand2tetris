@@ -1,8 +1,8 @@
 class Pinky
 {
-    field int homeState;
+    field int homeState, pacManDirection;
     field AnimationManager am;
-    field Vector2 scatterPoint;
+    field Vector2 scatterPoint, pointToGo;
     field Ghost ghost;
 
     constructor Pinky new(int x, int y)
@@ -10,6 +10,8 @@ class Pinky
         let homeState = 0;
         let am = AnimationManager.new(6);
         let scatterPoint = Vector2.new(1, 1);
+        let pointToGo = Vector2.new(0, 0);
+        let pacManDirection = 1;
 
         do loadAnimations();
 
@@ -81,22 +83,58 @@ class Pinky
 
     method void resetPosition()
     {
-        do ghost.resetPosition();
+        do ghost.resetPosition(Constants.pinkyRight());
+        return;
+    }
+
+    method void checkIntersect()
+    {
+        do ghost.checkIntersect();
         return;
     }
 
     method void move()
     {
-        do ghost.checkIntersect();
+        if (~ghost.isReseted())
+        {
+            if (ghost.isDead())
+                { do ghost.moveToHome(); }
+            else {if (Game.isFrightened())
+                { do ghost.frightenedState(); }
+            else {if (Game.isScatter())
+                { do ghost.moveToPoint(scatterPoint); }
+            else
+            {
+                do pointToGo.set(Game.pacManPosition());
 
-        if (ghost.isDead())
-            { do ghost.moveToHome(); }
-        else {if (Game.isFrightened())
-            { do ghost.frightenedState(); }
-        else {if (Game.isScatter())
-            { do ghost.moveToPoint(scatterPoint); }
+                if (~(Game.pacManDirection() = 0))
+                    { let pacManDirection = Game.pacManDirection(); }
+
+                if (pacManDirection = 1)
+                {
+                    do pointToGo.setX(pointToGo.getX() + 4);
+                    do ghost.moveToPoint(pointToGo);
+                }
+                else {if(pacManDirection = -1)
+                {
+                    do pointToGo.setX(pointToGo.getX() - 4);
+                    do ghost.moveToPoint(pointToGo); 
+                }
+                else {if(pacManDirection = 2)
+                {
+                    do pointToGo.setY(pointToGo.getY() + 4);
+                    do ghost.moveToPoint(pointToGo); 
+                }
+                else
+                {
+                    do pointToGo.setY(pointToGo.getY() - 4);
+                    do pointToGo.setX(pointToGo.getX() - 4);
+                    do ghost.moveToPoint(pointToGo); 
+                }}}
+            }}}
+        }
         else
-            { do ghost.moveToPoint(Game.pacManPosition()); }}}
+            { do ghost.setReseted(false); }
 
         return;
     }

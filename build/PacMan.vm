@@ -1,11 +1,7 @@
-function PacMan.new 2
+function PacMan.new 0
 push constant 11
 call Memory.alloc 1
 pop pointer 0
-push constant 0
-pop local 0
-push constant 0
-pop local 1
 push constant 0
 pop this 0
 push constant 0
@@ -38,65 +34,6 @@ call Math.multiply 2
 push argument 0
 add
 pop this 5
-label WHILE_EXP0
-push local 0
-push constant 16
-lt
-not
-if-goto WHILE_END0
-push local 1
-push constant 32
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push local 0
-push constant 1
-add
-pop local 0
-push constant 0
-pop local 1
-label IF_FALSE0
-push local 0
-push constant 32
-call Math.multiply 2
-push local 1
-add
-call Game.grid 1
-push constant 4
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push local 1
-push local 0
-call ScreenManager.getLocation 2
-pop this 3
-push local 0
-push constant 32
-call Math.multiply 2
-push local 1
-add
-pop this 5
-push this 9
-push local 1
-call Vector2.setX 2
-pop temp 0
-push this 9
-push local 0
-call Vector2.setY 2
-pop temp 0
-push this 10
-push this 9
-call Vector2.set 2
-pop temp 0
-label IF_FALSE1
-push local 1
-push constant 1
-add
-pop local 1
-goto WHILE_EXP0
-label WHILE_END0
 push pointer 0
 call PacMan.loadAnimations 1
 pop temp 0
@@ -136,6 +73,10 @@ call Math.multiply 2
 push local 0
 add
 pop this 5
+push this 8
+call Constants.pacManRight 0
+call AnimationManager.set 2
+pop temp 0
 push constant 0
 return
 function PacMan.dispose 0
@@ -290,6 +231,11 @@ push argument 0
 pop pointer 0
 push this 5
 return
+function PacMan.getDirection 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function PacMan.checkCollisionUp 0
 push argument 0
 pop pointer 0
@@ -435,22 +381,6 @@ call PacMan.checkCollisionRight 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 5
-push constant 1
-add
-call Game.grid 1
-push constant 1
-eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push this 5
-push constant 1
-add
-push constant 1
-call Game.increaseScore 2
-pop temp 0
-label IF_FALSE2
 push pointer 0
 call PacMan.moveInit 1
 pop temp 0
@@ -511,22 +441,6 @@ call PacMan.checkCollisionLeft 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 5
-push constant 1
-sub
-call Game.grid 1
-push constant 1
-eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push this 5
-push constant 1
-sub
-push constant 1
-call Game.increaseScore 2
-pop temp 0
-label IF_FALSE2
 push pointer 0
 call PacMan.moveInit 1
 pop temp 0
@@ -561,22 +475,6 @@ call PacMan.checkCollisionUp 1
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 5
-push constant 32
-sub
-call Game.grid 1
-push constant 1
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push this 5
-push constant 32
-sub
-push constant 1
-call Game.increaseScore 2
-pop temp 0
-label IF_FALSE1
 push pointer 0
 call PacMan.moveInit 1
 pop temp 0
@@ -611,22 +509,6 @@ call PacMan.checkCollisionDown 1
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 5
-push constant 32
-add
-call Game.grid 1
-push constant 1
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push this 5
-push constant 32
-add
-push constant 1
-call Game.increaseScore 2
-pop temp 0
-label IF_FALSE1
 push pointer 0
 call PacMan.moveInit 1
 pop temp 0
@@ -881,6 +763,18 @@ label IF_FALSE5
 label IF_END4
 label IF_END3
 label IF_END2
+push this 5
+call Game.grid 1
+push constant 1
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 5
+push constant 1
+call Game.increaseScore 2
+pop temp 0
+label IF_FALSE6
 push constant 0
 return
 function PacMan.draw 0

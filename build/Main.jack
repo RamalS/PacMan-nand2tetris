@@ -13,7 +13,7 @@ class Main
 		while (true)
 		{
 			do MainMenu.draw();
-			do Game.reset();
+			do Game.reset(true);
 			do Game.loop();
 			do GameOver.draw();
 		}
