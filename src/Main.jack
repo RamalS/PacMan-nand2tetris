@@ -8,14 +8,13 @@ class Main
 		//do Logger.logInt(Mathf.pow(2, 3));
 		do MainMenu.init();
 		do GameOver.init();
+		do Game.init();
 
 		while (true)
 		{
 			do MainMenu.draw();
-			do Game.init();
-			do Game.setRun(true);
+			do Game.reset();
 			do Game.loop();
-			do Game.dispose();
 			do GameOver.draw();
 		}
 

@@ -3,6 +3,8 @@ call MainMenu.init 0
 pop temp 0
 call GameOver.init 0
 pop temp 0
+call Game.init 0
+pop temp 0
 label WHILE_EXP0
 push constant 0
 not
@@ -10,15 +12,9 @@ not
 if-goto WHILE_END0
 call MainMenu.draw 0
 pop temp 0
-call Game.init 0
-pop temp 0
-push constant 0
-not
-call Game.setRun 1
+call Game.reset 0
 pop temp 0
 call Game.loop 0
-pop temp 0
-call Game.dispose 0
 pop temp 0
 call GameOver.draw 0
 pop temp 0

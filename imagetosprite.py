@@ -8,7 +8,7 @@ h = 4
 nW = w * 16
 nH = h * 16
 
-im = Image.open(r"./images/pacmanbaner.png")
+im = Image.open(r"./images/pacmanbaner2.png")
 im = im.resize((nW, nH))
 pix = im.load()
 
@@ -30,10 +30,12 @@ def writeToFile(grid):
                     f.write(to_write)
             i += 1
 
+factor = 100
+
 for i in range(nH):
     for j in range(nW):
         p = pix[j, i]
-        if (p[0] > 0 and p[0] < 100 or p[1] > 0 and p[1] < 100 or p[2] > 0 and p[2] < 100):
+        if (p[0] > 0 and p[0] < factor or p[1] > 0 and p[1] < factor or p[2] > 0 and p[2] < factor):
             pix[j, i] = (0, 0, 0, 255)
             grid[i][j] = 1
         else:

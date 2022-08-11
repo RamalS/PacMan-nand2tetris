@@ -102,6 +102,42 @@ call PacMan.loadAnimations 1
 pop temp 0
 push pointer 0
 return
+function PacMan.reset 2
+push argument 0
+pop pointer 0
+push this 10
+call Vector2.getX 1
+pop local 0
+push this 10
+call Vector2.getY 1
+pop local 1
+push constant 0
+pop this 0
+push constant 0
+pop this 1
+push constant 0
+pop this 2
+push constant 0
+not
+pop this 6
+push constant 0
+pop this 7
+push this 9
+push this 10
+call Vector2.set 2
+pop temp 0
+push local 0
+push local 1
+call ScreenManager.getLocation 2
+pop this 3
+push local 1
+push constant 32
+call Math.multiply 2
+push local 0
+add
+pop this 5
+push constant 0
+return
 function PacMan.dispose 0
 push argument 0
 pop pointer 0
@@ -386,6 +422,13 @@ push this 5
 push constant 31
 sub
 pop this 5
+push this 9
+push this 9
+call Vector2.getX 1
+push constant 31
+sub
+call Vector2.setX 2
+pop temp 0
 label IF_FALSE0
 push pointer 0
 call PacMan.checkCollisionRight 1
@@ -455,6 +498,13 @@ push this 5
 push constant 31
 add
 pop this 5
+push this 9
+push this 9
+call Vector2.getX 1
+push constant 31
+add
+call Vector2.setX 2
+pop temp 0
 label IF_FALSE0
 push pointer 0
 call PacMan.checkCollisionLeft 1

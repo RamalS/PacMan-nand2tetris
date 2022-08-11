@@ -1,4 +1,22 @@
 function Game.init 0
+call ClassicMap.initMap 0
+pop static 9
+push constant 2
+push constant 8
+call PacMan.new 2
+pop static 7
+push constant 15
+push constant 7
+call Pinky.new 2
+pop static 8
+push constant 0
+return
+function Game.reset 0
+push static 9
+call Memory.deAlloc 1
+pop temp 0
+call ClassicMap.initMap 0
+pop static 9
 push constant 0
 not
 pop static 0
@@ -13,16 +31,12 @@ push constant 1
 pop static 3
 push constant 0
 pop static 1
-call ClassicMap.initMap 0
-pop static 9
-push constant 2
-push constant 8
-call PacMan.new 2
-pop static 7
-push constant 15
-push constant 7
-call Pinky.new 2
-pop static 8
+push static 8
+call Pinky.reset 1
+pop temp 0
+push static 7
+call PacMan.reset 1
+pop temp 0
 call ClassicMap.draw 0
 pop temp 0
 push constant 0

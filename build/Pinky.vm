@@ -142,6 +142,14 @@ call AnimationManager.set 2
 pop temp 0
 push constant 0
 return
+function Pinky.reset 0
+push argument 0
+pop pointer 0
+push this 3
+call Ghost.reset 1
+pop temp 0
+push constant 0
+return
 function Pinky.resetPosition 0
 push argument 0
 pop pointer 0

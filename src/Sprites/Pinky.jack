@@ -72,6 +72,13 @@ class Pinky
         return;
     }
 
+    method void reset()
+    {
+        do ghost.reset();
+
+        return;
+    }
+
     method void resetPosition()
     {
         do ghost.resetPosition();

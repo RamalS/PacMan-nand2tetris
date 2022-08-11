@@ -11,16 +11,27 @@ class Game
 
     function void init()
     {
+        let map = ClassicMap.initMap();
+        let pacMan = PacMan.new(2, 8);
+        let pinky = Pinky.new(15,7);
+
+        return;
+    }
+
+    function void reset()
+    {
+        do Memory.deAlloc(map);
+
+        let map = ClassicMap.initMap();
         let run = true;
         let scatter = true;
         let frightened = false;
         let score = 0;
         let hp = 1;
         let scatterState = 0;
-        let map = ClassicMap.initMap();
-        let pacMan = PacMan.new(2, 8);
-        let pinky = Pinky.new(15,7);
 
+        do pinky.reset();
+        do pacMan.reset();
         do ClassicMap.draw();
 
         do Output.moveCursor(0, 2);

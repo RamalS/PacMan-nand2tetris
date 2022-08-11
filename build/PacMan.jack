@@ -47,6 +47,26 @@ class PacMan
         return this;
     }
 
+    method void reset()
+    {
+        var int x, y;
+
+        let x = defaultPosition.getX();
+        let y = defaultPosition.getY();
+
+        let lastKey = 0;
+        let direction = 0;
+        let nextDirection = 0;
+        let updateSprite = true;
+        let reseted = false;
+
+        do position.set(defaultPosition);
+        let location = ScreenManager.getLocation(x, y);
+        let gridIndex = y * 32 + x;
+
+        return;
+    }
+
     method void dispose()
     {
         do am.dispose();
@@ -138,13 +158,13 @@ class PacMan
             do ScreenManager.clearBlock(location);
             let location = location - 31;
             let gridIndex = gridIndex - 31;
-            //dodati position logiku
+            do position.setX(position.getX() - 31);
         }
 
         if (checkCollisionRight())
         {
             if (Game.grid(gridIndex + 1) = 1) 
-                {do Game.increaseScore(gridIndex + 1, 1);}
+                { do Game.increaseScore(gridIndex + 1, 1); }
 
             do moveInit();
             let location = location + 1;
@@ -164,13 +184,13 @@ class PacMan
             do ScreenManager.clearBlock(location);
             let location = location + 31;
             let gridIndex = gridIndex + 31;
-            //dodaj position logiku
+            do position.setX(position.getX() + 31);
         }
 
         if (checkCollisionLeft())
         {
             if (Game.grid(gridIndex - 1) = 1) 
-                {do Game.increaseScore(gridIndex - 1, 1);}
+                { do Game.increaseScore(gridIndex - 1, 1); }
 
             do moveInit();
             let location = location - 1;
