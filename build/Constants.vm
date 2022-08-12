@@ -70,3 +70,21 @@ return
 function Constants.inkyFrightened 0
 push constant 5
 return
+function Constants.clydeRight 0
+push constant 0
+return
+function Constants.clydeLeft 0
+push constant 1
+return
+function Constants.clydeDown 0
+push constant 2
+return
+function Constants.clydeUp 0
+push constant 3
+return
+function Constants.clydeDead 0
+push constant 4
+return
+function Constants.clydeFrightened 0
+push constant 5
+return

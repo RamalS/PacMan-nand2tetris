@@ -80,4 +80,12 @@ class Vector2
 
         return;
     }
+
+    // Important to pass squared radius.
+    method bool pointInRadius(Vector2 v, int radiusSquared)
+    {
+        if (distance(v) < radiusSquared)
+            { return true; }
+        return false;
+    }
 }

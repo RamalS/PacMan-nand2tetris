@@ -8,6 +8,7 @@ class Game
     static PacMan pacMan;
     static Pinky pinky;
     static Blinky blinky;
+    static Clyde clyde;
     static Inky inky;
     static Array map;
 
@@ -46,6 +47,7 @@ class Game
         let pinky = Pinky.new(15, 7);
         let blinky = Blinky.new(16, 7);
         let inky = Inky.new(15, 8);
+        let clyde = Clyde.new(16, 8);
 
         return;
     }
@@ -76,6 +78,7 @@ class Game
         do pinky.reset();
         do blinky.reset();
         do inky.reset();
+        do clyde.reset();
         do pacMan.reset();
         do ClassicMap.draw();
 
@@ -96,6 +99,7 @@ class Game
         do pinky.dispose();
         do blinky.dispose();
         do inky.dispose();
+        do clyde.dispose();
         do Memory.deAlloc(map);
 
         return;
@@ -137,6 +141,7 @@ class Game
     {
         let hp = hp - 1;
         do pacMan.resetPosition();
+        do clyde.resetPosition();
         do inky.resetPosition();
         do blinky.resetPosition();
         do pinky.resetPosition();
@@ -218,10 +223,12 @@ class Game
         {
             if (moveDuration < 0)
             {
+                do clyde.checkIntersect();
                 do inky.checkIntersect();
                 do blinky.checkIntersect();
                 do pinky.checkIntersect();
 
+                do clyde.move();
                 do inky.move();
                 do blinky.move();
                 do pinky.move();
@@ -235,6 +242,7 @@ class Game
                 do pinky.draw();
                 do blinky.draw();
                 do inky.draw();
+                do clyde.draw();
                 let drawDuration = 20;
             }
 

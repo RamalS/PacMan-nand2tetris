@@ -135,3 +135,20 @@ sub
 pop this 1
 push constant 0
 return
+function Vector2.pointInRadius 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+call Vector2.distance 2
+push argument 2
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
+return

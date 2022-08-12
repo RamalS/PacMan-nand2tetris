@@ -123,4 +123,35 @@ class Constants
     {
         return 5;
     }
+
+    //Clyde
+    function int clydeRight()
+    {
+        return 0;
+    }
+
+    function int clydeLeft()
+    {
+        return 1;
+    }
+
+    function int clydeDown()
+    {
+        return 2;
+    }
+
+    function int clydeUp()
+    {
+        return 3;
+    }
+
+    function int clydeDead()
+    {
+        return 4;
+    }
+
+    function int clydeFrightened()
+    {
+        return 5;
+    }
 }

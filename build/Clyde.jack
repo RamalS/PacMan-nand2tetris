@@ -1,0 +1,120 @@
+class Clyde
+{
+    field int homeState;
+    field AnimationManager am;
+    field Vector2 scatterPoint, position;
+    field Ghost ghost;
+
+    constructor Clyde new(int x, int y)
+    {
+        let homeState = 0;
+        let am = AnimationManager.new(6);
+        let scatterPoint = Vector2.new(30, 15);
+
+        do loadAnimations();
+
+        let ghost = Ghost.new(x, y, am);
+        do ghost.bindAnimations(Constants.clydeUp(),
+                                Constants.clydeLeft(),
+                                Constants.clydeDown(),
+                                Constants.clydeRight(),
+                                Constants.clydeFrightened(),
+                                Constants.clydeDead());
+
+        return this;
+    }
+
+    method void dispose()
+    {
+        do am.dispose();
+        do scatterPoint.dispose();
+        do ghost.dispose();
+        do Memory.deAlloc(this);
+
+        return;
+    }
+
+    method void loadAnimations()
+    {
+        var Animation animation;
+
+        let animation = Animation.new(2);
+        do animation.add(ClydeAsset.right1());
+        do animation.add(ClydeAsset.right2());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(ClydeAsset.left1());
+        do animation.add(ClydeAsset.left2());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(ClydeAsset.down1());
+        do animation.add(ClydeAsset.down2());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(ClydeAsset.up1());
+        do animation.add(ClydeAsset.up2());
+        do am.add(animation);
+
+        let animation = Animation.new(1);
+        do animation.add(GhostAsset.dead());
+        do am.add(animation);
+
+        let animation = Animation.new(2);
+        do animation.add(GhostAsset.frightened1());
+        do animation.add(GhostAsset.frightened2());
+        do am.add(animation);
+
+        do am.set(Constants.clydeRight());
+
+        return;
+    }
+
+    method void reset()
+    {
+        do ghost.reset();
+
+        return;
+    }
+
+    method void resetPosition()
+    {
+        do ghost.resetPosition(Constants.clydeRight());
+        return;
+    }
+
+    method void checkIntersect()
+    {
+        do ghost.checkIntersect();
+        return;
+    }
+
+    method void move()
+    {
+        if (~ghost.isReseted())
+        {
+            let position = ghost.getPosition();
+
+            if (ghost.isDead())
+                { do ghost.moveToHome(); }
+            else {if (Game.isFrightened())
+                { do ghost.frightenedState(); }
+            else {if (Game.isScatter() | position.pointInRadius(Game.pacManPosition(), 8))
+                { do ghost.moveToPoint(scatterPoint); }
+            else
+                { do ghost.moveToPoint(Game.pacManPosition()); }}}
+        }
+        else
+            { do ghost.setReseted(false); }
+
+        return;
+    }
+
+    method void draw()
+    {
+        do ghost.drawNext();
+        return;
+    }
+}

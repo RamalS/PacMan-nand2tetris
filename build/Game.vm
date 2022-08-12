@@ -6,7 +6,7 @@ pop local 1
 push constant 0
 pop static 5
 call ClassicMap.initMap 0
-pop static 15
+pop static 16
 label WHILE_EXP0
 push local 0
 push constant 16
@@ -77,15 +77,19 @@ pop static 13
 push constant 15
 push constant 8
 call Inky.new 2
+pop static 15
+push constant 16
+push constant 8
+call Clyde.new 2
 pop static 14
 push constant 0
 return
 function Game.reset 0
-push static 15
+push static 16
 call Memory.deAlloc 1
 pop temp 0
 call ClassicMap.initMap 0
-pop static 15
+pop static 16
 push argument 0
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -124,8 +128,11 @@ pop temp 0
 push static 13
 call Blinky.reset 1
 pop temp 0
-push static 14
+push static 15
 call Inky.reset 1
+pop temp 0
+push static 14
+call Clyde.reset 1
 pop temp 0
 push static 11
 call PacMan.reset 1
@@ -194,10 +201,13 @@ pop temp 0
 push static 13
 call Blinky.dispose 1
 pop temp 0
-push static 14
+push static 15
 call Inky.dispose 1
 pop temp 0
-push static 15
+push static 14
+call Clyde.dispose 1
+pop temp 0
+push static 16
 call Memory.deAlloc 1
 pop temp 0
 push constant 0
@@ -274,6 +284,9 @@ push static 11
 call PacMan.resetPosition 1
 pop temp 0
 push static 14
+call Clyde.resetPosition 1
+pop temp 0
+push static 15
 call Inky.resetPosition 1
 pop temp 0
 push static 13
@@ -314,7 +327,7 @@ push static 4
 return
 function Game.grid 1
 push argument 0
-push static 15
+push static 16
 add
 pop pointer 1
 push that 0
@@ -323,7 +336,7 @@ push local 0
 return
 function Game.setGrid 0
 push argument 0
-push static 15
+push static 16
 add
 push argument 1
 pop temp 0
@@ -383,6 +396,9 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push static 14
+call Clyde.checkIntersect 1
+pop temp 0
+push static 15
 call Inky.checkIntersect 1
 pop temp 0
 push static 13
@@ -392,6 +408,9 @@ push static 12
 call Pinky.checkIntersect 1
 pop temp 0
 push static 14
+call Clyde.move 1
+pop temp 0
+push static 15
 call Inky.move 1
 pop temp 0
 push static 13
@@ -421,8 +440,11 @@ pop temp 0
 push static 13
 call Blinky.draw 1
 pop temp 0
-push static 14
+push static 15
 call Inky.draw 1
+pop temp 0
+push static 14
+call Clyde.draw 1
 pop temp 0
 push constant 20
 pop local 0

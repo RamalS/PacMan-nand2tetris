@@ -1,0 +1,239 @@
+function Clyde.new 0
+push constant 5
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 0
+push constant 6
+call AnimationManager.new 1
+pop this 1
+push constant 30
+push constant 15
+call Vector2.new 2
+pop this 2
+push pointer 0
+call Clyde.loadAnimations 1
+pop temp 0
+push argument 0
+push argument 1
+push this 1
+call Ghost.new 3
+pop this 4
+push this 4
+call Constants.clydeUp 0
+call Constants.clydeLeft 0
+call Constants.clydeDown 0
+call Constants.clydeRight 0
+call Constants.clydeFrightened 0
+call Constants.clydeDead 0
+call Ghost.bindAnimations 7
+pop temp 0
+push pointer 0
+return
+function Clyde.dispose 0
+push argument 0
+pop pointer 0
+push this 1
+call AnimationManager.dispose 1
+pop temp 0
+push this 2
+call Vector2.dispose 1
+pop temp 0
+push this 4
+call Ghost.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Clyde.loadAnimations 1
+push argument 0
+pop pointer 0
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call ClydeAsset.right1 0
+call Animation.add 2
+pop temp 0
+push local 0
+call ClydeAsset.right2 0
+call Animation.add 2
+pop temp 0
+push this 1
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call ClydeAsset.left1 0
+call Animation.add 2
+pop temp 0
+push local 0
+call ClydeAsset.left2 0
+call Animation.add 2
+pop temp 0
+push this 1
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call ClydeAsset.down1 0
+call Animation.add 2
+pop temp 0
+push local 0
+call ClydeAsset.down2 0
+call Animation.add 2
+pop temp 0
+push this 1
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call ClydeAsset.up1 0
+call Animation.add 2
+pop temp 0
+push local 0
+call ClydeAsset.up2 0
+call Animation.add 2
+pop temp 0
+push this 1
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push constant 1
+call Animation.new 1
+pop local 0
+push local 0
+call GhostAsset.dead 0
+call Animation.add 2
+pop temp 0
+push this 1
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push constant 2
+call Animation.new 1
+pop local 0
+push local 0
+call GhostAsset.frightened1 0
+call Animation.add 2
+pop temp 0
+push local 0
+call GhostAsset.frightened2 0
+call Animation.add 2
+pop temp 0
+push this 1
+push local 0
+call AnimationManager.add 2
+pop temp 0
+push this 1
+call Constants.clydeRight 0
+call AnimationManager.set 2
+pop temp 0
+push constant 0
+return
+function Clyde.reset 0
+push argument 0
+pop pointer 0
+push this 4
+call Ghost.reset 1
+pop temp 0
+push constant 0
+return
+function Clyde.resetPosition 0
+push argument 0
+pop pointer 0
+push this 4
+call Constants.clydeRight 0
+call Ghost.resetPosition 2
+pop temp 0
+push constant 0
+return
+function Clyde.checkIntersect 0
+push argument 0
+pop pointer 0
+push this 4
+call Ghost.checkIntersect 1
+pop temp 0
+push constant 0
+return
+function Clyde.move 0
+push argument 0
+pop pointer 0
+push this 4
+call Ghost.isReseted 1
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 4
+call Ghost.getPosition 1
+pop this 3
+push this 4
+call Ghost.isDead 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 4
+call Ghost.moveToHome 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+call Game.isFrightened 0
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 4
+call Ghost.frightenedState 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+call Game.isScatter 0
+push this 3
+call Game.pacManPosition 0
+push constant 8
+call Vector2.pointInRadius 3
+or
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 4
+push this 2
+call Ghost.moveToPoint 2
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 4
+call Game.pacManPosition 0
+call Ghost.moveToPoint 2
+pop temp 0
+label IF_END3
+label IF_END2
+label IF_END1
+goto IF_END0
+label IF_FALSE0
+push this 4
+push constant 0
+call Ghost.setReseted 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Clyde.draw 0
+push argument 0
+pop pointer 0
+push this 4
+call Ghost.drawNext 1
+pop temp 0
+push constant 0
+return
