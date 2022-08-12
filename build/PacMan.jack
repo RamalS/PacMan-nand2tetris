@@ -13,14 +13,21 @@ class PacMan
         let updateSprite = true;
         let reseted = false;
         let am = AnimationManager.new(5);
+        do setDefaultPosition(x, y);
+
+        do loadAnimations();
+
+        return this;
+    }
+
+    method void setDefaultPosition(int x, int y)
+    {
         let position = Vector2.new(x, y);
         let defaultPosition = Vector2.new(x, y);
         let location = ScreenManager.getLocation(x, y);
         let gridIndex = y * 32 + x;
 
-        do loadAnimations();
-
-        return this;
+        return;
     }
 
     method void reset()

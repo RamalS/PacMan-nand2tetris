@@ -1,9 +1,9 @@
 function Main.main 0
+call Game.init 0
+pop temp 0
 call MainMenu.init 0
 pop temp 0
 call GameOver.init 0
-pop temp 0
-call Game.init 0
 pop temp 0
 label WHILE_EXP0
 push constant 0

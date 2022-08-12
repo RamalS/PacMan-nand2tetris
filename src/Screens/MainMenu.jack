@@ -1,12 +1,19 @@
 class MainMenu
 {
-    static int location, kybrd;
+    static int location, kybrd, lastKey, selectedMap, selectedDuration;
+    static String pressSpace, map1, map2;
     static Animation pacManAnimation, pinkyAnimation, blinkyAnimation, inkyAnimation, clydeAnimation;
 
     function void init()
     {
-        let location = ScreenManager.getLocation(12, 12);
+        let location = ScreenManager.getLocation(12, 14);
         let kybrd = 0;
+        let lastKey = 0;
+        let selectedMap = 0;
+        let selectedDuration = 5;
+        let pressSpace = "PRESS SPACE!";
+        let map1 = "MAP 1";
+        let map2 = "MAP 2";
 
         let pacManAnimation = Animation.new(2);
         do pacManAnimation.add(PacManAsset.mouthOpenRight());
@@ -25,8 +32,8 @@ class MainMenu
         do inkyAnimation.add(InkyAsset.right2());
 
         let clydeAnimation = Animation.new(2);
-        do clydeAnimation.add(PinkyAsset.right1());
-        do clydeAnimation.add(PinkyAsset.right2());
+        do clydeAnimation.add(ClydeAsset.right1());
+        do clydeAnimation.add(ClydeAsset.right2());
 
         return;
     }
@@ -34,16 +41,60 @@ class MainMenu
     function void draw()
     {
         do Screen.clearScreen();
-
         do ScreenAsset.pacManBaner(ScreenManager.getLocation(6, 2));
 
-        do Output.moveCursor(15, 27);
-        do Output.printString("PRESS SPACE!");
+        do Output.moveCursor(12, 30);
+        do Output.printString(map1);
+
+        do Output.moveCursor(14, 30);
+        do Output.printString(map2);
+        
+        do Output.moveCursor(18, 27);
+        do Output.printString(pressSpace);
+        
 
         let kybrd = 0;
         while (~(kybrd = 32))
         {
             let kybrd = Keyboard.keyPressed();
+
+            if ((kybrd = 131) & ~(lastKey = kybrd))
+            {
+                let selectedMap = 0;
+                let lastKey = kybrd;
+            } 
+            else {if (kybrd = 133 & ~(lastKey = kybrd))
+            {
+                let selectedMap = 1;
+                let lastKey = kybrd;
+            }
+            else {if (kybrd = 0 & ~(lastKey = kybrd))
+            {
+                let lastKey = kybrd;
+            }}}
+
+            if (selectedDuration < 0)
+            {
+                if (selectedMap = 0)
+                {
+                    do ScreenManager.clearRow(Constants.getScreen() + 4096);
+                    do Sys.wait(100);
+                    do Output.moveCursor(12, 30);
+                    do Output.printString(map1);
+                }
+                else
+                {
+                    do ScreenManager.clearRow(Constants.getScreen() + 4608);
+                    do ScreenManager.clearRow(Constants.getScreen() + 5120);
+                    do Sys.wait(100);
+                    do Output.moveCursor(14, 30);
+                    do Output.printString(map2);
+                }
+
+                let selectedDuration = 5;
+            }
+
+            let selectedDuration = selectedDuration - 1;
 
             do pinkyAnimation.next(location);
             do blinkyAnimation.next(location + 1);
@@ -56,6 +107,8 @@ class MainMenu
 
             do Sys.wait(100);
         }
+
+        do Game.setSelectedMap(selectedMap);
 
         return;
     }

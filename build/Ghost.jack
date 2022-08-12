@@ -76,7 +76,7 @@ class Ghost
         if ((gridIndex = Game.pacManGridIndex()) & Game.isFrightened())
         { 
             let dead = true; 
-            do Game.increaseScore(gridIndex + 1, 10);
+            do Game.increaseScore(gridIndex, 10);
         }
         else {if (~Game.isFrightened() & dead & gridIndex = homeLocation)
         { 
@@ -282,7 +282,17 @@ class Ghost
             }
             else {if (direction = 2 & ~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
             {
+
                 do moveLeft(anFrightened);
+
+                if (Game.grid(gridIndex) = 3)
+                {
+                    do ScreenManager.clearBlock(location);
+                    let location = location + 31;
+                    let gridIndex = gridIndex + 31;
+                    do position.setX(position.getX() + 31);
+                }
+
                 let moved = false;
             }
             else {if (direction = 3 & ~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
@@ -293,6 +303,15 @@ class Ghost
             else {if (direction = 4 & ~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
             {
                 do moveRight(anFrightened);
+
+                if (Game.grid(gridIndex) = 3)
+                {
+                    do ScreenManager.clearBlock(location);
+                    let location = location - 31;
+                    let gridIndex = gridIndex - 31;
+                    do position.setX(position.getX() - 31);
+                }
+
                 let moved = false;
             }
             else

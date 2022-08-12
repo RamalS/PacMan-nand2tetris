@@ -6,9 +6,9 @@ class Main
 		//do Logger.logInt(Shift.toBinary(57));
 		//do Shift.toBinary(29);
 		//do Logger.logInt(Mathf.pow(2, 3));
+		do Game.init();
 		do MainMenu.init();
 		do GameOver.init();
-		do Game.init();
 
 		while (true)
 		{

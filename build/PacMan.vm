@@ -16,28 +16,38 @@ pop this 7
 push constant 5
 call AnimationManager.new 1
 pop this 8
+push pointer 0
 push argument 0
 push argument 1
-call Vector2.new 2
-pop this 9
-push argument 0
-push argument 1
-call Vector2.new 2
-pop this 10
-push argument 0
-push argument 1
-call ScreenManager.getLocation 2
-pop this 3
-push argument 1
-push constant 32
-call Math.multiply 2
-push argument 0
-add
-pop this 5
+call PacMan.setDefaultPosition 3
+pop temp 0
 push pointer 0
 call PacMan.loadAnimations 1
 pop temp 0
 push pointer 0
+return
+function PacMan.setDefaultPosition 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Vector2.new 2
+pop this 9
+push argument 1
+push argument 2
+call Vector2.new 2
+pop this 10
+push argument 1
+push argument 2
+call ScreenManager.getLocation 2
+pop this 3
+push argument 2
+push constant 32
+call Math.multiply 2
+push argument 1
+add
+pop this 5
+push constant 0
 return
 function PacMan.reset 2
 push argument 0

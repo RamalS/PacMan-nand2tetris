@@ -3,8 +3,9 @@ class Game
     static bool run;
     static int scatterState;
 
-    static int score, dotsEaten, hp, totalDots, factor, scatterDuration, frightenedDuration;
+    static int score, dotsEaten, hp, totalDots, factor, scatterDuration, frightenedDuration, selectedMap;
     static bool scatter, frightened;
+    static String scoreLabel, livesLabel;
     static PacMan pacMan;
     static Pinky pinky;
     static Blinky blinky;
@@ -14,12 +15,28 @@ class Game
 
     function void init()
     {
+        let map = ClassicMap.initMap();
+        let pacMan = PacMan.new(0, 0);
+        let pinky = Pinky.new(15, 7);
+        let blinky = Blinky.new(16, 7);
+        let inky = Inky.new(15, 8);
+        let clyde = Clyde.new(16, 8);
+        let scoreLabel = "Score: ";
+        let livesLabel = "Lives: ";
+
+        return;
+    }
+
+    function void reset(bool resetScore)
+    {
         var int i, j, index, pacManX, pacManY;
+
+        do Memory.deAlloc(map);
+        let map = Game.getMap();
 
         let i = 0;
         let j = 0;
         let totalDots = 0;
-        let map = ClassicMap.initMap();
 
         while (i < 16)
         {
@@ -43,19 +60,7 @@ class Game
             let j = j + 1;
         }
 
-        let pacMan = PacMan.new(pacManX, pacManY);
-        let pinky = Pinky.new(15, 7);
-        let blinky = Blinky.new(16, 7);
-        let inky = Inky.new(15, 8);
-        let clyde = Clyde.new(16, 8);
-
-        return;
-    }
-
-    function void reset(bool resetScore)
-    {
-        do Memory.deAlloc(map);
-        let map = ClassicMap.initMap();
+        do pacMan.setDefaultPosition(pacManX, pacManY);
 
         if (resetScore)
             { let score = 0; }
@@ -80,14 +85,14 @@ class Game
         do inky.reset();
         do clyde.reset();
         do pacMan.reset();
-        do ClassicMap.draw();
+        do Map.draw(map);
 
         do Output.moveCursor(0, 2);
-        do Output.printString("Score: ");
+        do Output.printString(scoreLabel);
         do Output.printInt(score);
 
-        do Output.moveCursor(0, 13);
-        do Output.printString("Lives: ");
+        do Output.moveCursor(0, 14);
+        do Output.printString(livesLabel);
         do Output.printInt(hp);
 
         return;
@@ -105,27 +110,13 @@ class Game
         return;
     }
 
-    function void setRun(bool _run)
-    {
-        let run = _run;
-
-        return;
-    }
-
-    function void setSeed()
-    {
-        do LCGRandom.setSeed(factor);
-
-        return;
-    }
-
     function void increaseScore(int index, int x)
     {
         let score = score + x;
         let dotsEaten = dotsEaten + 1;
         do Game.setGrid(index, 0);
         do Output.moveCursor(0, 2);
-        do Output.printString("Score: ");
+        do Output.printString(scoreLabel);
         do Output.printInt(score);
 
         if (dotsEaten = totalDots)
@@ -145,14 +136,12 @@ class Game
         do inky.resetPosition();
         do blinky.resetPosition();
         do pinky.resetPosition();
-        do Output.moveCursor(0, 13);
-        do Output.printString("Lives: ");
+        do Output.moveCursor(0, 14);
+        do Output.printString(livesLabel);
         do Output.printInt(hp);
        
         return;
     }
-
-    function int getHp() { return hp; }
 
     function int grid(int i)
     {
@@ -162,41 +151,33 @@ class Game
         return x;
     }
 
+    // Setters
+    function void setSelectedMap(int selMap)
+    {
+        let selectedMap = selMap;
+
+        return;
+    }
+
+    function void setRun(bool _run)
+    {
+        let run = _run;
+
+        return;
+    }
+
+    function void setSeed()
+    {
+        do LCGRandom.setSeed(factor);
+
+        return;
+    }
+
     function void setGrid(int i, int x)
     {
         let map[i] = x;
 
         return;
-    }
-
-    function Vector2 pacManPosition()
-    {
-        return pacMan.getPosition();
-    }
-
-    function int pacManLocation()
-    {
-        return pacMan.getLocation();
-    }
-
-    function int pacManGridIndex()
-    {
-        return pacMan.getGridIndex();
-    }
-
-    function int pacManDirection()
-    {
-        return pacMan.getDirection();
-    }
-
-    function int blinkyGetPosition()
-    {
-        return blinky.getPosition();
-    }
-
-    function bool isScatter()
-    {
-        return scatter;
     }
 
     function void setFrightened()
@@ -206,9 +187,22 @@ class Game
         return;
     }
 
-    function bool isFrightened()
+    // Getters
+    function int getHp() { return hp; }
+    function Vector2 pacManPosition() { return pacMan.getPosition(); }
+    function int pacManLocation() { return pacMan.getLocation(); }
+    function int pacManGridIndex() { return pacMan.getGridIndex(); }
+    function int pacManDirection() { return pacMan.getDirection(); }
+    function int blinkyGetPosition() { return blinky.getPosition(); }
+    function bool isScatter() { return scatter; }
+    function bool isFrightened() { return frightened; }
+    
+    function Array getMap()
     {
-        return frightened;
+        if (selectedMap = 0)
+            { return ClassicMap.initMap(); }
+        else
+            { return ExoticMap.initMap(); }
     }
 
     function void loop()

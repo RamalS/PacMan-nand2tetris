@@ -219,8 +219,6 @@ push constant 0
 not
 pop this 11
 push this 3
-push constant 1
-add
 push constant 10
 call Game.increaseScore 2
 pop temp 0
@@ -696,6 +694,32 @@ push pointer 0
 push this 9
 call Ghost.moveLeft 2
 pop temp 0
+push this 3
+call Game.grid 1
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+call ScreenManager.clearBlock 1
+pop temp 0
+push this 0
+push constant 31
+add
+pop this 0
+push this 3
+push constant 31
+add
+pop this 3
+push this 14
+push this 14
+call Vector2.getX 1
+push constant 31
+add
+call Vector2.setX 2
+pop temp 0
+label IF_FALSE2
 push constant 0
 pop local 1
 goto IF_END1
@@ -713,17 +737,17 @@ and
 push pointer 0
 call Ghost.checkCollisionDown 1
 and
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
 push pointer 0
 push this 9
 call Ghost.moveDown 2
 pop temp 0
 push constant 0
 pop local 1
-goto IF_END2
-label IF_FALSE2
+goto IF_END3
+label IF_FALSE3
 push local 0
 push constant 4
 eq
@@ -737,23 +761,49 @@ and
 push pointer 0
 call Ghost.checkCollisionRight 1
 and
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
 push pointer 0
 push this 9
 call Ghost.moveRight 2
 pop temp 0
+push this 3
+call Game.grid 1
+push constant 3
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 0
+call ScreenManager.clearBlock 1
+pop temp 0
+push this 0
+push constant 31
+sub
+pop this 0
+push this 3
+push constant 31
+sub
+pop this 3
+push this 14
+push this 14
+call Vector2.getX 1
+push constant 31
+sub
+call Vector2.setX 2
+pop temp 0
+label IF_FALSE5
 push constant 0
 pop local 1
-goto IF_END3
-label IF_FALSE3
+goto IF_END4
+label IF_FALSE4
 push constant 1
 push constant 4
 call LCGRandom.randRange 2
 pop local 0
+label IF_END4
 label IF_END3
-label IF_END2
 label IF_END1
 label IF_END0
 goto WHILE_EXP0
