@@ -8,6 +8,7 @@ class Game
     static PacMan pacMan;
     static Pinky pinky;
     static Blinky blinky;
+    static Inky inky;
     static Array map;
 
     function void init()
@@ -44,6 +45,7 @@ class Game
         let pacMan = PacMan.new(pacManX, pacManY);
         let pinky = Pinky.new(15, 7);
         let blinky = Blinky.new(16, 7);
+        let inky = Inky.new(15, 8);
 
         return;
     }
@@ -73,6 +75,7 @@ class Game
 
         do pinky.reset();
         do blinky.reset();
+        do inky.reset();
         do pacMan.reset();
         do ClassicMap.draw();
 
@@ -92,6 +95,7 @@ class Game
         do pacMan.dispose();
         do pinky.dispose();
         do blinky.dispose();
+        do inky.dispose();
         do Memory.deAlloc(map);
 
         return;
@@ -133,6 +137,7 @@ class Game
     {
         let hp = hp - 1;
         do pacMan.resetPosition();
+        do inky.resetPosition();
         do blinky.resetPosition();
         do pinky.resetPosition();
         do Output.moveCursor(0, 13);
@@ -179,6 +184,11 @@ class Game
         return pacMan.getDirection();
     }
 
+    function int blinkyGetPosition()
+    {
+        return blinky.getPosition();
+    }
+
     function bool isScatter()
     {
         return scatter;
@@ -208,9 +218,11 @@ class Game
         {
             if (moveDuration < 0)
             {
+                do inky.checkIntersect();
                 do blinky.checkIntersect();
                 do pinky.checkIntersect();
 
+                do inky.move();
                 do blinky.move();
                 do pinky.move();
                 do pacMan.move();
@@ -222,6 +234,7 @@ class Game
                 do pacMan.draw();
                 do pinky.draw();
                 do blinky.draw();
+                do inky.draw();
                 let drawDuration = 20;
             }
 
@@ -254,9 +267,8 @@ class Game
             let moveDuration = moveDuration - 1;
             let factor = 80;
 
-            while(factor > 0) {
-                let factor = factor - 1;
-            }
+            while(factor > 0)
+                { let factor = factor - 1; }
         }
 
         return;

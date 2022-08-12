@@ -72,4 +72,12 @@ class Vector2
         
         return c;
     }
+
+    method void sub(Vector2 v)
+    {
+        let x = x - v.getX();
+        let y = y - v.getY();
+
+        return;
+    }
 }

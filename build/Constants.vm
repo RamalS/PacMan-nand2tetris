@@ -52,3 +52,21 @@ return
 function Constants.blinkyFrightened 0
 push constant 5
 return
+function Constants.inkyRight 0
+push constant 0
+return
+function Constants.inkyLeft 0
+push constant 1
+return
+function Constants.inkyDown 0
+push constant 2
+return
+function Constants.inkyUp 0
+push constant 3
+return
+function Constants.inkyDead 0
+push constant 4
+return
+function Constants.inkyFrightened 0
+push constant 5
+return

@@ -42,11 +42,11 @@ push constant 2
 call Animation.new 1
 pop static 5
 push static 5
-call PinkyAsset.right1 0
+call InkyAsset.right1 0
 call Animation.add 2
 pop temp 0
 push static 5
-call PinkyAsset.right2 0
+call InkyAsset.right2 0
 call Animation.add 2
 pop temp 0
 push constant 2

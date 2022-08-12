@@ -1,45 +1,55 @@
-function Blinky.new 0
-push constant 4
+function Inky.new 0
+push constant 7
 call Memory.alloc 1
 pop pointer 0
 push constant 0
 pop this 0
 push constant 6
 call AnimationManager.new 1
-pop this 1
-push constant 30
-push constant 1
-call Vector2.new 2
 pop this 2
+push constant 1
+push constant 15
+call Vector2.new 2
+pop this 3
+push constant 0
+push constant 0
+call Vector2.new 2
+pop this 4
+push constant 0
+push constant 0
+call Vector2.new 2
+pop this 5
+push constant 1
+pop this 1
 push pointer 0
-call Blinky.loadAnimations 1
+call Inky.loadAnimations 1
 pop temp 0
 push argument 0
 push argument 1
-push this 1
+push this 2
 call Ghost.new 3
-pop this 3
-push this 3
-call Constants.blinkyUp 0
-call Constants.blinkyLeft 0
-call Constants.blinkyDown 0
-call Constants.blinkyRight 0
-call Constants.blinkyFrightened 0
-call Constants.blinkyDead 0
+pop this 6
+push this 6
+call Constants.inkyUp 0
+call Constants.inkyLeft 0
+call Constants.inkyDown 0
+call Constants.inkyRight 0
+call Constants.inkyFrightened 0
+call Constants.inkyDead 0
 call Ghost.bindAnimations 7
 pop temp 0
 push pointer 0
 return
-function Blinky.dispose 0
+function Inky.dispose 0
 push argument 0
 pop pointer 0
-push this 1
+push this 2
 call AnimationManager.dispose 1
 pop temp 0
-push this 2
+push this 3
 call Vector2.dispose 1
 pop temp 0
-push this 3
+push this 6
 call Ghost.dispose 1
 pop temp 0
 push pointer 0
@@ -47,27 +57,21 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function Blinky.getPosition 0
-push argument 0
-pop pointer 0
-push this 3
-call Ghost.getPosition 1
-return
-function Blinky.loadAnimations 1
+function Inky.loadAnimations 1
 push argument 0
 pop pointer 0
 push constant 2
 call Animation.new 1
 pop local 0
 push local 0
-call BlinkyAsset.right1 0
+call InkyAsset.right1 0
 call Animation.add 2
 pop temp 0
 push local 0
-call BlinkyAsset.right2 0
+call InkyAsset.right2 0
 call Animation.add 2
 pop temp 0
-push this 1
+push this 2
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -75,14 +79,14 @@ push constant 2
 call Animation.new 1
 pop local 0
 push local 0
-call BlinkyAsset.left1 0
+call InkyAsset.left1 0
 call Animation.add 2
 pop temp 0
 push local 0
-call BlinkyAsset.left2 0
+call InkyAsset.left2 0
 call Animation.add 2
 pop temp 0
-push this 1
+push this 2
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -90,14 +94,14 @@ push constant 2
 call Animation.new 1
 pop local 0
 push local 0
-call BlinkyAsset.down1 0
+call InkyAsset.down1 0
 call Animation.add 2
 pop temp 0
 push local 0
-call BlinkyAsset.down2 0
+call InkyAsset.down2 0
 call Animation.add 2
 pop temp 0
-push this 1
+push this 2
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -105,14 +109,14 @@ push constant 2
 call Animation.new 1
 pop local 0
 push local 0
-call BlinkyAsset.up1 0
+call InkyAsset.up1 0
 call Animation.add 2
 pop temp 0
 push local 0
-call BlinkyAsset.up2 0
+call InkyAsset.up2 0
 call Animation.add 2
 pop temp 0
-push this 1
+push this 2
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -123,7 +127,7 @@ push local 0
 call GhostAsset.dead 0
 call Animation.add 2
 pop temp 0
-push this 1
+push this 2
 push local 0
 call AnimationManager.add 2
 pop temp 0
@@ -138,56 +142,56 @@ push local 0
 call GhostAsset.frightened2 0
 call Animation.add 2
 pop temp 0
-push this 1
+push this 2
 push local 0
 call AnimationManager.add 2
 pop temp 0
-push this 1
-call Constants.blinkyRight 0
+push this 2
+call Constants.inkyRight 0
 call AnimationManager.set 2
 pop temp 0
 push constant 0
 return
-function Blinky.reset 0
+function Inky.reset 0
 push argument 0
 pop pointer 0
-push this 3
+push this 6
 call Ghost.reset 1
 pop temp 0
 push constant 0
 return
-function Blinky.resetPosition 0
+function Inky.resetPosition 0
 push argument 0
 pop pointer 0
-push this 3
-call Constants.blinkyRight 0
+push this 6
+call Constants.inkyRight 0
 call Ghost.resetPosition 2
 pop temp 0
 push constant 0
 return
-function Blinky.checkIntersect 0
+function Inky.checkIntersect 0
 push argument 0
 pop pointer 0
-push this 3
+push this 6
 call Ghost.checkIntersect 1
 pop temp 0
 push constant 0
 return
-function Blinky.move 0
+function Inky.move 0
 push argument 0
 pop pointer 0
-push this 3
+push this 6
 call Ghost.isReseted 1
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 3
+push this 6
 call Ghost.isDead 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 3
+push this 6
 call Ghost.moveToHome 1
 pop temp 0
 goto IF_END1
@@ -196,7 +200,7 @@ call Game.isFrightened 0
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push this 3
+push this 6
 call Ghost.frightenedState 1
 pop temp 0
 goto IF_END2
@@ -205,14 +209,103 @@ call Game.isScatter 0
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
+push this 6
 push this 3
-push this 2
 call Ghost.moveToPoint 2
 pop temp 0
 goto IF_END3
 label IF_FALSE3
-push this 3
+push this 4
 call Game.pacManPosition 0
+call Vector2.set 2
+pop temp 0
+call Game.pacManDirection 0
+push constant 0
+eq
+not
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+call Game.pacManDirection 0
+pop this 1
+label IF_FALSE4
+push this 1
+push constant 1
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 4
+push this 4
+call Vector2.getX 1
+push constant 2
+add
+call Vector2.setX 2
+pop temp 0
+goto IF_END5
+label IF_FALSE5
+push this 1
+push constant 1
+neg
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 4
+push this 4
+call Vector2.getX 1
+push constant 2
+sub
+call Vector2.setX 2
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push this 1
+push constant 2
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 4
+push this 4
+call Vector2.getY 1
+push constant 2
+add
+call Vector2.setY 2
+pop temp 0
+goto IF_END7
+label IF_FALSE7
+push this 4
+push this 4
+call Vector2.getY 1
+push constant 2
+sub
+call Vector2.setY 2
+pop temp 0
+push this 4
+push this 4
+call Vector2.getX 1
+push constant 2
+sub
+call Vector2.setX 2
+pop temp 0
+label IF_END7
+label IF_END6
+label IF_END5
+push this 5
+call Game.blinkyGetPosition 0
+call Vector2.set 2
+pop temp 0
+push this 5
+push this 4
+call Vector2.sub 2
+pop temp 0
+push this 4
+push this 5
+call Vector2.sub 2
+pop temp 0
+push this 6
+push this 4
 call Ghost.moveToPoint 2
 pop temp 0
 label IF_END3
@@ -220,17 +313,17 @@ label IF_END2
 label IF_END1
 goto IF_END0
 label IF_FALSE0
-push this 3
+push this 6
 push constant 0
 call Ghost.setReseted 2
 pop temp 0
 label IF_END0
 push constant 0
 return
-function Blinky.draw 0
+function Inky.draw 0
 push argument 0
 pop pointer 0
-push this 3
+push this 6
 call Ghost.drawNext 1
 pop temp 0
 push constant 0

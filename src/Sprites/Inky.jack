@@ -1,27 +1,28 @@
-class Pinky
+class Inky
 {
     field int homeState, pacManDirection;
     field AnimationManager am;
-    field Vector2 scatterPoint, pointToGo;
+    field Vector2 scatterPoint, pointToGo, tempPoint;
     field Ghost ghost;
 
-    constructor Pinky new(int x, int y)
+    constructor Inky new(int x, int y)
     {
         let homeState = 0;
         let am = AnimationManager.new(6);
-        let scatterPoint = Vector2.new(1, 1);
+        let scatterPoint = Vector2.new(1, 15);
         let pointToGo = Vector2.new(0, 0);
+        let tempPoint = Vector2.new(0, 0);
         let pacManDirection = 1;
 
         do loadAnimations();
 
         let ghost = Ghost.new(x, y, am);
-        do ghost.bindAnimations(Constants.pinkyUp(),
-                                Constants.pinkyLeft(),
-                                Constants.pinkyDown(),
-                                Constants.pinkyRight(),
-                                Constants.pinkyFrightened(),
-                                Constants.pinkyDead());
+        do ghost.bindAnimations(Constants.inkyUp(),
+                                Constants.inkyLeft(),
+                                Constants.inkyDown(),
+                                Constants.inkyRight(),
+                                Constants.inkyFrightened(),
+                                Constants.inkyDead());
 
         return this;
     }
@@ -41,23 +42,23 @@ class Pinky
         var Animation animation;
 
         let animation = Animation.new(2);
-        do animation.add(PinkyAsset.right1());
-        do animation.add(PinkyAsset.right2());
+        do animation.add(InkyAsset.right1());
+        do animation.add(InkyAsset.right2());
         do am.add(animation);
 
         let animation = Animation.new(2);
-        do animation.add(PinkyAsset.left1());
-        do animation.add(PinkyAsset.left2());
+        do animation.add(InkyAsset.left1());
+        do animation.add(InkyAsset.left2());
         do am.add(animation);
 
         let animation = Animation.new(2);
-        do animation.add(PinkyAsset.down1());
-        do animation.add(PinkyAsset.down2());
+        do animation.add(InkyAsset.down1());
+        do animation.add(InkyAsset.down2());
         do am.add(animation);
 
         let animation = Animation.new(2);
-        do animation.add(PinkyAsset.up1());
-        do animation.add(PinkyAsset.up2());
+        do animation.add(InkyAsset.up1());
+        do animation.add(InkyAsset.up2());
         do am.add(animation);
 
         let animation = Animation.new(1);
@@ -69,7 +70,7 @@ class Pinky
         do animation.add(GhostAsset.frightened2());
         do am.add(animation);
 
-        do am.set(Constants.pinkyRight());
+        do am.set(Constants.inkyRight());
 
         return;
     }
@@ -83,7 +84,7 @@ class Pinky
 
     method void resetPosition()
     {
-        do ghost.resetPosition(Constants.pinkyRight());
+        do ghost.resetPosition(Constants.inkyRight());
         return;
     }
 
@@ -111,17 +112,21 @@ class Pinky
                     { let pacManDirection = Game.pacManDirection(); }
 
                 if (pacManDirection = 1)
-                    { do pointToGo.setX(pointToGo.getX() + 4); }
+                    { do pointToGo.setX(pointToGo.getX() + 2); }
                 else {if(pacManDirection = -1)
-                    { do pointToGo.setX(pointToGo.getX() - 4); }
+                    { do pointToGo.setX(pointToGo.getX() - 2); }
                 else {if(pacManDirection = 2)
-                    { do pointToGo.setY(pointToGo.getY() + 4); }
+                    { do pointToGo.setY(pointToGo.getY() + 2); }
                 else
                 {
-                    do pointToGo.setY(pointToGo.getY() - 4);
-                    do pointToGo.setX(pointToGo.getX() - 4);
+                    do pointToGo.setY(pointToGo.getY() - 2);
+                    do pointToGo.setX(pointToGo.getX() - 2);
                 }}}
-                
+
+                do tempPoint.set(Game.blinkyGetPosition());
+                do tempPoint.sub(pointToGo);
+                do pointToGo.sub(tempPoint);
+
                 do ghost.moveToPoint(pointToGo); 
             }}}
         }

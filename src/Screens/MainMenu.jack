@@ -21,8 +21,8 @@ class MainMenu
         do blinkyAnimation.add(BlinkyAsset.right2());
 
         let inkyAnimation = Animation.new(2);
-        do inkyAnimation.add(PinkyAsset.right1());
-        do inkyAnimation.add(PinkyAsset.right2());
+        do inkyAnimation.add(InkyAsset.right1());
+        do inkyAnimation.add(InkyAsset.right2());
 
         let clydeAnimation = Animation.new(2);
         do clydeAnimation.add(PinkyAsset.right1());

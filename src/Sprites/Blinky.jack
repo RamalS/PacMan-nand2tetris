@@ -34,6 +34,8 @@ class Blinky
         return;
     }
 
+    method Vector2 getPosition() { return ghost.getPosition(); }
+
     method void loadAnimations()
     {
         var Animation animation;

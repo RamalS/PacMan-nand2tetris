@@ -56,6 +56,7 @@ class Ghost
     method int getLastLocation() { return lastLocation; }
     method int getGridIndex() { return gridIndex; }
     method int getLastIndex() { return lastIndex;}
+    method int getPosition() { return position;}
     method int getAM() { return am; }
 
     method void bindAnimations(int _anUp, int _anLeft, int _anDown, int _anRight, int _anFrightened, int _anDead)

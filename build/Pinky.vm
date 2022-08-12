@@ -238,10 +238,6 @@ push constant 4
 add
 call Vector2.setX 2
 pop temp 0
-push this 5
-push this 4
-call Ghost.moveToPoint 2
-pop temp 0
 goto IF_END5
 label IF_FALSE5
 push this 1
@@ -258,10 +254,6 @@ push constant 4
 sub
 call Vector2.setX 2
 pop temp 0
-push this 5
-push this 4
-call Ghost.moveToPoint 2
-pop temp 0
 goto IF_END6
 label IF_FALSE6
 push this 1
@@ -276,10 +268,6 @@ call Vector2.getY 1
 push constant 4
 add
 call Vector2.setY 2
-pop temp 0
-push this 5
-push this 4
-call Ghost.moveToPoint 2
 pop temp 0
 goto IF_END7
 label IF_FALSE7
@@ -297,13 +285,13 @@ push constant 4
 sub
 call Vector2.setX 2
 pop temp 0
+label IF_END7
+label IF_END6
+label IF_END5
 push this 5
 push this 4
 call Ghost.moveToPoint 2
 pop temp 0
-label IF_END7
-label IF_END6
-label IF_END5
 label IF_END3
 label IF_END2
 label IF_END1

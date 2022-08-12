@@ -92,4 +92,35 @@ class Constants
     {
         return 5;
     }
+
+    //Inky
+    function int inkyRight()
+    {
+        return 0;
+    }
+
+    function int inkyLeft()
+    {
+        return 1;
+    }
+
+    function int inkyDown()
+    {
+        return 2;
+    }
+
+    function int inkyUp()
+    {
+        return 3;
+    }
+
+    function int inkyDead()
+    {
+        return 4;
+    }
+
+    function int inkyFrightened()
+    {
+        return 5;
+    }
 }

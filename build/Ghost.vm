@@ -177,6 +177,11 @@ push argument 0
 pop pointer 0
 push this 4
 return
+function Ghost.getPosition 0
+push argument 0
+pop pointer 0
+push this 14
+return
 function Ghost.getAM 0
 push argument 0
 pop pointer 0

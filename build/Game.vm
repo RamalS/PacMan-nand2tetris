@@ -6,7 +6,7 @@ pop local 1
 push constant 0
 pop static 5
 call ClassicMap.initMap 0
-pop static 14
+pop static 15
 label WHILE_EXP0
 push local 0
 push constant 16
@@ -74,14 +74,18 @@ push constant 16
 push constant 7
 call Blinky.new 2
 pop static 13
+push constant 15
+push constant 8
+call Inky.new 2
+pop static 14
 push constant 0
 return
 function Game.reset 0
-push static 14
+push static 15
 call Memory.deAlloc 1
 pop temp 0
 call ClassicMap.initMap 0
-pop static 14
+pop static 15
 push argument 0
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -119,6 +123,9 @@ call Pinky.reset 1
 pop temp 0
 push static 13
 call Blinky.reset 1
+pop temp 0
+push static 14
+call Inky.reset 1
 pop temp 0
 push static 11
 call PacMan.reset 1
@@ -188,6 +195,9 @@ push static 13
 call Blinky.dispose 1
 pop temp 0
 push static 14
+call Inky.dispose 1
+pop temp 0
+push static 15
 call Memory.deAlloc 1
 pop temp 0
 push constant 0
@@ -263,6 +273,9 @@ pop static 4
 push static 11
 call PacMan.resetPosition 1
 pop temp 0
+push static 14
+call Inky.resetPosition 1
+pop temp 0
 push static 13
 call Blinky.resetPosition 1
 pop temp 0
@@ -301,7 +314,7 @@ push static 4
 return
 function Game.grid 1
 push argument 0
-push static 14
+push static 15
 add
 pop pointer 1
 push that 0
@@ -310,7 +323,7 @@ push local 0
 return
 function Game.setGrid 0
 push argument 0
-push static 14
+push static 15
 add
 push argument 1
 pop temp 0
@@ -334,6 +347,10 @@ return
 function Game.pacManDirection 0
 push static 11
 call PacMan.getDirection 1
+return
+function Game.blinkyGetPosition 0
+push static 13
+call Blinky.getPosition 1
 return
 function Game.isScatter 0
 push static 9
@@ -365,11 +382,17 @@ lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push static 14
+call Inky.checkIntersect 1
+pop temp 0
 push static 13
 call Blinky.checkIntersect 1
 pop temp 0
 push static 12
 call Pinky.checkIntersect 1
+pop temp 0
+push static 14
+call Inky.move 1
 pop temp 0
 push static 13
 call Blinky.move 1
@@ -397,6 +420,9 @@ call Pinky.draw 1
 pop temp 0
 push static 13
 call Blinky.draw 1
+pop temp 0
+push static 14
+call Inky.draw 1
 pop temp 0
 push constant 20
 pop local 0

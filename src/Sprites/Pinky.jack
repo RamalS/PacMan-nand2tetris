@@ -111,26 +111,18 @@ class Pinky
                     { let pacManDirection = Game.pacManDirection(); }
 
                 if (pacManDirection = 1)
-                {
-                    do pointToGo.setX(pointToGo.getX() + 4);
-                    do ghost.moveToPoint(pointToGo);
-                }
+                    { do pointToGo.setX(pointToGo.getX() + 4); }
                 else {if(pacManDirection = -1)
-                {
-                    do pointToGo.setX(pointToGo.getX() - 4);
-                    do ghost.moveToPoint(pointToGo); 
-                }
+                    { do pointToGo.setX(pointToGo.getX() - 4); }
                 else {if(pacManDirection = 2)
-                {
-                    do pointToGo.setY(pointToGo.getY() + 4);
-                    do ghost.moveToPoint(pointToGo); 
-                }
+                    { do pointToGo.setY(pointToGo.getY() + 4); }
                 else
                 {
                     do pointToGo.setY(pointToGo.getY() - 4);
                     do pointToGo.setX(pointToGo.getX() - 4);
-                    do ghost.moveToPoint(pointToGo); 
                 }}}
+                
+                do ghost.moveToPoint(pointToGo); 
             }}}
         }
         else

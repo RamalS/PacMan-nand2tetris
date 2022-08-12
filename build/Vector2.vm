@@ -120,3 +120,18 @@ add
 pop local 2
 push local 2
 return
+function Vector2.sub 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call Vector2.getX 1
+sub
+pop this 0
+push this 1
+push argument 1
+call Vector2.getY 1
+sub
+pop this 1
+push constant 0
+return
