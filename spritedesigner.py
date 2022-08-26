@@ -25,8 +25,8 @@ def writeToFile(grid):
         for g in grid:
             bina = "".join([str(x) for x in g])[::-1]
             a = Bits(bin=bina)
-            to_write = f" let sprite[{i}] = {a.int};\n"
-            #to_write = f"do Memory.poke(location + {i*32}, {a.int});\n"
+            #to_write = f" let sprite[{i}] = {a.int};\n"
+            to_write = f"do Memory.poke(location + {i*32}, {a.int});\n"
             f.write(to_write)
             i += 1
 

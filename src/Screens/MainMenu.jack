@@ -43,10 +43,10 @@ class MainMenu
         do Screen.clearScreen();
         do ScreenAsset.pacManBaner(ScreenManager.getLocation(6, 2));
 
-        do Output.moveCursor(12, 30);
+        do Output.moveCursor(10, 30);
         do Output.printString(map1);
 
-        do Output.moveCursor(14, 30);
+        do Output.moveCursor(13, 30);
         do Output.printString(map2);
         
         do Output.moveCursor(18, 27);
@@ -77,9 +77,11 @@ class MainMenu
             {
                 if (selectedMap = 0)
                 {
-                    do ScreenManager.clearRow(Constants.getScreen() + 4096);
+                    do ScreenManager.clearRow(Constants.getScreen() + 3584);
                     do Sys.wait(100);
-                    do Output.moveCursor(12, 30);
+                    do ScreenManager.clearBlock(ScreenManager.getLocation(14, 9));
+                    do ScreenAsset.cursor(ScreenManager.getLocation(14, 7));
+                    do Output.moveCursor(10, 30);
                     do Output.printString(map1);
                 }
                 else
@@ -87,7 +89,9 @@ class MainMenu
                     do ScreenManager.clearRow(Constants.getScreen() + 4608);
                     do ScreenManager.clearRow(Constants.getScreen() + 5120);
                     do Sys.wait(100);
-                    do Output.moveCursor(14, 30);
+                    do ScreenManager.clearBlock(ScreenManager.getLocation(14, 7));
+                    do ScreenAsset.cursor(ScreenManager.getLocation(14, 9));
+                    do Output.moveCursor(13, 30);
                     do Output.printString(map2);
                 }
 

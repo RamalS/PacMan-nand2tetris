@@ -26,6 +26,14 @@ return
 function GameOver.draw 0
 call ScreenManager.clearScreenAnimated 0
 pop temp 0
+push constant 19
+push constant 1
+call Game.drawScore 2
+pop temp 0
+push constant 33
+push constant 1
+call Game.drawHighScore 2
+pop temp 0
 push constant 11
 push constant 27
 call Output.moveCursor 2

@@ -1,11 +1,11 @@
 class Game
 {
     static bool run;
-    static int scatterState;
+    static int scatterState, factorTimer, drawTimer, moveTimer, scatterTimer, frightenedTimer, drawDuration, moveDuration, scatterDuration, frightenedDuration;
 
-    static int score, dotsEaten, hp, totalDots, factor, scatterDuration, frightenedDuration, selectedMap;
+    static int score, highScore, dotsEaten, hp, level, totalDots, factor, scatterTimer, frightenedTimer, selectedMap;
     static bool scatter, frightened;
-    static String scoreLabel, livesLabel;
+    static String scoreLabel, livesLabel, highScoreLabel, levelLabel;
     static PacMan pacMan;
     static Pinky pinky;
     static Blinky blinky;
@@ -23,6 +23,14 @@ class Game
         let clyde = Clyde.new(16, 8);
         let scoreLabel = "Score: ";
         let livesLabel = "Lives: ";
+        let highScoreLabel = "H. Score: ";
+        let levelLabel = "Level: ";
+        let level = 0;
+        let scatterDuration = 2000;
+        let frightenedDuration = 2000;
+        let drawDuration = 20;
+        let moveDuration = 40;
+        let highScore = 0;
 
         return;
     }
@@ -63,7 +71,11 @@ class Game
         do pacMan.setDefaultPosition(pacManX, pacManY);
 
         if (resetScore)
-            { let score = 0; }
+        { 
+            let score = 0;
+            let factor = 80;
+            let level = 0;
+        }
         else
         {
             do Sys.wait(1000);
@@ -73,8 +85,11 @@ class Game
         let hp = 3;
         let dotsEaten = 0;
         let scatterState = 0;
-        let scatterDuration = 2000;
-        let frightenedDuration = 2000;
+        let factorTimer = 0;
+        let drawTimer = 0;
+        let moveTimer = 0;
+        let scatterTimer = 0;
+        let frightenedTimer = 0;
 
         let run = true;
         let scatter = true;
@@ -87,13 +102,9 @@ class Game
         do pacMan.reset();
         do Map.draw(map);
 
-        do Output.moveCursor(0, 2);
-        do Output.printString(scoreLabel);
-        do Output.printInt(score);
-
-        do Output.moveCursor(0, 14);
-        do Output.printString(livesLabel);
-        do Output.printInt(hp);
+        do Game.drawScore(2, 0);
+        do Game.drawLevel(29, 0);
+        do Game.drawLives(54, 0);
 
         return;
     }
@@ -113,16 +124,21 @@ class Game
     function void increaseScore(int index, int x)
     {
         let score = score + x;
-        let dotsEaten = dotsEaten + 1;
         do Game.setGrid(index, 0);
-        do Output.moveCursor(0, 2);
-        do Output.printString(scoreLabel);
-        do Output.printInt(score);
+        do Game.drawScore(2, 0);
+
+        if (x = 1)
+            { let dotsEaten = dotsEaten + 1; }
 
         if (dotsEaten = totalDots)
         {
             let dotsEaten = 0;
+            let level = level + 1;
+            do Game.drawLevel(29, 0);
             do Game.reset(false);
+
+            if (factor > 5)
+                { let factor = factor - 30; }
         }
 
         return;
@@ -136,10 +152,51 @@ class Game
         do inky.resetPosition();
         do blinky.resetPosition();
         do pinky.resetPosition();
-        do Output.moveCursor(0, 14);
+        do Game.drawLives(54, 0);
+
+        if (Game.getHp() = 0)
+            {
+                do Game.setRun(false);
+                if (score > highScore)
+                    { let highScore = score; }
+            }
+       
+        return;
+    }
+
+    function void drawScore(int x, int y)
+    {
+        do Output.moveCursor(y, x);
+        do Output.printString(scoreLabel);
+        do Output.printInt(score);
+
+        return;
+    }
+
+    function void drawLevel(int x, int y)
+    {
+        do Output.moveCursor(y, x);
+        do Output.printString(levelLabel);
+        do Output.printInt(level);
+
+        return;
+    }
+
+    function void drawLives(int x, int y)
+    {
+        do Output.moveCursor(y, x);
         do Output.printString(livesLabel);
         do Output.printInt(hp);
-       
+
+        return;
+    }
+
+    function void drawHighScore(int x, int y)
+    {
+        do Output.moveCursor(y, x);
+        do Output.printString(highScoreLabel);
+        do Output.printInt(highScore);
+
         return;
     }
 
@@ -207,15 +264,11 @@ class Game
 
     function void loop()
     {
-        var int drawDuration, moveDuration;
-
-        let drawDuration = 10;
-        let moveDuration = 10;
         do LCGRandom.setSeed(1234);
 
         while (run)
         {
-            if (moveDuration < 0)
+            if (moveTimer > moveDuration)
             {
                 do clyde.checkIntersect();
                 do inky.checkIntersect();
@@ -227,50 +280,50 @@ class Game
                 do blinky.move();
                 do pinky.move();
                 do pacMan.move();
-                let moveDuration = 40;
+                let moveTimer = 0;
             }
 
-            if (drawDuration < 0)
+            if (drawTimer > drawDuration)
             {
                 do pacMan.draw();
                 do pinky.draw();
                 do blinky.draw();
                 do inky.draw();
                 do clyde.draw();
-                let drawDuration = 20;
+                let drawTimer = 0;
             }
 
             if (frightened)
             {
-                if (frightenedDuration < 0)
+                if (frightenedTimer > frightenedDuration)
                 {
-                    let frightenedDuration = 2000;
+                    let frightenedTimer = 0;
                     let frightened = false;
                 }
 
-                let frightenedDuration = frightenedDuration - 1;
+                let frightenedTimer = frightenedTimer + 1;
             }
             else
-                { let scatterDuration = scatterDuration - 1; }
+                { let scatterTimer = scatterTimer + 1; }
 
-            if (scatterDuration < 0)
+            if (scatterTimer > scatterDuration)
             {
                 if (scatterState < 7)
                 {
                     let scatter = ~scatter;
-                    let scatterDuration = 2000;
+                    let scatterTimer = 0;
                     let scatterState = scatterState + 1;
                 }
             }
 
             do pacMan.input();
 
-            let drawDuration = drawDuration - 1;
-            let moveDuration = moveDuration - 1;
-            let factor = 80;
+            let drawTimer = drawTimer + 1;
+            let moveTimer = moveTimer + 1;
+            let factorTimer = 0;
 
-            while(factor > 0)
-                { let factor = factor - 1; }
+            while(factorTimer < factor)
+                { let factorTimer = factorTimer + 1; }
         }
 
         return;

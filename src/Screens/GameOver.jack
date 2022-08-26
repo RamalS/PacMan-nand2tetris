@@ -21,6 +21,8 @@ class GameOver
     {
         do ScreenManager.clearScreenAnimated();
 
+        do Game.drawScore(19, 1);
+        do Game.drawHighScore(33, 1);
         do Output.moveCursor(11, 27);
         do Output.printString("GAME OVER");
 

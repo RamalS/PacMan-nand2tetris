@@ -45,6 +45,7 @@ class PacMan
 
         do position.set(defaultPosition);
         let location = ScreenManager.getLocation(x, y);
+        let lastLocation = location;
         let gridIndex = y * 32 + x;
         
         do am.set(Constants.pacManRight());
@@ -308,8 +309,6 @@ class PacMan
                     { do Sys.wait(200); }
                 let reseted = false;
                 do am.setKeyFrame(Constants.pacManLeft(), 0);
-                if (Game.getHp() = 0)
-                    { do Game.setRun(false); }
             } 
             else
                 { do am.drawNext(location); }

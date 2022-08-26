@@ -756,4 +756,26 @@ class ScreenAsset
 
         return;
     }
+
+    function void cursor(int location)
+    {
+        do Memory.poke(location, 128);
+        do Memory.poke(location + 32, 384);
+        do Memory.poke(location + 64, 896);
+        do Memory.poke(location + 96, 1920);
+        do Memory.poke(location + 128, 896);
+        do Memory.poke(location + 160, 384);
+        do Memory.poke(location + 192, 128);
+        do Memory.poke(location + 224, 0);
+        do Memory.poke(location + 256, 0);
+        do Memory.poke(location + 288, 0);
+        do Memory.poke(location + 320, 0);
+        do Memory.poke(location + 352, 0);
+        do Memory.poke(location + 384, 0);
+        do Memory.poke(location + 416, 0);
+        do Memory.poke(location + 448, 0);
+        do Memory.poke(location + 480, 0);
+
+        return;
+    }
 }

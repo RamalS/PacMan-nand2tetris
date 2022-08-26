@@ -660,4 +660,26 @@ class MapAsset
 
         return;
     }
+
+    function void fruit(int location)
+    {
+        do Memory.poke(location, 0);
+        do Memory.poke(location + 32, 12288);
+        do Memory.poke(location + 64, 15360);
+        do Memory.poke(location + 96, 2816);
+        do Memory.poke(location + 128, 2176);
+        do Memory.poke(location + 160, 1088);
+        do Memory.poke(location + 192, 544);
+        do Memory.poke(location + 224, 632);
+        do Memory.poke(location + 256, 644);
+        do Memory.poke(location + 288, 3412);
+        do Memory.poke(location + 320, 4260);
+        do Memory.poke(location + 352, 4772);
+        do Memory.poke(location + 384, 5304);
+        do Memory.poke(location + 416, 4224);
+        do Memory.poke(location + 448, 3840);
+        do Memory.poke(location + 480, 0);
+
+        return;
+    }
 }

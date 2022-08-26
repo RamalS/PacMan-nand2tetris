@@ -49,8 +49,8 @@ class Ghost
 
     method bool checkCollisionUp()    { if (Game.grid(gridIndex - 32) < 7) {return true;} else {return false;}}
     method bool checkCollisionDown()  { if (Game.grid(gridIndex + 32) < 7) {return true;} else {return false;}}
-    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 7)  {return true;} else {return false;}}
-    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 7)  {return true;} else {return false;}}
+    method bool checkCollisionLeft()  { if (Game.grid(gridIndex - 1) < 7 & ~(Game.grid(gridIndex - 1) = 3))  {return true;} else {return false;}}
+    method bool checkCollisionRight() { if (Game.grid(gridIndex + 1) < 7 & ~(Game.grid(gridIndex + 1) = 3))  {return true;} else {return false;}}
 
     method int getLocation() { return location; }
     method int getLastLocation() { return lastLocation; }
@@ -280,19 +280,9 @@ class Ghost
                 do moveUp(anFrightened);
                 let moved = false;
             }
-            else {if (direction = 2 & ~(lastIndex = (gridIndex - 1)) & checkCollisionLeft())
+            else {if (direction = 2 & ~(lastIndex = (gridIndex - 1)) & checkCollisionLeft() & ~(Game.grid(gridIndex - 1) = 3))
             {
-
                 do moveLeft(anFrightened);
-
-                if (Game.grid(gridIndex) = 3)
-                {
-                    do ScreenManager.clearBlock(location);
-                    let location = location + 31;
-                    let gridIndex = gridIndex + 31;
-                    do position.setX(position.getX() + 31);
-                }
-
                 let moved = false;
             }
             else {if (direction = 3 & ~(lastIndex = (gridIndex + 32)) & checkCollisionDown())
@@ -300,18 +290,9 @@ class Ghost
                 do moveDown(anFrightened);
                 let moved = false;
             }
-            else {if (direction = 4 & ~(lastIndex = (gridIndex + 1)) & checkCollisionRight())
+            else {if (direction = 4 & ~(lastIndex = (gridIndex + 1)) & checkCollisionRight() & ~(Game.grid(gridIndex + 1) = 3))
             {
                 do moveRight(anFrightened);
-
-                if (Game.grid(gridIndex) = 3)
-                {
-                    do ScreenManager.clearBlock(location);
-                    let location = location - 31;
-                    let gridIndex = gridIndex - 31;
-                    do position.setX(position.getX() - 31);
-                }
-
                 let moved = false;
             }
             else
