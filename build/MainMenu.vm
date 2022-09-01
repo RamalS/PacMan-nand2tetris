@@ -129,14 +129,14 @@ push constant 2
 call ScreenManager.getLocation 2
 call ScreenAsset.pacManBaner 1
 pop temp 0
-push constant 10
+push constant 12
 push constant 30
 call Output.moveCursor 2
 pop temp 0
 push static 6
 call Output.printString 1
 pop temp 0
-push constant 13
+push constant 14
 push constant 30
 call Output.moveCursor 2
 pop temp 0
@@ -224,7 +224,7 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 call Constants.getScreen 0
-push constant 3584
+push constant 4096
 add
 call ScreenManager.clearRow 1
 pop temp 0
@@ -237,11 +237,16 @@ call ScreenManager.getLocation 2
 call ScreenManager.clearBlock 1
 pop temp 0
 push constant 14
-push constant 7
+push constant 10
 call ScreenManager.getLocation 2
+call ScreenManager.clearBlock 1
+pop temp 0
+call Constants.getScreen 0
+push constant 4302
+add
 call ScreenAsset.cursor 1
 pop temp 0
-push constant 10
+push constant 12
 push constant 30
 call Output.moveCursor 2
 pop temp 0
@@ -264,16 +269,16 @@ push constant 100
 call Sys.wait 1
 pop temp 0
 push constant 14
-push constant 7
+push constant 8
 call ScreenManager.getLocation 2
 call ScreenManager.clearBlock 1
 pop temp 0
-push constant 14
-push constant 9
-call ScreenManager.getLocation 2
+call Constants.getScreen 0
+push constant 5006
+add
 call ScreenAsset.cursor 1
 pop temp 0
-push constant 13
+push constant 14
 push constant 30
 call Output.moveCursor 2
 pop temp 0
