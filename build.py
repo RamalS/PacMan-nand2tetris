@@ -26,3 +26,7 @@ if __name__ == "__main__":
     MoveFiles(path)
 
     os.system(f'JackCompiler.bat "{build}"')
+
+    for item in os.listdir(build):
+        if item.endswith(".jack"):
+            os.remove(os.path.join(build, item))

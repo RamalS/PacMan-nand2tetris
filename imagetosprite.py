@@ -8,7 +8,7 @@ h = 4
 nW = w * 16
 nH = h * 16
 
-im = Image.open(r"./images/pacmanbaner2.png")
+im = Image.open(r"./images/ivanjeff.png")
 im = im.resize((nW, nH))
 pix = im.load()
 
