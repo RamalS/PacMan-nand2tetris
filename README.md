@@ -1,3 +1,3 @@
-# PackMan
+# PackMan - nand2tetris
 ####  Error codes
 - 300 - Animation frame out of range
