@@ -8,10 +8,10 @@ https://www.youtube.com/watch?v=xyKASGNG-qE
 
 ####  Main menu
 <p align="center">
-  <img width="500px" height="auto" src="https://user-images.githubusercontent.com/30002800/209565288-4e13d1e0-ecb3-4636-95a8-d7d0f79ea8f8.PNG" alt="img 1"/>
+  <img width="500px" height="auto" src="https://user-images.githubusercontent.com/30002800/209574272-35426d09-610a-41ee-9380-7b9a17802049.PNG" alt="img 1"/>
 </p>
 
 ####  Game
 <p align="center">
-  <img width="500px" height="auto" src="https://user-images.githubusercontent.com/30002800/209565296-78f0f538-5885-4efb-aa08-402d1679311f.png" alt="img 2"/>
+  <img width="500px" height="auto" src="https://user-images.githubusercontent.com/30002800/209574298-d3fa72f4-eafa-481d-90a4-23e84d04ab16.jpg" alt="img 2"/>
 </p>
